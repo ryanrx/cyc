@@ -1,0 +1,6 @@
+<view class='content'> 
+  <import src="../template/template.wxml"/>
+  <view>
+    <template is="question-list" data="{{questions}}"/>
+  </view>
+</view>
