@@ -1,5 +1,33 @@
 var stageNum = 0;
-var numQues = 3;
+var questions = [
+    {
+      "question": "你最喜欢的食物是什么？",
+      "choices": [
+        "苹果",
+        "香蕉",
+        "梨子",
+        "菠萝"
+      ]
+    },
+    {
+      "question": "你最喜欢的动物是什么？",
+      "choices": [
+        "狮子",
+        "老虎",
+        "兔子",
+        "大象",
+        "黄鼠狼"
+      ]
+    },
+    {
+      "question": "你最喜欢的角色是谁？",
+      "choices": [
+        "范闲",
+        "司里里",
+        "海棠朵朵"
+      ]
+    }
+  ];
 
 // pages/main/main.js
 Page({
@@ -8,40 +36,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    stage: 0,
-    questions:[
-      {
-        "question": "你最喜欢的食物是什么？",
-        "choices": [
-          "苹果",
-          "香蕉",
-          "梨子",
-          "菠萝"
-        ]
-      },
-      {
-        "question": "你最喜欢的动物是什么？",
-        "choices": [
-          "狮子",
-          "老虎",
-          "兔子",
-          "大象",
-          "黄鼠狼"
-        ]
-      },
-      {
-        "question": "你最喜欢的角色是谁？",
-        "choices": [
-          "范闲",
-          "司里里",
-          "海棠朵朵"
-        ]
-      }
-    ]
+    stage: stageNum,
+    questions: questions
   },
 
   chosen: function() {
-    if(stageNum < numQues - 1){
+    if(stageNum < questions.length - 1){
       stageNum++;
       this.setData({
         stage: stageNum
