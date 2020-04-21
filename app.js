@@ -2,6 +2,7 @@
 //test by yifan
 //test2 by yifan
 //test3 by yifan
+//test4 by ruifeng
 App({
   onLaunch: function () {
     // 展示本地存储能力
