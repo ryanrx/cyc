@@ -1,5 +1,6 @@
 //app.js
 //test by yifan
+//test2 by yifan
 App({
   onLaunch: function () {
     // 展示本地存储能力
