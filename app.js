@@ -1,5 +1,6 @@
 //app.js
 // test 1
+// test 2
 App({
   onLaunch: function () {
     // 展示本地存储能力
