@@ -2,6 +2,6 @@
   <image class='background' src="../images/bgs/qyn_bg1.jpg" mode="aspectFill"></image> 
   <import src="../template/template.wxml"/>
   <view>
-    <template is="question-list" data="{{questions}}"/>
+    <template is="question-list" data="{{questions, stage}}"/>
   </view>
 </view>

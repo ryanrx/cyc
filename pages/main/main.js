@@ -1,3 +1,6 @@
+var stageNum = 0;
+var numQues = 3;
+
 // pages/main/main.js
 Page({
 
@@ -5,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    stage: 0,
     questions:[
       {
         "question": "你最喜欢的食物是什么？",
@@ -24,8 +28,25 @@ Page({
           "大象",
           "黄鼠狼"
         ]
+      },
+      {
+        "question": "你最喜欢的角色是谁？",
+        "choices": [
+          "范闲",
+          "司里里",
+          "海棠朵朵"
+        ]
       }
     ]
+  },
+
+  chosen: function() {
+    if(stageNum < numQues - 1){
+      stageNum++;
+      this.setData({
+        stage: stageNum
+      })
+    }
   },
 
   /**

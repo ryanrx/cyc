@@ -1,10 +1,12 @@
 <template name="question-list">
   <block wx:for="{{questions}}">
-    <view class="question">{{item.question}}</view>
-    <view class="choices">
-      <block wx:for="{{item.choices}}">
-        <button class="choice" bindtap="chosen">{{item}}</button>
-      </block>
+    <view wx:if="{{index == stage}}">
+      <view class="question">{{item.question}}</view>
+      <view class="choices">
+        <block wx:for="{{item.choices}}">
+          <button class="choice" bindtap="chosen">{{item}}</button>
+        </block>
+      </view>
     </view>
   </block>
 </template>
