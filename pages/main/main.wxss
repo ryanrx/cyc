@@ -11,8 +11,8 @@
   background-color: rgba(255,255,255,0.7);
   text-align: center;
   margin: 20rpx;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 40rpx;
+  padding-bottom: 40rpx;
   font-size: 50rpx;
   color: darkslategray;
 }
@@ -21,8 +21,8 @@
   background-color: rgba(0,0,0,0.7);
   text-align: center;
   margin: 20rpx;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 60rpx;
+  padding-bottom: 60rpx;
   font-size: 50rpx;
   color: white;
 }
@@ -31,8 +31,8 @@
   background-color: rgba(25, 86, 255, 0.7);
   text-align: center;
   margin: 20rpx;
-  padding-top: 80px;
-  padding-bottom: 80px;
+  padding-top: 150rpx;
+  padding-bottom: 150rpx;
   font-size: 50rpx;
   color: goldenrod;
 }
