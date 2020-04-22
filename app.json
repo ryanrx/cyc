@@ -5,9 +5,27 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#8B4513",
+    "navigationBarBackgroundColor": "#3498DE",
     "navigationBarTitleText": "庆余年",
     "navigationBarTextStyle": "black"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "cloud": true,
+  "tabBar": {
+    "selectedColor": "#3498DE",
+    "list": [
+      {
+        "pagePath": "pages/main/main",
+        "text": "测一测",
+        "iconPath": "pages/images/tabbar/home.png",
+        "selectedIconPath": "pages/images/tabbar/home-selected.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "pages/images/tabbar/user.png",
+        "selectedIconPath": "pages/images/tabbar/user-selected.png"
+      }
+    ]
+  }
 }
