@@ -1,56 +1,10 @@
+// pages/main/main.js
+
 var stageNum = 0;   // current question stage
-var types = ["善良", "胆小", "天真"]; // result types
+var types; // result types
 var userType = [0, 0, 0]; // initial user scores
 
-var questions = [
-  {
-    "question": "你最喜欢的食物是什么？", //question
-    "choices": [    // answer choices
-      "苹果",
-      "香蕉",
-      "梨子",
-      "菠萝"
-    ],
-    "scores": [ // scores corresponding to each answer choice
-      [1, 0, 0],
-      [0, 1, 0],
-      [0, 0, 1],
-      [1, 1, 1]
-    ]
-  },
-
-  {
-    "question": "你最喜欢的动物是什么？",
-    "choices": [
-      "狮子",
-      "老虎",
-      "兔子",
-      "大象",
-      "黄鼠狼"
-    ],
-    "scores": [
-      [1, 0, 0],
-      [0, 1, 0],
-      [0, 0, 1],
-      [1, 1, 1],
-      [1, 1, 0]
-    ]
-  },
-
-  {
-    "question": "你最喜欢的角色是谁？",
-    "choices": [
-      "范闲",
-      "司里里",
-      "海棠朵朵"
-    ],
-    "scores": [
-      [1, 0, 0],
-      [0, 1, 0],
-      [0, 0, 1]
-    ]
-  }
-];
+var questions;
 
 /* find the index of the maximal number of an array */
 function pickIndexOfMax(array) {
@@ -65,7 +19,6 @@ function pickIndexOfMax(array) {
   return maxIndex;
 }
 
-// pages/main/main.js
 Page({
 
   /**
@@ -99,7 +52,7 @@ Page({
       var maxIndex = pickIndexOfMax(userType);
       this.setData({  // return result
         resultStatus: true,
-        result: "您是一个" + types[maxIndex] + "的人！"
+        result: types[maxIndex]
       })
     }
 
@@ -109,7 +62,26 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const db = wx.cloud.database()
+    db.collection('questions-lists').where({
+      name: "qingyunian"
+    }).get({
+      success: res => {
+        console.log('[数据库] [查询记录] 成功: ', res);
+        questions = res.data[0].questions;
+        types = res.data[0].types;
+        this.setData({
+          questions: questions
+        });
+      },
+      fail: err => {
+        wx.showToast({
+          icon: 'none',
+          title: '查询记录失败'
+        })
+        console.error('[数据库] [查询记录] 失败：', err)
+      }
+    })
   },
 
   /**
