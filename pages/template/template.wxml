@@ -4,7 +4,7 @@
       <view class="question">{{item.question}}</view>
       <view class="choices">
         <block wx:for="{{item.choices}}">
-          <button class="choice" bindtap="chosen">{{item}}</button>
+          <button class="choice" bindtap="chosen" id="{{index}}">{{item}}</button>
         </block>
       </view>
     </view>

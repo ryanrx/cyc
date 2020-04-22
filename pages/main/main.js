@@ -1,12 +1,18 @@
-var stageNum = 0;
+var stageNum = 0;   // current question stage
 var questions = [
     {
-      "question": "你最喜欢的食物是什么？",
-      "choices": [
+      "question": "你最喜欢的食物是什么？", //question
+      "choices": [    // answer choices
         "苹果",
         "香蕉",
         "梨子",
         "菠萝"
+      ],
+      "scores": [ // scores corresponding to each answer choice
+        [1, 0, 0],
+        [0, 1, 0],
+        [0, 0, 1],
+        [1, 1, 1]
       ]
     },
     {
@@ -17,6 +23,13 @@ var questions = [
         "兔子",
         "大象",
         "黄鼠狼"
+      ],
+      "scores": [
+        [1, 0, 0],
+        [0, 1, 0],
+        [0, 0, 1],
+        [1, 1, 1],
+        [1, 1, 0]
       ]
     },
     {
@@ -25,9 +38,16 @@ var questions = [
         "范闲",
         "司里里",
         "海棠朵朵"
+      ],
+      "scores": [
+        [1, 0, 0],
+        [0, 1, 0],
+        [0, 0, 1]
       ]
     }
   ];
+var types = ["善良", "胆小", "天真"]; // result types
+var userType = [0, 0, 0]; // initial user scores
 
 // pages/main/main.js
 Page({
@@ -37,14 +57,35 @@ Page({
    */
   data: {
     stage: stageNum,
-    questions: questions
+    questions: questions,
+    result: ""
   },
 
-  chosen: function() {
-    if(stageNum < questions.length - 1){
-      stageNum++;
-      this.setData({
-        stage: stageNum
+  chosen: function(e) {
+    // console.log(e);
+    for(var i = 0; i < userType.length; i++){ // add scores
+      userType[i] += questions[stageNum].scores[e.target.id][i];
+    }
+
+    // increment questions stage number
+    stageNum++;
+    this.setData({
+      stage: stageNum
+    })
+
+    console.log(userType);
+
+    if(stageNum == questions.length){ // if no questions left
+      var max = userType[0];
+      var maxIndex = 0; // find type with max score
+      for (var i = 1; i < userType.length; i++) {
+        if (userType[i] > max) {
+          maxIndex = i;
+          max = userType[i];
+        }
+      }
+      this.setData({  // return result
+        result: "您是一个" + types[maxIndex] + "的人！"
       })
     }
   },

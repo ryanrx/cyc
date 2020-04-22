@@ -4,4 +4,5 @@
   <view>
     <template is="question-list" data="{{questions, stage}}"/>
   </view>
+  <view class="result">{{result}}</view>
 </view>
