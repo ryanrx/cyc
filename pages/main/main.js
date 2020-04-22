@@ -74,7 +74,8 @@ Page({
   data: {
     stage: stageNum,
     questions: questions,
-    result: ""
+    result: "",
+    resultStatus: false,
   },
 
 
@@ -97,6 +98,7 @@ Page({
     if(stageNum == questions.length){ // if no questions left
       var maxIndex = pickIndexOfMax(userType);
       this.setData({  // return result
+        resultStatus: true,
         result: "您是一个" + types[maxIndex] + "的人！"
       })
     }
