@@ -18,6 +18,7 @@ var questions = [
       [1, 1, 1]
     ]
   },
+
   {
     "question": "你最喜欢的动物是什么？",
     "choices": [
@@ -35,6 +36,7 @@ var questions = [
       [1, 1, 0]
     ]
   },
+
   {
     "question": "你最喜欢的角色是谁？",
     "choices": [
@@ -64,6 +66,7 @@ Page({
   },
 
   chosen: function(e) {
+
     // console.log(e);
     for(var i = 0; i < userType.length; i++){ // add scores
       userType[i] += questions[stageNum].scores[e.target.id][i];
@@ -90,6 +93,7 @@ Page({
         result: "您是一个" + types[maxIndex] + "的人！"
       })
     }
+    
   },
 
   /**
