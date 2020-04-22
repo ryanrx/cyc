@@ -1,13 +1,14 @@
 {
   "pages": [
+    "pages/home/home",
     "pages/main/main",
     "pages/user/user"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#3498DE",
-    "navigationBarTitleText": "庆余年",
-    "navigationBarTextStyle": "black"
+    "navigationBarTitleText": "测一测",
+    "navigationBarTextStyle": "white"
   },
   "sitemapLocation": "sitemap.json",
   "cloud": true,
@@ -15,7 +16,7 @@
     "selectedColor": "#3498DE",
     "list": [
       {
-        "pagePath": "pages/main/main",
+        "pagePath": "pages/home/home",
         "text": "测一测",
         "iconPath": "pages/images/tabbar/home.png",
         "selectedIconPath": "pages/images/tabbar/home-selected.png"

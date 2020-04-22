@@ -1,10 +1,9 @@
 // pages/main/main.js
 
 var stageNum = 0;   // current question stage
-var types; // result types
+var types = []; // result types
 var userType = [0, 0, 0]; // initial user scores
-
-var questions;
+var questions = [];
 
 /* find the index of the maximal number of an array */
 function pickIndexOfMax(array) {
@@ -29,6 +28,7 @@ Page({
     questions: questions,
     result: "",
     resultStatus: false,
+    imagesrc: ""
   },
 
 
@@ -64,13 +64,14 @@ Page({
   onLoad: function (options) {
     const db = wx.cloud.database()
     db.collection('questions-lists').where({
-      name: "qingyunian"
+      name: options.id
     }).get({
       success: res => {
         console.log('[数据库] [查询记录] 成功: ', res);
         questions = res.data[0].questions;
         types = res.data[0].types;
         this.setData({
+          imagesrc: res.data[0].imagesrc,
           questions: questions
         });
       },
@@ -82,6 +83,10 @@ Page({
         console.error('[数据库] [查询记录] 失败：', err)
       }
     })
+
+    stageNum = 0;
+    userType = [0, 0, 0];
+
   },
 
   /**
