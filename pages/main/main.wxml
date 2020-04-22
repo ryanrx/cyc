@@ -1,5 +1,5 @@
 <view class='content'>
-  <image class='background' src="../images/bgs/qyn_bg1.jpg" mode="aspectFill"></image> 
+  <image class='background' src="cloud://inuyasha.696e-inuyasha-1301310234/qyn_bg1.jpg" mode="aspectFill"></image> 
   <import src="../template/template.wxml"/>
   <view>
     <template is="question-list" data="{{questions, stage}}"/>
