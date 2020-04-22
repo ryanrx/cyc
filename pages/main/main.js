@@ -52,6 +52,18 @@ var questions = [
   }
 ];
 
+/* find the index of the maximal number of an array */
+function pickIndexOfMax(array) {
+  var max = array[0];
+  var maxIndex = 0; // find type with max score
+  for (var i = 1; i < array.length; i++) {
+    if (array[i] > max) {
+      maxIndex = i;
+      max = array[i];
+    }
+  }
+  return maxIndex;
+}
 
 // pages/main/main.js
 Page({
@@ -65,6 +77,8 @@ Page({
     result: ""
   },
 
+
+
   chosen: function(e) {
 
     // console.log(e);
@@ -75,25 +89,18 @@ Page({
     // increment questions stage number
     stageNum++;
     this.setData({
-      stage: stageNum
+      stage: stageNum,
     })
 
     console.log(userType);
 
     if(stageNum == questions.length){ // if no questions left
-      var max = userType[0];
-      var maxIndex = 0; // find type with max score
-      for (var i = 1; i < userType.length; i++) {
-        if (userType[i] > max) {
-          maxIndex = i;
-          max = userType[i];
-        }
-      }
+      var maxIndex = pickIndexOfMax(userType);
       this.setData({  // return result
         result: "您是一个" + types[maxIndex] + "的人！"
       })
     }
-    
+
   },
 
   /**
