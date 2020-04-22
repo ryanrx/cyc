@@ -1,53 +1,55 @@
 var stageNum = 0;   // current question stage
-var questions = [
-    {
-      "question": "你最喜欢的食物是什么？", //question
-      "choices": [    // answer choices
-        "苹果",
-        "香蕉",
-        "梨子",
-        "菠萝"
-      ],
-      "scores": [ // scores corresponding to each answer choice
-        [1, 0, 0],
-        [0, 1, 0],
-        [0, 0, 1],
-        [1, 1, 1]
-      ]
-    },
-    {
-      "question": "你最喜欢的动物是什么？",
-      "choices": [
-        "狮子",
-        "老虎",
-        "兔子",
-        "大象",
-        "黄鼠狼"
-      ],
-      "scores": [
-        [1, 0, 0],
-        [0, 1, 0],
-        [0, 0, 1],
-        [1, 1, 1],
-        [1, 1, 0]
-      ]
-    },
-    {
-      "question": "你最喜欢的角色是谁？",
-      "choices": [
-        "范闲",
-        "司里里",
-        "海棠朵朵"
-      ],
-      "scores": [
-        [1, 0, 0],
-        [0, 1, 0],
-        [0, 0, 1]
-      ]
-    }
-  ];
 var types = ["善良", "胆小", "天真"]; // result types
 var userType = [0, 0, 0]; // initial user scores
+
+var questions = [
+  {
+    "question": "你最喜欢的食物是什么？", //question
+    "choices": [    // answer choices
+      "苹果",
+      "香蕉",
+      "梨子",
+      "菠萝"
+    ],
+    "scores": [ // scores corresponding to each answer choice
+      [1, 0, 0],
+      [0, 1, 0],
+      [0, 0, 1],
+      [1, 1, 1]
+    ]
+  },
+  {
+    "question": "你最喜欢的动物是什么？",
+    "choices": [
+      "狮子",
+      "老虎",
+      "兔子",
+      "大象",
+      "黄鼠狼"
+    ],
+    "scores": [
+      [1, 0, 0],
+      [0, 1, 0],
+      [0, 0, 1],
+      [1, 1, 1],
+      [1, 1, 0]
+    ]
+  },
+  {
+    "question": "你最喜欢的角色是谁？",
+    "choices": [
+      "范闲",
+      "司里里",
+      "海棠朵朵"
+    ],
+    "scores": [
+      [1, 0, 0],
+      [0, 1, 0],
+      [0, 0, 1]
+    ]
+  }
+];
+
 
 // pages/main/main.js
 Page({
