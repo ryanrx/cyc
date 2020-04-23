@@ -10,7 +10,7 @@
 .question {
   background-color: rgba(0,0,0,0.7);
   text-align: center;
-  margin: 0rpx 20rpx 20rpx 20rpx;
+  margin: 20rpx;
   padding-top: 60rpx;
   padding-bottom: 60rpx;
   font-size: 50rpx;
@@ -35,4 +35,11 @@
   padding-bottom: 150rpx;
   font-size: 50rpx;
   color: goldenrod;
+}
+
+.transTop {
+  margin-top: 0;
+  color: rgba(0,0,0,0);
+  font-size: 10rpx;
+  padding: 0;
 }

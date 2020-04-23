@@ -1,6 +1,7 @@
 <view class='content'>
   <image class='background' src="{{imagesrc}}" mode="aspectFill"></image> 
   <import src="../template/template.wxml"/>
+  <view class="transTop">.</view>
   <view>
     <template is="question-list" data="{{questions, stage}}"/>
   </view>
