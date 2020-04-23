@@ -87,11 +87,13 @@ Page({
                 })
               }else{
                 // console.log("complete", res)
+                var d = new Date();
                 db.collection('user-history').add({
                   data: {
                     qname: name,
                     result: result,
                     nickName: userInfo.nickName,
+                    date: d.toString(),
                     userInfo: userInfo
                   }
                 })
