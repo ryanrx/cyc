@@ -2,7 +2,7 @@
 
 var stageNum = 0;   // current question stage
 var types = []; // result types
-var userType = [0, 0, 0]; // initial user scores
+var userType = []; // initial user scores
 var questions = [];
 
 /* find the index of the maximal number of an array */
@@ -67,9 +67,14 @@ Page({
       name: options.id
     }).get({
       success: res => {
-        console.log('[数据库] [查询记录] 成功: ', res);
+        // console.log('[数据库] [查询记录] 成功: ', res);
         questions = res.data[0].questions;
         types = res.data[0].types;
+        userType = [];
+        for(var i = 0; i < types.length; i++){
+          userType.push(0);
+        }
+        stageNum = 0;
         this.setData({
           imagesrc: res.data[0].imagesrc,
           questions: questions
@@ -83,9 +88,6 @@ Page({
         console.error('[数据库] [查询记录] 失败：', err)
       }
     })
-
-    stageNum = 0;
-    userType = [0, 0, 0];
 
   },
 
