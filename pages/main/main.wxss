@@ -7,6 +7,16 @@
   z-index: -1;
 }
 
+.question {
+  background-color: rgba(0,0,0,0.7);
+  text-align: center;
+  margin: 0rpx 20rpx 20rpx 20rpx;
+  padding-top: 60rpx;
+  padding-bottom: 60rpx;
+  font-size: 50rpx;
+  color: white;
+}
+
 .choice {
   background-color: rgba(255,255,255,0.7);
   text-align: center;
@@ -15,16 +25,6 @@
   padding-bottom: 40rpx;
   font-size: 50rpx;
   color: darkslategray;
-}
-
-.question {
-  background-color: rgba(0,0,0,0.7);
-  text-align: center;
-  margin: 20rpx;
-  padding-top: 60rpx;
-  padding-bottom: 60rpx;
-  font-size: 50rpx;
-  color: white;
 }
 
 .result {
