@@ -4,10 +4,11 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    openid: '',
+    records: []
   },
   //事件处理函数
   bindViewTap: function () {
@@ -41,14 +42,49 @@ Page({
         }
       })
     }
+
+    if(this.data.hasUserInfo){
+      if (app.globalData.openid) {
+        this.setData({
+          openid: app.globalData.openid
+        })
+      }
+      const db = wx.cloud.database()
+      // 查询当前用户所有的记录
+      db.collection('user-history').where({
+        _openid: this.data.openid,
+      }).get({
+        success: res => {
+          var recs = [];
+          for (var i = 0; i < res.data.length; i++) {
+            recs.push(res.data[i]);
+          }
+          this.setData({
+            records: recs,
+          })
+          console.log('[数据库] [查询记录] 成功: ', res)
+        },
+        fail: err => {
+          wx.showToast({
+            icon: 'none',
+            title: '查询记录失败'
+          })
+          console.error('[数据库] [查询记录] 失败：', err)
+        }
+      })
+    }
   },
-  
+
   getUserInfo: function (e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
+    console.log(app)
+    wx.getUserInfo({
+      success: res => {
+        app.globalData.userInfo = res.userInfo
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        })
+      }
     })
   },
 

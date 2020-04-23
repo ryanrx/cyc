@@ -1,3 +1,3 @@
 <!--pages/home/home.wxml-->
-<button id="qingyunian" bindtap="chosen">庆余年</button>
-<button id="naruto" bindtap="chosen">火影忍者</button>
+<button id="庆余年" bindtap="chosen">庆余年</button>
+<button id="火影忍者" bindtap="chosen">火影忍者</button>

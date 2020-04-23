@@ -28,7 +28,8 @@ Page({
     questions: questions,
     result: "",
     resultStatus: false,
-    imagesrc: ""
+    imagesrc: "",
+    name: ""
   },
 
 
@@ -53,6 +54,27 @@ Page({
       this.setData({  // return result
         resultStatus: true,
         result: types[maxIndex]
+      })
+      const db = wx.cloud.database()
+      db.collection('user-history').add({
+        data: {
+          qname: this.data.name,
+          result: this.data.result
+        },
+        success: res => {
+          // 在返回结果中会包含新创建的记录的 _id
+          wx.showToast({
+            title: '提交成功',
+          })
+          console.log('[数据库] [新增记录] 成功，记录 _id: ', res._id)
+        },
+        fail: err => {
+          wx.showToast({
+            icon: 'none',
+            title: '提交失败'
+          })
+          console.error('[数据库] [新增记录] 失败：', err)
+        }
       })
     }
 
@@ -80,6 +102,7 @@ Page({
         }
         stageNum = 0;
         this.setData({
+          name: options.id,
           imagesrc: res.data[0].imagesrc,
           questions: questions
         });
