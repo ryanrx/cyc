@@ -1,3 +1,21 @@
 <!--pages/home/home.wxml-->
-<button id="庆余年" bindtap="chosen">庆余年</button>
-<button id="火影忍者" bindtap="chosen">火影忍者</button>
+<view class="content">
+  <view class="poster">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
+      <block wx:for="{{imgUrls}}">
+        <swiper-item>
+          <image src="{{item}}" class="slide-image" style="width:100%;height:400rpx;"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+
+  <view class="hr"></view>
+  <view class="listhead">
+    <view>最新测试</view>
+  </view>
+  <import src="../template/template.wxml"/>
+  <view>
+    <template is="tests" data="{{array}}"/>
+  </view>
+</view>

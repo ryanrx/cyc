@@ -1,1 +1,30 @@
 /* pages/home/home.wxss */
+.item{
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+.desc{
+  margin-left: 20px;
+  line-height: 30px;
+}
+.title{
+  font-weight: bold;
+}
+.hr2{
+  height: 2px;
+  background-color: #cccccc;
+}
+.hr{
+  height: 5px;
+  background-color: #cccccc;
+  margin: 10px;
+}
+.listhead{
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+  font-size: 13px;
+  color: #999999;
+}

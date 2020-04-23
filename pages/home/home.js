@@ -5,7 +5,25 @@ Page({
    * Page initial data
    */
   data: {
-
+    indicatorDots: true,
+    autoplay: true,
+    interval: 5000,
+    duration: 1000,
+    circular: true,
+    imgUrls: [
+      "cloud://inuyasha.696e-inuyasha-1301310234/qyn-poster.jpg",
+      "cloud://inuyasha.696e-inuyasha-1301310234/naruto-poster.jpeg",
+    ],
+    array: [
+      {
+        "img": "cloud://inuyasha.696e-inuyasha-1301310234/qyn-pic1.jpg",
+        "title": "测一测你是庆余年中的哪一个角色"
+      },
+      {
+        "img": "cloud://inuyasha.696e-inuyasha-1301310234/naruto-pic1.jpg",
+        "title": "测一测你是火影忍者中的哪一个角色"
+      }
+    ]
   },
 
   chosen: function(e){

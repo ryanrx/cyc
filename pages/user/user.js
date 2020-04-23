@@ -43,6 +43,7 @@ Page({
       })
     }
 
+
     if(this.data.hasUserInfo){
       if (app.globalData.openid) {
         this.setData({

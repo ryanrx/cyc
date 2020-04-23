@@ -59,7 +59,7 @@ Page({
       db.collection('user-history').add({
         data: {
           qname: this.data.name,
-          result: this.data.result
+          result: this.data.result,
         },
         success: res => {
           // 在返回结果中会包含新创建的记录的 _id
