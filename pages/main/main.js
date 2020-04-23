@@ -74,6 +74,7 @@ Page({
             })
           }
           const db = wx.cloud.database();
+          var d = new Date();
           db.collection('user-history').where({
             _openid: this.data.openid,
             qname: name
@@ -82,12 +83,12 @@ Page({
               if(res.data.length){
                 db.collection('user-history').doc(res.data[0]._id).update({
                   data: {
+                    date: d.toString(),
                     result: result
                   }
                 })
               }else{
                 // console.log("complete", res)
-                var d = new Date();
                 db.collection('user-history').add({
                   data: {
                     qname: name,
