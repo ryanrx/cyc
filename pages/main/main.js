@@ -52,12 +52,6 @@ Page({
     console.log(userType);
 
     if(stageNum == questions.length){ // if no questions left
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          userInfo = res.userInfo;
-        }
-      })
       var maxIndex = pickIndexOfMax(userType);
       this.setData({  // return result
         resultStatus: true,
@@ -65,32 +59,41 @@ Page({
       })
       let name = this.data.name;
       let result = this.data.result;
-      const db = wx.cloud.database();
-      setTimeout(function() {
-        db.collection('user-history').add({
-          data: {
-            qname: name,
-            result: result,
-            userInfo: userInfo
-          },
-          success: res => {
-            // 在返回结果中会包含新创建的记录的 _id
-            wx.showToast({
-              title: '提交成功',
-            })
-            console.log('[数据库] [新增记录] 成功，记录 _id: ', res._id)
-          },
-          fail: err => {
-            wx.showToast({
-              icon: 'none',
-              title: '提交失败'
-            })
-            console.error('[数据库] [新增记录] 失败：', err)
-          }
-        })
-      }, 1000);
-    }
 
+      wx.getUserInfo({
+        success: res => {
+          app.globalData.userInfo = res.userInfo
+          userInfo = res.userInfo;
+          // console.log("success", res)
+        },
+        complete: res => {
+          // console.log("complete", res)
+          const db = wx.cloud.database();
+          db.collection('user-history').add({
+            data: {
+              qname: name,
+              result: result,
+              nickName: userInfo.nickName,
+              userInfo: userInfo
+            },
+            success: res => {
+              // 在返回结果中会包含新创建的记录的 _id
+              wx.showToast({
+                title: '提交成功',
+              })
+              console.log('[数据库] [新增记录] 成功，记录 _id: ', res._id)
+            },
+            fail: err => {
+              wx.showToast({
+                icon: 'none',
+                title: '提交失败'
+              })
+              console.error('[数据库] [新增记录] 失败：', err)
+            }
+          })
+        }
+      })
+    }
   },
 
   /**
