@@ -62,6 +62,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
     const db = wx.cloud.database()
     db.collection('questions-lists').where({
       name: options.id
@@ -95,7 +99,9 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 1000)
   },
 
   /**
