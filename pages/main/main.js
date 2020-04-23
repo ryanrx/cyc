@@ -5,7 +5,8 @@ var stageNum = 0;   // current question stage
 var types = []; // result types
 var userType = []; // initial user scores
 var questions = [];
-var userInfo = {}
+var userInfo = {};
+var openid;
 
 /* find the index of the maximal number of an array */
 function pickIndexOfMax(array) {
@@ -62,33 +63,39 @@ Page({
 
       wx.getUserInfo({
         success: res => {
-          app.globalData.userInfo = res.userInfo
+          app.globalData.userInfo = res.userInfo;
           userInfo = res.userInfo;
           // console.log("success", res)
         },
         complete: res => {
-          // console.log("complete", res)
+          if (app.globalData.openid) {
+            this.setData({
+              openid: app.globalData.openid
+            })
+          }
           const db = wx.cloud.database();
-          db.collection('user-history').add({
-            data: {
-              qname: name,
-              result: result,
-              nickName: userInfo.nickName,
-              userInfo: userInfo
-            },
+          db.collection('user-history').where({
+            _openid: this.data.openid,
+            qname: name
+          }).get({
             success: res => {
-              // 在返回结果中会包含新创建的记录的 _id
-              wx.showToast({
-                title: '提交成功',
-              })
-              console.log('[数据库] [新增记录] 成功，记录 _id: ', res._id)
-            },
-            fail: err => {
-              wx.showToast({
-                icon: 'none',
-                title: '提交失败'
-              })
-              console.error('[数据库] [新增记录] 失败：', err)
+              if(res.data.length){
+                db.collection('user-history').doc(res.data[0]._id).update({
+                  data: {
+                    result: result
+                  }
+                })
+              }else{
+                // console.log("complete", res)
+                db.collection('user-history').add({
+                  data: {
+                    qname: name,
+                    result: result,
+                    nickName: userInfo.nickName,
+                    userInfo: userInfo
+                  }
+                })
+              }
             }
           })
         }
