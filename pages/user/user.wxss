@@ -1,7 +1,18 @@
 /* pages/user/user.wxss */
+.container{
+  align-items: center;
+}
+
+.userinfobutton{
+  background-color: #20c028;
+  margin: 10rpx;
+  color: white;
+  width: 500rpx;
+}
+
 .userinfo {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
 }
 
@@ -18,11 +29,42 @@
 
 .usermotto {
   margin-top: 20rpx;
+  width: 90%;
 }
 
-.hr {
+.user-motto{
+  text-align: left;
+  font-size: 15px;
+}
+
+.hr2 {
   height: 5px;
-  width: 90%;
+  width: 95%;
   background-color: #ccc;
   margin: 5rpx;
+}
+
+.history{
+  width: 100%;
+}
+
+.history-item{
+  padding-top: 30rpx;
+  padding-bottom: 30rpx;
+  padding-left: 10rpx;
+  margin: 5px;
+  border-left: 6px solid blue;
+  background-color: lightblue;
+  border-radius: 5px;
+  width: 95%;
+}
+
+.history-title{
+  font-size: 15px;
+}
+
+.history-result{
+  font-size: 20px;
+  text-align: right;
+  color: #995226;
 }

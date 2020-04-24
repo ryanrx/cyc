@@ -15,7 +15,7 @@
   <block wx:for="{{array}}">
     <view class="item" bindtap="chosen" id="{{item.title}}">
       <view>
-        <image src="{{item.img}}" style="width:75px;height:58px;"></image>
+        <image src="{{item.img}}" style="width:200rpx;height:100%;"></image>
       </view>
       <view class="desc">
         <view class="title">{{item.title}}</view>
