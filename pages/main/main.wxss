@@ -25,6 +25,11 @@
   padding-bottom: 40rpx;
   font-size: 50rpx;
   color: darkslategray;
+  border-radius: 20%;
+}
+
+.selected-choice {
+  background-color: rgba(224, 100, 34, 0.7);
 }
 
 .result {

@@ -4,7 +4,7 @@
       <view class="question">{{stage + 1}}. {{item.question}}</view>
       <view class="choices">
         <block wx:for="{{item.choices}}">
-          <view class="choice" bindtap="chosen" id="{{index}}">{{item}}</view>
+          <view class="choice" bindtap="chosen" id="{{index}}" hover-class="selected-choice">{{item}}</view>
         </block>
       </view>
     </view>
