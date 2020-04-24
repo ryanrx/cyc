@@ -6,6 +6,7 @@ var types = []; // result types
 var userType = []; // initial user scores
 var questions = [];
 var userInfo = {};
+var nickName = "";
 var openid;
 
 /* find the index of the maximal number of an array */
@@ -60,11 +61,11 @@ Page({
       })
       let name = this.data.name;
       let result = this.data.result;
-
       wx.getUserInfo({
         success: res => {
           app.globalData.userInfo = res.userInfo;
           userInfo = res.userInfo;
+          nickName = userInfo.nickName;
           // console.log("success", res)
         },
         complete: res => {
@@ -87,13 +88,29 @@ Page({
                     result: result
                   }
                 })
+                if(!Object.keys(res.data[0].userInfo).length){
+                  db.collection('user-history').where({
+                    _openid: this.data.openid,
+                  }).get({
+                    success: res => {
+                      for(var i = 0; i < res.data.length; i++){
+                        db.collection('user-history').doc(res.data[i]._id).update({
+                          data: {
+                            nickName: nickName,
+                            userInfo: userInfo
+                          }
+                        })
+                      }
+                    }
+                  })
+                }
               }else{
                 // console.log("complete", res)
                 db.collection('user-history').add({
                   data: {
                     qname: name,
                     result: result,
-                    nickName: userInfo.nickName,
+                    nickName: nickName,
                     date: d.toString(),
                     userInfo: userInfo
                   }

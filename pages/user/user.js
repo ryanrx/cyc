@@ -1,6 +1,7 @@
 // pages/user/user.js
 //获取应用实例
-const app = getApp()
+const app = getApp();
+var userInfo = {};
 
 Page({
   data: {
@@ -50,6 +51,7 @@ Page({
           openid: app.globalData.openid
         })
       }
+      userInfo = this.data.userInfo;
       const db = wx.cloud.database()
       // 查询当前用户所有的记录
       db.collection('user-history').where({
@@ -63,14 +65,22 @@ Page({
           this.setData({
             records: recs,
           })
-          console.log('[数据库] [查询记录] 成功: ', res)
-        },
-        fail: err => {
-          wx.showToast({
-            icon: 'none',
-            title: '查询记录失败'
-          })
-          console.error('[数据库] [查询记录] 失败：', err)
+          if (res.data.length && !Object.keys(res.data[0].userInfo).length){
+            db.collection('user-history').where({
+              _openid: this.data.openid,
+            }).get({
+              success: res => {
+                for (var j = 0; j < res.data.length; j++) {
+                  db.collection('user-history').doc(res.data[j]._id).update({
+                    data: {
+                      nickName: userInfo.nickName,
+                      userInfo: userInfo
+                    }
+                  })
+                }
+              }
+            })
+          }
         }
       })
     }
@@ -121,7 +131,10 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.onLoad();
+    setTimeout(function(){
+      wx.stopPullDownRefresh();
+    }, 1000);
   },
 
   /**

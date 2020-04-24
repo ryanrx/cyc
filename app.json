@@ -5,6 +5,7 @@
     "pages/user/user"
   ],
   "window": {
+    "backgroundColor": "#515e70",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#3498DE",
     "navigationBarTitleText": "测一测",
