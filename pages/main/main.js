@@ -32,8 +32,10 @@ Page({
     questions: questions,
     result: "",
     resultStatus: false,
+    showResult: false,
     imagesrc: "",
     name: "",
+    hasUserInfo: false
   },
 
 
@@ -168,6 +170,18 @@ Page({
     setTimeout(function () {
       wx.hideLoading()
     }, 1000)
+  },
+
+  getUserInfo: function (e) {
+    wx.getUserInfo({
+      success: res => {
+        app.globalData.userInfo = res.userInfo
+      }
+    })
+    this.setData({
+      resultStatus: false,
+      showResult: true
+    })
   },
 
   /**

@@ -5,5 +5,6 @@
   <view>
     <template is="question-list" data="{{questions, stage}}"/>
   </view>
-  <view wx:if="{{resultStatus}}" class="result">{{result}}</view>
+  <button wx:if="{{resultStatus}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 查看结果 </button>
+  <view wx:if="{{showResult}}" class="result">{{result}}</view>
 </view>
