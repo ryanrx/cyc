@@ -15,14 +15,16 @@
 .item{
   display: flex;
   flex-direction: row;
-  margin-left: 10px;
+  margin-left: 20rpx;
+  height: 150rpx;
 }
 .desc{
-  margin-left: 20px;
-  line-height: 30px;
+  margin-left: 40rpx;
+  line-height: 60rpx;
 }
 .title{
   font-weight: bold;
+  padding-top: 10rpx;
 }
 .hr2{
   height: 2px;

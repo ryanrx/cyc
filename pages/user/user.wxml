@@ -10,6 +10,7 @@
   <view class="hr2"> </view>
   <view class="usermotto">
     <text class="user-motto">我玩过的</text>
+    <text class="pulldown">向下拉刷新</text>
   </view>
   <view class="history" wx:if="{{hasUserInfo}}" wx:for="{{records}}">
     <view class="history-item">

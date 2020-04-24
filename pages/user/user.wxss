@@ -28,13 +28,22 @@
 }
 
 .usermotto {
+  display: flex;
+  flex-direction: row;
   margin-top: 20rpx;
   width: 90%;
 }
 
 .user-motto{
   text-align: left;
-  font-size: 15px;
+  font-size: 30rpx;
+}
+
+.pulldown{
+  position:absolute;
+  right:20rpx;
+  color: #cccccc;
+  font-size: 25rpx;
 }
 
 .hr2 {
