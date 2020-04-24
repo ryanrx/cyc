@@ -28,13 +28,16 @@
 }
 
 .result {
-  background-color: rgba(25, 86, 255, 0.7);
+  background-color: rgba(48, 126, 128, 0.7);
+  margin-top: 200rpx;
+  margin-left: 5%;
   text-align: center;
-  margin: 20rpx;
-  padding-top: 150rpx;
-  padding-bottom: 150rpx;
+  padding-top: 30rpx;
+  padding-bottom: 30rpx;
+  width: 90%;
   font-size: 50rpx;
   color: goldenrod;
+  font-weight: bold;
 }
 
 .transTop {
@@ -42,4 +45,14 @@
   color: rgba(0,0,0,0);
   font-size: 10rpx;
   padding: 0;
+}
+
+.resultbutton{
+  color: white;
+  margin-top: 300rpx;
+  width: 80%;
+  background-color: rgba(0,0,0,0.7);
+  padding-top: 15rpx;
+  padding-bottom: 15rpx;
+  font-size: 50rpx;
 }
