@@ -2,11 +2,13 @@
   <block wx:for="{{questions}}">
     <view wx:if="{{index == stage}}">
       <view class="weui-btn_cell weui-btn_cell-primary" style="opacity: 0.7;">
-        <image class="weui-btn_cell__icon" src="{{item.img}}" style="width:150rpx; height: 100rpx;"></image>{{stage + 1}}. {{item.question}}
+        <view>{{stage + 1}}. {{item.question}}</view>
+        <text>\n</text>
+        <image class="weui-btn_cell__icon" src="{{item.img}}" style="width:480rpx; height:320rpx;"></image>
       </view>
       <block wx:for="{{item.choices}}">
         <view class="weui-btn_cell weui-btn_cell-default" bindtap="chosen" id="{{index}}" 
-        style="opacity: 0.7;">{{item}}</view>
+        style="opacity: 0.7; margin:5rpx;">{{item}}</view>
       </block>
     </view>
     
@@ -15,7 +17,7 @@
 
 <template name="tests">
   <block wx:for="{{array}}">
-    <navigator url='../main/main?id={{item.title}}' class="weui-cell weui-cell_access" hover-class="weui-cell_active">    <!-- @@@@@@ url内部字符串拼接的良好示范 -->
+    <navigator url='../main/main?id={{item.title}}' class="weui-cell weui-cell_access"><!-- @@@@@@ url内部字符串拼接的良好示范 -->
         <view class="weui-cell__hd">
             <image src="{{item.img}}" style="margin-right: 16rpx; vertical-align: middle; width:200rpx; height: 120rpx;"></image>
         </view>
