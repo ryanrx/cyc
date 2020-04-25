@@ -8,7 +8,7 @@
       </view>
       <block wx:for="{{item.choices}}">
         <view class="weui-btn_cell weui-btn_cell-default" bindtap="chosen" id="{{index}}" 
-        style="opacity: 0.7; margin:5rpx;">{{item}}</view>
+        style="opacity: 0.7; margin:5rpx;height:125rpx;">{{item}}</view>
       </block>
     </view>
   </block>
