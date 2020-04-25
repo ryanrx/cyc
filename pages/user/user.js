@@ -1,6 +1,7 @@
 // pages/user/user.js
 //获取应用实例
-const app = getApp();
+const util = require('../../utils/util.js');
+const app = util.app;
 var userInfo = {};
 
 Page({
