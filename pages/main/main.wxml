@@ -5,6 +5,15 @@
   <view>
     <template is="question-list" data="{{questions, stage}}"/>
   </view>
-  <button wx:if="{{resultStatus}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="resultbutton"> 查看结果 </button>
+  <button wx:if="{{resultStatus}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" style="margin-top: 400rpx; opacity: 0.8;">  		
+    <view class="icon-box">
+			<i class="weui-icon-success weui-icon_msg"></i>
+			<view class="icon-box__ctn">
+				<h3 class="icon-box__title">已完成测试</h3>
+				<view class="icon-box__desc">点击此按钮提交</view>
+			</view>
+		</view>
+  </button>
+  
   <view wx:if="{{showResult}}" class="result">{{result}}</view>
 </view>
