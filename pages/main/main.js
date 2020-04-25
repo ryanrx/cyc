@@ -86,7 +86,7 @@ Page({
               if(res.data.length){
                 db.collection('user-history').doc(res.data[0]._id).update({
                   data: {
-                    date: d.toString(),
+                    date: d,
                     result: result
                   }
                 })
@@ -113,7 +113,7 @@ Page({
                     qname: name,
                     result: result,
                     nickName: nickName,
-                    date: d.toString(),
+                    date: d,
                     userInfo: userInfo
                   }
                 })
