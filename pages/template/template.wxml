@@ -1,17 +1,5 @@
 <template name="question-list">
   <block wx:for="{{questions}}">
-    <!-- <view wx:if="{{index == stage}}">
-      <view class="question">{{stage + 1}}. {{item.question}}</view>
-      <view class="choices">
-        <block wx:for="{{item.choices}}">
-          <view class="choice" bindtap="chosen" id="{{index}}" hover-class="selected-choice">{{item}}</view>
-        </block>
-      </view>
-
-    <view class="weui-btn_cell weui-btn_cell-default" bindtap="chosen" id="{{index}}">{{item}}</view>
-
-    </view> -->
-
     <view wx:if="{{index == stage}}">
       <view class="weui-btn_cell weui-btn_cell-primary" style="opacity: 0.7;">
         <image class="weui-btn_cell__icon" src="{{item.img}}" style="width:150rpx; height: 100rpx;"></image>{{stage + 1}}. {{item.question}}
@@ -27,15 +15,6 @@
 
 <template name="tests">
   <block wx:for="{{array}}">
-  <!--
-    <view class="item" bindtap="chosen" id="{{item.title}}">
-      <view>
-        <image src="{{item.img}}" style="width:200rpx;height:100%;"></image>
-      </view>
-      <view class="desc">
-        <view class="title">{{item.title}}</view>
-      </view>
-    </view> -->
     <navigator url='../main/main?id={{item.title}}' class="weui-cell weui-cell_access" hover-class="weui-cell_active">    <!-- @@@@@@ url内部字符串拼接的良好示范 -->
         <view class="weui-cell__hd">
             <image src="{{item.img}}" style="margin-right: 16rpx; vertical-align: middle; width:200rpx; height: 120rpx;"></image>
