@@ -6,19 +6,19 @@
   ],
   "window": {
     "backgroundColor": "#515e70",
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#3498DE",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "测一测",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
   "cloud": true,
   "tabBar": {
-    "selectedColor": "#3498DE",
+    "selectedColor": "#E74C3C",
     "list": [
       {
         "pagePath": "pages/home/home",
-        "text": "测一测",
+        "text": "首页",
         "iconPath": "pages/images/tabbar/home.png",
         "selectedIconPath": "pages/images/tabbar/home-selected.png"
       },
