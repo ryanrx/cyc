@@ -63,7 +63,6 @@ Page({
           for (var i = 0; i < res.data.length; i++) {
             recs.push(res.data[i]);
           }
-          var msec = Date.parse(recs[0].date);
           recs.sort((a, b) => b.date - a.date);
           this.setData({
             records: recs,
