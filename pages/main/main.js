@@ -1,6 +1,6 @@
 // pages/main/main.js
-const app = getApp();
 const util = require('../../utils/util.js');
+const app = util.app;
 var stageNum = 0;   // current question stage
 var types = []; // result types
 var userType = []; // initial user scores

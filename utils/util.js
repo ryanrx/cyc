@@ -1,3 +1,4 @@
+const app = getApp();
 const formatTime = date => {
 
   const year = date.getFullYear()
@@ -30,5 +31,6 @@ const  pickIndexOfMax = array => {
 
 module.exports = {
   formatTime: formatTime,
-  pickIndexOfMax: pickIndexOfMax
+  pickIndexOfMax: pickIndexOfMax,
+  app: app
 }
