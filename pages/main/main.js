@@ -1,6 +1,6 @@
 // pages/main/main.js
 const app = getApp();
-
+const util = require('../../utils/util.js');
 var stageNum = 0;   // current question stage
 var types = []; // result types
 var userType = []; // initial user scores
@@ -9,18 +9,6 @@ var userInfo = {};
 var nickName = "";
 var openid;
 
-/* find the index of the maximal number of an array */
-function pickIndexOfMax(array) {
-  var max = array[0];
-  var maxIndex = 0; // find type with max score
-  for (var i = 1; i < array.length; i++) {
-    if (array[i] > max) {
-      maxIndex = i;
-      max = array[i];
-    }
-  }
-  return maxIndex;
-}
 
 Page({
 
@@ -56,7 +44,7 @@ Page({
     console.log(userType);
 
     if(stageNum == questions.length){ // if no questions left
-      var maxIndex = pickIndexOfMax(userType);
+      var maxIndex = util.pickIndexOfMax(userType);
       this.setData({  // return result
         resultStatus: true,
         result: types[maxIndex]
