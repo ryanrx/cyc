@@ -15,6 +15,20 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+/* find the index of the maximal number of an array */
+const  pickIndexOfMax = array => {
+  var max = array[0];
+  var maxIndex = 0; // find type with max score
+  for (var i = 1; i < array.length; i++) {
+    if (array[i] > max) {
+      maxIndex = i;
+      max = array[i];
+    }
+  }
+  return maxIndex;
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  pickIndexOfMax: pickIndexOfMax
 }
