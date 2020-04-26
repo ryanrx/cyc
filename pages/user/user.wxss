@@ -3,13 +3,6 @@
   align-items: center;
 }
 
-.userinfobutton{
-  background-color: #20c028;
-  margin: 10rpx;
-  color: white;
-  width: 500rpx;
-}
-
 .userinfo {
   display: flex;
   flex-direction: row;

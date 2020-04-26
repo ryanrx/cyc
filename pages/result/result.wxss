@@ -18,4 +18,10 @@
   font-size: 50rpx;
   color: goldenrod;
   font-weight: bold;
+  position: absolute;
+}
+
+.share{
+  margin-bottom: 100rpx;
+  
 }

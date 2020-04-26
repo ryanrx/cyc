@@ -2,4 +2,5 @@
 <view class='content'>
   <image class='background' src="{{imagesrc}}" mode="aspectFill"></image> 
   <view class="result">{{result}}</view>
+  <button open-type="share" class="weui-btn weui-btn_primary" style="position: absolute; margin-left: 25%; margin-top: 1000rpx; width: 50%;">分享到群聊</button>
 </view>
