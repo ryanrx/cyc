@@ -8,6 +8,7 @@ var questions = [];
 var userInfo = {};
 var nickName = "";
 var openid;
+var testName = "";
 
 
 Page({
@@ -20,10 +21,10 @@ Page({
     questions: questions,
     result: "",
     resultStatus: false,
-    showResult: false,
     imagesrc: "",
     name: "",
-    hasUserInfo: false
+    hasUserInfo: false,
+    percentage: 0
   },
 
 
@@ -37,9 +38,12 @@ Page({
 
     // increment questions stage number
     stageNum++;
+    let percent = (stageNum / questions.length * 100).toFixed(1);
     this.setData({
       stage: stageNum,
+      percentage: percent
     })
+    console.log(this.data.percentage)
 
     console.log(userType);
 
@@ -121,7 +125,8 @@ Page({
       title: '加载中',
       mask: true
     })
-    const db = wx.cloud.database()
+    const db = wx.cloud.database();
+    testName = options.id;
     db.collection('questions-lists').where({
       name: options.id
     }).get({
@@ -137,7 +142,7 @@ Page({
         this.setData({
           name: options.id,
           imagesrc: res.data[0].imagesrc,
-          questions: questions
+          questions: questions,
         });
       },
       fail: err => {
@@ -166,10 +171,9 @@ Page({
         app.globalData.userInfo = res.userInfo
       }
     })
-    this.setData({
-      resultStatus: false,
-      showResult: true
-    })
+    wx.redirectTo({
+      url: '../result/result?test=' + testName +"&result=" + this.data.result
+    });
   },
 
   /**

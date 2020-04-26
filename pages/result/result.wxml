@@ -1,0 +1,5 @@
+<!--pages/result/result.wxml-->
+<view class='content'>
+  <image class='background' src="{{imagesrc}}" mode="aspectFill"></image> 
+  <view class="result">{{result}}</view>
+</view>

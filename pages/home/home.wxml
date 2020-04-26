@@ -10,13 +10,15 @@
     </swiper>
   </view>
 
-  <view class="hr"></view>
-  <view class="listhead">
-    <view>最新测试</view>
-  </view>
-  <view class="hr2"></view>
   <import src="../template/template.wxml"/>
   <view>
-    <template is="tests" data="{{array}}"/>
+  	<view class="page__bd">
+      <view class="weui-panel weui-panel_access">
+        <view class="weui-panel__hd">最新测试</view>
+        <view class="weui-panel__bd">
+          <template is="tests" data="{{array}}"/>
+        </view>
+      </view>
+    </view>
   </view>
 </view>

@@ -101,6 +101,13 @@ Page({
     })
   },
 
+  viewHistory: function(e) {
+    var curRec = this.data.records[parseInt(e.currentTarget.id)];
+    wx.redirectTo({
+      url: '../result/result?test=' + curRec.qname + "&result=" + curRec.result
+    });
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

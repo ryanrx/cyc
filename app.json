@@ -2,10 +2,11 @@
   "pages": [
     "pages/home/home",
     "pages/main/main",
-    "pages/user/user"
+    "pages/user/user",
+    "pages/result/result"
   ],
   "window": {
-    "backgroundColor": "#515e70",
+    "backgroundColor": "#ececec",
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "测一测",

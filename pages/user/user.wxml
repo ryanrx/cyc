@@ -13,7 +13,7 @@
     <text class="pulldown">向下拉刷新</text>
   </view>
   <view class="history" wx:if="{{hasUserInfo}}" wx:for="{{records}}">
-    <view class="history-item">
+    <view class="history-item" bindtap="viewHistory" id="{{index}}">
       <view class="history-title">{{item.qname}}</view>
       <view class="history-result">{{item.result}}</view>
     </view>
