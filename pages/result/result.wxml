@@ -1,7 +1,16 @@
 <!--pages/result/result.wxml-->
 <view class="page" data-weui-theme="{{theme}}">
 	<view class="weui-msg">
-		<view class="weui-msg__icon-area"><i class="weui-icon-success weui-icon_msg"></i></view>
+
+    <!-- userinfo area-->
+    <view class="container">
+      <view class="userinfo">
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </view>
+    </view>
+    <!-- end of userinfo area-->
+
 		<view class="weui-msg__text-area">
 			<h2 class="weui-msg__title">{{result}}</h2>
 			<view class="weui-msg__desc">内容详情，可根据实际需要安排，如果换行则不超过规定长度，居中展现<a>文字链接</a></view>

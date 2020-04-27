@@ -1,11 +1,14 @@
-
 // pages/result/result.js
+const util = require('../../utils/util.js');
+const app = util.app;
+
 Page({
 
   /**
    * Page initial data
    */
   data: {
+    userInfo: {},
     result: "",
     imagesrc: "",
     array: [
@@ -25,7 +28,8 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      result: options.result
+      result: options.result,
+      userInfo: app.globalData.userInfo,
     })
 
     const db = wx.cloud.database();
