@@ -18,6 +18,9 @@
 		<view class="weui-msg__opr-area">
 			<view class="weui-btn-area">
 				<button class="weui-btn weui-btn_primary" open-type="share">分享到群聊</button>
+        <canvas-share resultMess="{{result}}" bindclose="close" userInfo="{{userInfo}}" visible="{{visible}}"/>
+        <text>\n</text>
+        <button class="weui-btn weui-btn_primary" bindtap="show">保存图片</button>
 			</view>
 		</view>
 		<view class="weui-msg__tips-area">

@@ -11,6 +11,7 @@ Page({
     userInfo: {},
     result: "",
     imagesrc: "",
+    visible: false,
     array: [
       {
         "img": "cloud://inuyasha.696e-inuyasha-1301310234/qyn-pic1.jpg",
@@ -23,6 +24,15 @@ Page({
     ]
   },
 
+  //事件处理函数
+  show: function () {
+    this.setData({ visible: true,})
+  },
+  close: function () {
+    this.setData({ visible: false })
+  },
+
+  
   /**
    * Lifecycle function--Called when page load
    */
