@@ -131,7 +131,7 @@ Component({
 
           // 绘制头像
           const radius = rpx2px(90 * 2)
-          const y = rpx2px(120 * 2)
+          const y = rpx2px(200 * 2)
           ctx.drawImage(
             avatar.path,
             canvasW / 2 - radius,
@@ -163,6 +163,7 @@ Component({
           //绘制二维码
           ctx.drawImage(
             qrCode.path,
+            canvasW / 2 - rpx2px(600),
             y + rpx2px(150 * 6),
           )
           
