@@ -1,4 +1,5 @@
 <!--pages/result/result.wxml-->
+<import src="../template/template.wxml"/>
 <view class="page" data-weui-theme="{{theme}}">
 	<view class="weui-msg">
 
@@ -13,7 +14,7 @@
 
 		<view class="weui-msg__text-area">
 			<h2 class="weui-msg__title">{{result}}</h2>
-			<view class="weui-msg__desc">内容详情，可根据实际需要安排，如果换行则不超过规定长度，居中展现<a>文字链接</a></view>
+			<view class="weui-msg__desc">描述<a>文字链接</a></view>
 		</view>
 		<view class="weui-msg__opr-area">
 			<view class="weui-btn-area">
@@ -24,13 +25,11 @@
 			</view>
 		</view>
 		<view class="weui-msg__tips-area">
-			<view class="weui-msg__tips">提示详情，可根据实际需要安排，如果换行则不超过规定长度，居中展现<a>文字链接</a></view>
+			<view class="weui-msg__tips">描述<a>文字链接</a></view>
 		</view>
   </view>
-</view>
 
-<import src="../template/template.wxml"/>
-<view>
+  <!-- 相关测试 -->
   <view class="page__bd">
     <view class="weui-panel weui-panel_access">
       <view class="weui-panel__hd">相关测试</view>
@@ -39,4 +38,5 @@
       </view>
     </view>
   </view>
+  
 </view>
