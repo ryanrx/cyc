@@ -9,6 +9,7 @@ var userInfo = {};
 var nickName = "";
 var openid;
 var testName = "";
+var delayTime = 500;
 
 
 Page({
@@ -24,7 +25,8 @@ Page({
     imagesrc: "",
     name: "",
     hasUserInfo: false,
-    percentage: 0
+    percentage: 0,
+    delayTime: delayTime
   },
 
 
@@ -39,16 +41,25 @@ Page({
     // increment questions stage number
     stageNum++;
     let percent = (stageNum / questions.length * 100).toFixed(1);
-    this.setData({
-      stage: stageNum,
-      percentage: percent
-    })
+    var that = this;
+    setTimeout(function(){
+      that.setData({
+        stage: stageNum,
+        percentage: percent
+      })
+    }, delayTime)
     console.log(this.data.percentage)
 
     console.log(userType);
 
     if(stageNum == questions.length){ // if no questions left
       var maxIndex = util.pickIndexOfMax(userType);
+      var that = this;
+      setTimeout(function () {
+        that.setData({
+          resultStatus: true
+        })
+      }, delayTime)
       this.setData({  // return result
         resultStatus: true,
         result: types[maxIndex]

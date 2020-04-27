@@ -3,7 +3,7 @@
   <import src="../template/template.wxml"/>
   <view class="transTop">.</view>
   <view>
-    <template is="question-list" data="{{questions, stage, percentage}}"/>
+    <template is="question-list" data="{{questions, stage, percentage, delayTime}}"/>
   </view>
   <button wx:if="{{resultStatus}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" style="margin-top: 400rpx; opacity: 0.8;">  		
     <view class="icon-box">

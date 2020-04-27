@@ -29,7 +29,7 @@
 }
 
 .selected-choice {
-  background-color: rgba(224, 100, 34, 0.7);
+  box-shadow:0px 0px 0px 7rpx black inset;
 }
 
 .result {
