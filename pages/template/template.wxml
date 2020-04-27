@@ -5,9 +5,9 @@
         <view class="weui-progress__inner-bar js_progress" style="width:{{percentage}}%;"></view>
       </view>
       <view class="weui-btn_cell weui-btn_cell-primary" style="opacity: 0.7;">
+        <text>\n</text>
         <view>{{stage + 1}}. {{item.question}}</view>
         <text>\n</text>
-        <image class="weui-btn_cell__icon" src="{{item.img}}" style="width:480rpx; height:320rpx;"></image>
       </view>
       <block wx:for="{{item.choices}}">
         <view class="weui-btn_cell weui-btn_cell-default" bindtap="chosen" id="{{index}}" hover-class="selected-choice" hover-stay-time="{{delayTime}}"
