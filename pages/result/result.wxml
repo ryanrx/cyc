@@ -14,13 +14,17 @@
 		<view class="weui-msg__tips-area">
 			<view class="weui-msg__tips">提示详情，可根据实际需要安排，如果换行则不超过规定长度，居中展现<a>文字链接</a></view>
 		</view>
-		<view class="weui-msg__extra-area">
-			<view class="weui-footer">
-				<view class="weui-footer__links">
-					<a class="weui-footer__link">底部链接文本</a>
-				</view>
-				<view class="weui-footer__text">Copyright &copy; 2008-2016 weui.io</view>
-			</view>
-		</view>
-	</view>
+  </view>
+</view>
+
+<import src="../template/template.wxml"/>
+<view>
+  <view class="page__bd">
+    <view class="weui-panel weui-panel_access">
+      <view class="weui-panel__hd">相关测试</view>
+      <view class="weui-panel__bd">
+        <template is="tests" data="{{array}}"/>
+      </view>
+    </view>
+  </view>
 </view>
