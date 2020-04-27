@@ -165,6 +165,8 @@ Component({
             qrCode.path,
             canvasW / 2 - rpx2px(600),
             y + rpx2px(150 * 6),
+            rpx2px(600*2),
+            rpx2px(600*2)
           )
           
 
