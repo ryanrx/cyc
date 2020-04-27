@@ -12,10 +12,9 @@
   background-color: white;
   text-align: center;
   margin: 20rpx;
-  padding-top: 40rpx;
-  padding-bottom: 40rpx;
+  padding-top: 50rpx;
   font-size: 50rpx;
-  border-radius: 10%;
+  border-radius: 15%;
 }
 
 .selected-choice {
