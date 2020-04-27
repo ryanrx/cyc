@@ -61,7 +61,6 @@ Page({
         })
       }, delayTime)
       this.setData({  // return result
-        resultStatus: true,
         result: types[maxIndex]
       })
       let name = this.data.name;
