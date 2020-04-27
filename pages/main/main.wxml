@@ -5,13 +5,14 @@
   <view>
     <template is="question-list" data="{{questions, stage, percentage, delayTime}}"/>
   </view>
-  <button wx:if="{{resultStatus}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" style="margin-top: 400rpx; opacity: 0.8;">  		
-    <view class="icon-box">
-			<i class="weui-icon-success weui-icon_msg"></i>
-			<view class="icon-box__ctn">
-				<h3 class="icon-box__title">已完成测试</h3>
-				<view class="icon-box__desc">点击此按钮提交</view>
-			</view>
-		</view>
-  </button>
+  <view class="central-subpage" wx:if="{{resultStatus}}" style="margin-top: 240rpx; opacity: 1.0; padding: 50rpx;">  
+    <i class="weui-icon-success weui-icon_msg"s></i>
+    <view class="icon-box__ctn">
+      <h3 class="icon-box__title">已完成</h3>
+      <view class="icon-box__desc">你已完成全部测试</view>
+    </view>
+    <text>\n</text>	
+    <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="weui-btn weui-btn_primary">查看结果</button>
+  </view>
+  
 </view>

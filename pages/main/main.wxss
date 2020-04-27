@@ -7,29 +7,19 @@
   z-index: -1;
 }
 
-.question {
-  background-color: rgba(0,0,0,0.7);
-  text-align: center;
-  margin: 20rpx;
-  padding-top: 60rpx;
-  padding-bottom: 60rpx;
-  font-size: 50rpx;
-  color: white;
-}
 
-.choice {
-  background-color: rgba(255,255,255,0.7);
+.central-subpage {
+  background-color: white;
   text-align: center;
   margin: 20rpx;
   padding-top: 40rpx;
   padding-bottom: 40rpx;
   font-size: 50rpx;
-  color: darkslategray;
-  border-radius: 20%;
+  border-radius: 10%;
 }
 
 .selected-choice {
-  box-shadow:0px 0px 0px 7rpx black inset;
+  box-shadow:0px 0px 0px 7rpx gray inset;
 }
 
 .result {
@@ -52,21 +42,5 @@
   padding: 0;
 }
 
-.resultbutton{
-  color: white;
-  margin-top: 300rpx;
-  width: 80%;
-  background-color: rgba(0,0,0,0.7);
-  padding-top: 15rpx;
-  padding-bottom: 15rpx;
-  font-size: 50rpx;
-}
 
-icon{margin-right:13px}
-.page__bd{padding-left:40px;padding-right:40px;text-align:left}
-.icon-box{margin-bottom:25px;display:-webkit-box;display:-webkit-flex;display:flex;-webkit-box-align:center;-webkit-align-items:center;align-items:center}
-.icon-box i{margin-right:18px}
-.icon-box__ctn{-webkit-flex-shrink:100;flex-shrink:100}
-.icon-box__title{font-size:20px}
-.icon-box__desc{margin-top:6px;font-size:12px;color:#888}
-.icon_sp_area{margin-top:10px;text-align:left}
+icon{margin-right:13rpx}.page__bd{padding-left:40rpx;padding-right:40rpx;text-align:center}.icon-box{margin-bottom:25rpx;display:-webkit-box;display:-webkit-flex;display:flex;-webkit-box-align:center;-webkit-align-items:center;align-items:center}.icon-box i{margin-right:18rpx}.icon-box__ctn{-webkit-flex-shrink:100;flex-shrink:100}.icon-box__title{font-size:50rpx}.icon-box__desc{margin-top:6rpx;font-size:30rpx;color:#888}.icon_sp_area{margin-top:10rpx;text-align:center}
