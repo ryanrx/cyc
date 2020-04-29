@@ -37,21 +37,21 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    wx.cloud.callFunction({
-      name: 'qrcode',
-      data: {
-        page: 'pages/home/home',
-        width: 430,
-        autoColor: true,
-        isHyaline: true
-      }
-    }).catch(err => {
-      console.error(err);
-      wx.showToast({
-        icon: 'none',
-        title: '调用失败',
-      })
-    })
+    // wx.cloud.callFunction({
+    //   name: 'qrcode',
+    //   data: {
+    //     page: 'pages/home/home',
+    //     width: 430,
+    //     autoColor: true,
+    //     isHyaline: true
+    //   }
+    // }).catch(err => {
+    //   console.error(err);
+    //   wx.showToast({
+    //     icon: 'none',
+    //     title: '调用失败',
+    //   })
+    // })
   },
 
   /**
