@@ -33,7 +33,7 @@ Page({
 
   chosen: function(e) {
 
-    // console.log(e);
+    //console.log(e.target.dataset);
     for(var i = 0; i < userType.length; i++){ // add scores
       userType[i] += questions[stageNum].scores[e.target.id][i];
     }
@@ -48,13 +48,13 @@ Page({
         percentage: percent
       })
     }, delayTime)
-    console.log(this.data.percentage)
+    //console.log(this.data.percentage)
 
-    console.log(userType);
+    //console.log(userType);
 
     wx.showToast({
-      title: '选择成功',
-      icon: 'none',
+      title: e.target.dataset.value,
+      icon: '../images/response/icon_nav_feedback.png',
       mask: true,
       duration: delayTime
     })
@@ -67,12 +67,14 @@ Page({
           resultStatus: true
         })
       }, delayTime)
+
       wx.showToast({
-        title: '选择成功',
-        icon: 'none',
+        title: e.target.dataset.value,
+        icon: '../images/response/icon_nav_feedback.png',
         mask: true,
         duration: delayTime
       })
+      
       this.setData({  // return result
         result: types[maxIndex]
       })
