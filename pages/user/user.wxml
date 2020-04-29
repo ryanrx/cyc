@@ -7,15 +7,22 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-  <view class="hr2"> </view>
-  <view class="usermotto">
-    <text class="user-motto">我玩过的</text>
-    <text class="pulldown">向下拉刷新</text>
-  </view>
-  <view class="history" wx:if="{{hasUserInfo}}" wx:for="{{records}}">
-    <view class="history-item" bindtap="viewHistory" id="{{index}}">
-      <view class="history-title">{{item.qname}}</view>
-      <view class="history-result">{{item.result}}</view>
+
+  <view class="weui-panel" style="width:100%;">
+    <view class="weui-panel__hd">我玩过的</view>
+    <view class="weui-panel__bd" wx:if="{{hasUserInfo}}">
+      <block wx:for="{{records}}">
+        <view class="weui-media-box weui-media-box_text weui-cell_access" bindtap="viewHistory" id="{{index}}">
+          <h4 class="weui-media-box__title">{{item.qname}}</h4>
+          <view class="weui-media-box__desc">{{item.result}}</view>
+          <view class="weui-media-box__info">
+            <view class="weui-media-box__info__meta">文字来源</view>
+            <view class="weui-media-box__info__meta">时间</view>
+            <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">其它信息</view>
+          </view>
+        </view>
+      </block>
     </view>
   </view>
+
 </view>

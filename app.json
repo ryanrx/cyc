@@ -6,9 +6,9 @@
     "pages/result/result"
   ],
   "window": {
-    "backgroundColor": "#ececec",
+    "backgroundColor": "#EDEDED",
     "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#EDEDED",
     "navigationBarTitleText": "测一测",
     "navigationBarTextStyle": "black"
   },
@@ -16,6 +16,7 @@
   "cloud": true,
   "tabBar": {
     "selectedColor": "#E74C3C",
+    "backgroundColor": "#EDEDED",
     "list": [
       {
         "pagePath": "pages/home/home",

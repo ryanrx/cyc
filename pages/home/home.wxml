@@ -1,6 +1,6 @@
 <!--pages/home/home.wxml-->
 <view class="content">
-  <view class="poster">
+  <!-- <view class="poster">
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" class="swiper">
       <block wx:for="{{imgUrls}}">
         <swiper-item class="swiper-item">
@@ -8,7 +8,7 @@
         </swiper-item>
       </block>
     </swiper>
-  </view>
+  </view> -->
 
   <import src="../template/template.wxml"/>
   <view>

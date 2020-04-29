@@ -103,7 +103,7 @@ Page({
 
   viewHistory: function(e) {
     var curRec = this.data.records[parseInt(e.currentTarget.id)];
-    wx.redirectTo({
+    wx.navigateTo({
       url: '../result/result?test=' + curRec.qname + "&result=" + curRec.result
     });
   },
