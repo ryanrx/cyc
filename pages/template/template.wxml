@@ -1,5 +1,5 @@
 <template name="question-list">
-  <block wx:for="{{questions}}">
+  <block wx:for="{{questions}}" wx:key="unique">
     <view wx:if="{{index == stage}}">
       <view class="weui-progress__bar">
         <view class="weui-progress__inner-bar js_progress" style="width:{{percentage}}%;"></view>
@@ -9,7 +9,7 @@
         <view>{{stage + 1}}. {{item.question}}</view>
         <text>\n</text>
       </view>
-      <block wx:for="{{item.choices}}">
+      <block wx:for="{{item.choices}}" wx:key="unique">
         <view class="weui-btn_cell weui-btn_cell-default" bindtap="chosen" id="{{index}}" hover-class="selected-choice" hover-stay-time="{{delayTime}}" data-value="{{item}}"
         style="background-color: rgba(255,255,255,0.7); margin:10rpx;">{{item}}</view>
       </block>
@@ -18,7 +18,7 @@
 </template>
 
 <template name="tests">
-  <block wx:for="{{array}}">
+  <block wx:for="{{array}}" wx:key="unique">
     <navigator url='../main/main?id={{item.title}}' class="weui-cell weui-cell_access" open-type="redirect"><!-- @@@@@@ url内部字符串拼接的良好示范 -->
         <view class="weui-cell__hd">
             <image src="{{item.img}}" style="margin-right: 16rpx; vertical-align: middle; width:200rpx; height: 120rpx;"></image>

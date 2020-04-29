@@ -11,7 +11,7 @@
   <view class="weui-panel" style="width:100%;">
     <view class="weui-panel__hd">我玩过的</view>
     <view class="weui-panel__bd" wx:if="{{hasUserInfo}}">
-      <block wx:for="{{records}}">
+      <block wx:for="{{records}}" wx:key="unique">
         <view class="weui-media-box weui-media-box_text weui-cell_access" bindtap="viewHistory" id="{{index}}">
           <h4 class="weui-media-box__title">{{item.qname}}</h4>
           <view class="weui-media-box__desc">{{item.result}}</view>
