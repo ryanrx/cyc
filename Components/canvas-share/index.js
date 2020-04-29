@@ -178,13 +178,18 @@ Component({
             }, this).then(({ tempFilePath }) => this.setData({ imageFile: tempFilePath }))
           })
 
-          wx.hideLoading()
+
           this.setData({ isDraw: true })
-        })
-        .catch(() => {
+
+          setTimeout(() => {
+            wx.hideLoading();
+          }, 1000); 
+
+        }).catch(() => {
           this.setData({ beginDraw: false })
           wx.hideLoading()
         })
+
     }
   }
 })
