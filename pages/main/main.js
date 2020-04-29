@@ -52,6 +52,13 @@ Page({
 
     console.log(userType);
 
+    wx.showToast({
+      title: '选择成功',
+      icon: 'none',
+      mask: true,
+      duration: delayTime
+    })
+
     if(stageNum == questions.length){ // if no questions left
       var maxIndex = util.pickIndexOfMax(userType);
       var that = this;
@@ -60,6 +67,12 @@ Page({
           resultStatus: true
         })
       }, delayTime)
+      wx.showToast({
+        title: '选择成功',
+        icon: 'none',
+        mask: true,
+        duration: delayTime
+      })
       this.setData({  // return result
         result: types[maxIndex]
       })
