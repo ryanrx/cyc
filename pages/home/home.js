@@ -72,7 +72,14 @@ Page({
    * Page event handler function--Called when user drop down
    */
   onPullDownRefresh: function () {
-
+    wx.showLoading({
+      title: '努力刷新中'
+    })
+    this.onLoad();
+    setTimeout(function () {
+      wx.stopPullDownRefresh();
+      wx.hideLoading();
+    }, 500);
   },
 
   /**

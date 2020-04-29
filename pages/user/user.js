@@ -141,13 +141,13 @@ Page({
    */
   onPullDownRefresh: function () {
     wx.showLoading({
-      title: '刷新中'
+      title: '努力刷新中'
     })
     this.onLoad();
     setTimeout(function(){
       wx.stopPullDownRefresh();
       wx.hideLoading();
-    }, 1000);
+    }, 500);
   },
 
   /**
