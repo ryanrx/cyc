@@ -64,6 +64,22 @@ Page({
             recs.push(res.data[i]);
           }
           recs.sort((a, b) => b.date - a.date);
+          var d = new Date();
+          var milliday = 1000 * 60 * 60 * 24;
+          for(var i = 0; i < recs.length; i++){
+            var cd = recs[i].date;
+            var days = (d.getTime() - cd.getTime()) / milliday;
+            if(days <= 1){
+              recs[i].date = "今天";
+            }else if(days <= 2){
+              recs[i].date = "昨天";
+            }else{
+              var year = cd.getFullYear();
+              var month = cd.getMonth() + 1;
+              var day = cd.getDate();
+              recs[i].date = year+"年"+month+"月"+day+"日";
+            }
+          }
           this.setData({
             records: recs,
           })

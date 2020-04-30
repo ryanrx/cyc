@@ -111,7 +111,7 @@ Component({
       const { avatarUrl, nickName } = userInfo
       const avatarPromise = getImageInfo(avatarUrl)
       const backgroundPromise = getImageInfo('cloud://inuyasha.696e-inuyasha-1301310234/qyn_bg2.jpg')
-      const qrCodePromise = getImageInfo('cloud://inuyasha.696e-inuyasha-1301310234/QRcodecyf.jpeg')
+      const qrCodePromise = getImageInfo('cloud://inuyasha.696e-inuyasha-1301310234/cyc-qrcode.jpg')
 
       Promise.all([avatarPromise, backgroundPromise, qrCodePromise])
         .then(([avatar, background, qrCode]) => {
