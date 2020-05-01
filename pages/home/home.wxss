@@ -6,6 +6,37 @@
   display: block;
 }
 
+.categories{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  margin-bottom: 20rpx;
+  padding: 20rpx 40rpx 20rpx 40rpx;
+}
+
+.c-item{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.c-image{
+  width: 100rpx;
+  height: 100rpx;
+  margin: 10rpx;
+  border-radius: 50%;
+}
+
+.c-text{
+  color: #777777;
+  font-size: 25rpx;
+}
+
 .poster{
   height: 450rpx;
 }

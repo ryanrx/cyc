@@ -1,58 +1,26 @@
-// pages/home/home.js
+// pages/category/category.js
 Page({
 
   /**
    * Page initial data
    */
   data: {
-    // indicatorDots: true,
-    // autoplay: true,
-    // interval: 5000,
-    // duration: 1000,
-    // circular: true,
-    // imgUrls: [
-    //   "cloud://inuyasha.696e-inuyasha-1301310234/qyn-poster.jpg",
-    //   "cloud://inuyasha.696e-inuyasha-1301310234/naruto-poster.jpeg",
-    // ],
-    array: []
-  },
-
-  chosen: function(e){
-    console.log(e);
-      wx.redirectTo({
-        url: '../main/main?id=' + e.currentTarget.id
-      });
-  },
-
-  toCate: function (e) {
-    // console.log(e);
-    wx.navigateTo({
-      url: '../category/category?cate=' + e.currentTarget.id
-    });
+    array: [],
+    cateName: ""
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    // wx.cloud.callFunction({
-    //   name: 'qrcode',
-    //   data: {
-    //     page: 'pages/home/home',
-    //     width: 430,
-    //     autoColor: true,
-    //     isHyaline: false,
-    //     name: 'cyc'
-    //   }
-    // }).catch(err => {
-    //   console.error(err);
-    //   wx.showToast({
-    //     icon: 'none',
-    //     title: '调用失败',
-    //   })
-    // })
+    // console.log(options)
+    this.setData({
+      cateName: options.cate
+    })
     const db = wx.cloud.database();
-    db.collection('questions-lists').get({
+    db.collection('questions-lists').where({
+      category: options.cate,
+    }).get({
       success: res => {
         // console.log(res);
         this.setData({
@@ -60,6 +28,7 @@ Page({
         })
       }
     });
+
   },
 
   /**
@@ -97,7 +66,17 @@ Page({
     wx.showLoading({
       title: '努力刷新中'
     })
-    this.onLoad();
+    const db = wx.cloud.database();
+    db.collection('questions-lists').where({
+      category: this.data.cateName,
+    }).get({
+      success: res => {
+        // console.log(res);
+        this.setData({
+          array: res.data
+        })
+      }
+    });
     setTimeout(function () {
       wx.stopPullDownRefresh();
       wx.hideLoading();

@@ -3,7 +3,8 @@
     "pages/home/home",
     "pages/main/main",
     "pages/user/user",
-    "pages/result/result"
+    "pages/result/result",
+    "pages/category/category"
   ],
   "window": {
     "backgroundColor": "#EDEDED",

@@ -1,6 +1,21 @@
 <!--pages/home/home.wxml-->
 <view class="container">
 
+  <view class="categories">
+    <view class="c-item" bindtap="toCate" id="影视">
+      <image class="c-image" src="../images/categories/影视.png"></image>
+      <text class="c-text">影视</text>
+    </view>
+    <view class="c-item" bindtap="toCate" id="性格">
+      <image class="c-image" src="../images/categories/性格.png"></image>
+      <text class="c-text">性格</text>
+    </view>
+    <view class="c-item" bindtap="toCate" id="健康">
+      <image class="c-image" src="../images/categories/健康.png"></image>
+      <text class="c-text">健康</text>
+    </view>
+  </view>
+
   <!-- <view class="poster">
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" class="swiper">
       <block wx:for="{{imgUrls}}">
