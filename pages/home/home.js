@@ -42,7 +42,7 @@ Page({
     //     width: 430,
     //     autoColor: true,
     //     isHyaline: false,
-    //     name: 'cyc'
+    //     name: 'cyc/cyc'
     //   }
     // }).catch(err => {
     //   console.error(err);

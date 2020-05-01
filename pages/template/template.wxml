@@ -24,7 +24,7 @@
             <image src="{{item.icon}}" style="margin-right: 16rpx; vertical-align: middle; width:200rpx; height: 120rpx;"></image>
         </view>
         <view class="weui-cell__bd">{{item.name}}</view>
-        <view class="weui-cell__ft weui-cell__ft_in-access">进入</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">开始</view>
     </navigator>
   </block>
 </template>
