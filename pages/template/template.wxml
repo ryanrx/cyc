@@ -19,7 +19,7 @@
 
 <template name="tests">
   <block wx:for="{{array}}" wx:key="unique">
-    <navigator url='../main/main?id={{item.name}}' class="weui-cell weui-cell_access" open-type="redirect"><!-- @@@@@@ url内部字符串拼接的良好示范 -->
+    <navigator url='../main/main?id={{item.name}}' class="weui-cell weui-cell_access" open-type="reLaunch"><!-- @@@@@@ url内部字符串拼接的良好示范 -->
         <view class="weui-cell__hd">
             <image src="{{item.icon}}" style="margin-right: 16rpx; vertical-align: middle; width:200rpx; height: 120rpx;"></image>
         </view>

@@ -25,15 +25,15 @@
 }
 
 .c-image{
-  width: 100rpx;
-  height: 100rpx;
+  width: 85rpx;
+  height: 85rpx;
   margin: 10rpx;
   border-radius: 50%;
 }
 
 .c-text{
   color: #777777;
-  font-size: 28rpx;
+  font-size: 27rpx;
 }
 
 .poster{
