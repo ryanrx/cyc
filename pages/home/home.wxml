@@ -1,5 +1,6 @@
 <!--pages/home/home.wxml-->
-<view class="content">
+<view class="container">
+
   <!-- <view class="poster">
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" class="swiper">
       <block wx:for="{{imgUrls}}">

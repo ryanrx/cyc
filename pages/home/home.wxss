@@ -1,4 +1,11 @@
 /* pages/home/home.wxss */
+.container{
+  align-items: center;
+  background-color: #EDEDED;
+  height: 100vh;
+  display: block;
+}
+
 .poster{
   height: 450rpx;
 }

@@ -43,7 +43,7 @@ Page({
     //     page: 'pages/home/home',
     //     width: 430,
     //     autoColor: true,
-    //     isHyaline: true,
+    //     isHyaline: false,
     //     name: 'cyc'
     //   }
     // }).catch(err => {

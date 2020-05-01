@@ -1,12 +1,17 @@
 /* pages/user/user.wxss */
 .container{
   align-items: center;
+  background-color: #EDEDED;
+  height: 100vh;
+  display: block;
 }
 
 .userinfo {
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
 }
 
 .userinfo-avatar {
@@ -17,7 +22,7 @@
 }
 
 .userinfo-nickname {
-  color: #aaa;
+  color: #777777;
 }
 
 .usermotto {
