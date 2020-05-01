@@ -14,6 +14,10 @@
       <image class="c-image" src="../images/categories/健康.png"></image>
       <text class="c-text">健康</text>
     </view>
+    <view class="c-item" bindtap="toCate" id="休闲">
+      <image class="c-image" src="../images/categories/休闲.png"></image>
+      <text class="c-text">休闲</text>
+    </view>
   </view>
 
   <!-- <view class="poster">

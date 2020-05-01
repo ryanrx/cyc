@@ -12,16 +12,7 @@ Page({
     result: "",
     imagesrc: "",
     visible: false,
-    array: [
-      {
-        "img": "cloud://inuyasha.696e-inuyasha-1301310234/qyn-pic1.jpg",
-        "title": "测一测你是庆余年中的哪一个角色"
-      },
-      {
-        "img": "cloud://inuyasha.696e-inuyasha-1301310234/naruto-pic1.jpg",
-        "title": "测一测你是火影忍者中的哪一个角色"
-      }
-    ]
+    array: []
   },
 
   //事件处理函数
@@ -53,6 +44,15 @@ Page({
         });
       }
     })
+    
+    db.collection('questions-lists').get({
+      success: res => {
+        // console.log(res);
+        this.setData({
+          array: res.data
+        })
+      }
+    });
   },
 
   /**
