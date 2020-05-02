@@ -9,7 +9,7 @@ var userInfo = {};
 var nickName = "";
 var openid;
 var testName = "";
-var delayTime = 500;
+var delayTime = 1000;
 
 
 Page({
@@ -53,7 +53,7 @@ Page({
     //console.log(userType);
 
     wx.showToast({
-      title: e.target.dataset.value,
+      title: '选择成功',
       icon: '../images/response/icon_nav_feedback.png',
       mask: true,
       duration: delayTime
@@ -69,7 +69,7 @@ Page({
       }, delayTime)
 
       wx.showToast({
-        title: e.target.dataset.value,
+        title: '选择成功',
         icon: '../images/response/icon_nav_feedback.png',
         mask: true,
         duration: delayTime

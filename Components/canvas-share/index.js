@@ -106,7 +106,7 @@ Component({
       }
     },
     draw() {
-      wx.showLoading({title: '当前信号较差，请耐心等候'})
+      wx.showLoading({title: '网络信号弱'})
       const { userInfo, canvasWidth, canvasHeight } = this.data
       const { avatarUrl, nickName } = userInfo
       const avatarPromise = getImageInfo(avatarUrl)
@@ -183,7 +183,7 @@ Component({
 
           setTimeout(() => {
             wx.hideLoading();
-          }, 3000); 
+          }, 1000); 
 
         }).catch(() => {
           this.setData({ beginDraw: false })
