@@ -82,7 +82,9 @@ Page({
       }
     })
     
-    db.collection('questions-lists').get({
+    db.collection('questions-lists').where({ 
+      name: db.command.neq(options.test)
+     }).get({
       success: res => {
         // console.log(res);
         this.setData({

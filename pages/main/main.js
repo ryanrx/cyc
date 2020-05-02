@@ -198,7 +198,7 @@ Page({
       }
     })
     wx.redirectTo({
-      url: '../result/result?test=' + testName +"&result=" + this.data.result
+      url: '../result/result?test=' + testName + "&result=" + this.data.result
     });
   },
 
