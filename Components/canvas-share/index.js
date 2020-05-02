@@ -106,7 +106,7 @@ Component({
       }
     },
     draw() {
-      wx.showLoading({title: '网络信号弱'})
+      wx.showLoading({title: '当前网速较慢'})
       const { userInfo, canvasWidth, canvasHeight } = this.data
       const { avatarUrl, nickName } = userInfo
       const avatarPromise = getImageInfo(avatarUrl)
