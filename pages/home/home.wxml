@@ -3,19 +3,19 @@
 
   <view class="categories">
     <view class="c-item" bindtap="toCate" id="影视">
-      <image class="c-image" src="../images/categories/影视.png"></image>
+      <image class="c-image" src="../images/categories/yingshi.png"></image>
       <text class="c-text">影视</text>
     </view>
     <view class="c-item" bindtap="toCate" id="性格">
-      <image class="c-image" src="../images/categories/性格.png"></image>
+      <image class="c-image" src="../images/categories/xingge.png"></image>
       <text class="c-text">性格</text>
     </view>
     <view class="c-item" bindtap="toCate" id="健康">
-      <image class="c-image" src="../images/categories/健康.png"></image>
+      <image class="c-image" src="../images/categories/jiankang.png"></image>
       <text class="c-text">健康</text>
     </view>
     <view class="c-item" bindtap="toCate" id="休闲">
-      <image class="c-image" src="../images/categories/休闲.png"></image>
+      <image class="c-image" src="../images/categories/xiuxian.png"></image>
       <text class="c-text">休闲</text>
     </view>
   </view>
