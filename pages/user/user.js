@@ -2,6 +2,7 @@
 //获取应用实例
 const util = require('../../utils/util.js');
 const app = util.app;
+const db = util.dbUtil;
 var userInfo = {};
 
 Page({
@@ -53,7 +54,7 @@ Page({
         })
       }
       userInfo = this.data.userInfo;
-      const db = wx.cloud.database()
+      // const db = wx.cloud.database()
       // 查询当前用户所有的记录
       db.collection('user-history').where({
         _openid: this.data.openid,

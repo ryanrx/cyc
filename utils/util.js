@@ -1,4 +1,6 @@
 const app = getApp();
+const dbUtil = wx.cloud.database();
+
 const formatTime = date => {
 
   const year = date.getFullYear()
@@ -32,5 +34,6 @@ const  pickIndexOfMax = array => {
 module.exports = {
   formatTime: formatTime,
   pickIndexOfMax: pickIndexOfMax,
-  app: app
+  app: app,
+  dbUtil: dbUtil,
 }

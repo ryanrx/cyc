@@ -1,4 +1,6 @@
-// pages/home/home.js
+const util = require('../../utils/util.js');
+const db = util.dbUtil;
+
 Page({
 
   /**
@@ -51,7 +53,7 @@ Page({
     //     title: '调用失败',
     //   })
     // })
-    const db = wx.cloud.database();
+    // const db = wx.cloud.database();
     db.collection('questions-lists').get({
       success: res => {
         // console.log(res);

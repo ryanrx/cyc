@@ -1,6 +1,7 @@
 // pages/main/main.js
 const util = require('../../utils/util.js');
 const app = util.app;
+const db = util.dbUtil;
 var stageNum = 0;   // current question stage
 var types = []; // result types
 var userType = []; // initial user scores
@@ -9,7 +10,7 @@ var userInfo = {};
 var nickName = "";
 var openid;
 var testName = "";
-var delayTime = 1000;
+var delayTime = 500;
 
 
 Page({
@@ -93,7 +94,7 @@ Page({
               openid: app.globalData.openid
             })
           }
-          const db = wx.cloud.database();
+          // const db = wx.cloud.database();
           var d = new Date();
           db.collection('user-history').where({
             _openid: this.data.openid,
@@ -150,7 +151,7 @@ Page({
       title: '加载中',
       mask: true
     })
-    const db = wx.cloud.database();
+    // const db = wx.cloud.database();
     testName = options.id;
     db.collection('questions-lists').where({
       name: options.id

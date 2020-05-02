@@ -1,4 +1,6 @@
-// pages/category/category.js
+const util = require('../../utils/util.js');
+const db = util.dbUtil;
+
 Page({
 
   /**
@@ -17,7 +19,7 @@ Page({
     this.setData({
       cateName: options.cate
     })
-    const db = wx.cloud.database();
+    // const db = wx.cloud.database();
     db.collection('questions-lists').where({
       category: options.cate,
     }).get({

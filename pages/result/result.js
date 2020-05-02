@@ -1,6 +1,7 @@
 // pages/result/result.js
 const util = require('../../utils/util.js');
 const app = util.app;
+const db = util.dbUtil;
 
 Page({
 
@@ -70,7 +71,6 @@ Page({
       userInfo: app.globalData.userInfo,
     })
 
-    const db = wx.cloud.database();
     db.collection('questions-lists').where({
       name: options.test
     }).get({
