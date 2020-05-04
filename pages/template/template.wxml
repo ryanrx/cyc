@@ -4,14 +4,14 @@
       <view class="weui-progress__bar">
         <view class="weui-progress__inner-bar js_progress" style="width:{{percentage}}%;"></view>
       </view>
-      <view class="weui-btn_cell weui-btn_cell-primary" style="background-color: rgba(255,255,255,0.7);">
+      <view class="weui-btn_cell weui-btn_cell-primary" style="background-color: rgba(255,255,255,0.84);">
         <text>\n</text>
         <view>{{stage + 1}}. {{item.question}}</view>
         <text>\n</text>
       </view>
       <block wx:for="{{item.choices}}" wx:key="unique">
         <view class="weui-btn_cell weui-btn_cell-default" bindtap="chosen" id="{{index}}" hover-class="selected-choice" hover-stay-time="{{delayTime}}" data-value="{{item}}"
-        style="background-color:rgba(255,255,255,0.7); margin:10px;">{{item}}</view>
+        style="background-color:rgba(255,255,255,0.84); margin:10px;">{{item}}</view>
       </block>
     </view>
   </block>
@@ -24,7 +24,7 @@
             <image src="{{item.icon}}" style="margin-right: 16rpx; vertical-align: middle; width:200rpx; height: 120rpx;"></image>
         </view>
         <view class="weui-cell__bd">{{item.name}}</view>
-        <view class="weui-cell__ft weui-cell__ft_in-access">开始</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </navigator>
   </block>
 </template>

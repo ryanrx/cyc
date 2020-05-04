@@ -3,6 +3,7 @@
 const util = require('../../utils/util.js');
 const app = util.app;
 const db = util.dbUtil;
+// console.log(db)
 var userInfo = {};
 
 Page({
