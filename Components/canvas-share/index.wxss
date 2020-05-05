@@ -1,14 +1,16 @@
+@import "../../app.wxss";
+
 .share {
-  position: fixed;
+  /* position: fixed; */
   top: 0;
   left: 0;
-  min-height: 100vh;
+  min-height: 80vh;
   width: 100%;
   background: rgba(61, 61, 61, 0.5);
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
-  z-index: 99999;
+  /* z-index: 99999; */
 }
 
 .share.show {
@@ -74,5 +76,5 @@
 .share .content .canvas {
   display: inline-block;
   background: #fff;
-  margin: 60rpx 0 0 0;
+  margin: 30rpx 0 0 0;
 }

@@ -12,54 +12,54 @@ Page({
     userInfo: {},
     result: "",
     imagesrc: "",
-    visible: false,
+    // visible: false,
     array: []
   },
 
   //事件处理函数
-  show: function () {
-    let resultPage = this;  // @@@@@@@@ great example of the limitation of 'this'
+  // show: function () {
+  //   let resultPage = this;  // @@@@@@@@ great example of the limitation of 'this'
 
-    // ---------- check authority
-    wx.getSetting({
-      success(res) {
-        if (res.authSetting['scope.writePhotosAlbum']) {
-          resultPage.setData({ visible: true, })
-        } else if (res.authSetting['scope.writePhotosAlbum'] === undefined) {
-          wx.authorize({
-            scope: 'scope.writePhotosAlbum',
-            success() {
-              resultPage.setData({ visible: true, })
-            },
-            fail() {
-              wx.showToast({
-                title: '您没有授权，无法保存到相册',
-                icon: 'none'
-              })
-            }
-          })
-        } else {
-          wx.openSetting({
-            success(res) {
-              if (res.authSetting['scope.writePhotosAlbum']) {
-                resultPage.setData({ visible: true, })
-              } else {
-                wx.showToast({
-                  title: '您没有授权，无法保存到相册',
-                  icon: 'none'
-                })
-              }
-            }
-          })
-        }
-      }
-    })
-    // ---------- end of checking authority
-  },
+  //   // ---------- check authority
+  //   wx.getSetting({
+  //     success(res) {
+  //       if (res.authSetting['scope.writePhotosAlbum']) {
+  //         resultPage.setData({ visible: true, })
+  //       } else if (res.authSetting['scope.writePhotosAlbum'] === undefined) {
+  //         wx.authorize({
+  //           scope: 'scope.writePhotosAlbum',
+  //           success() {
+  //             resultPage.setData({ visible: true, })
+  //           },
+  //           fail() {
+  //             wx.showToast({
+  //               title: '您没有授权，无法保存到相册',
+  //               icon: 'none'
+  //             })
+  //           }
+  //         })
+  //       } else {
+  //         wx.openSetting({
+  //           success(res) {
+  //             if (res.authSetting['scope.writePhotosAlbum']) {
+  //               resultPage.setData({ visible: true, })
+  //             } else {
+  //               wx.showToast({
+  //                 title: '您没有授权，无法保存到相册',
+  //                 icon: 'none'
+  //               })
+  //             }
+  //           }
+  //         })
+  //       }
+  //     }
+  //   })
+  //   // ---------- end of checking authority
+  // },
 
-  close: function () {
-    this.setData({ visible: false })
-  },
+  // close: function () {
+  //   this.setData({ visible: false })
+  // },
 
   
   /**

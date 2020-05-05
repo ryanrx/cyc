@@ -40,16 +40,16 @@ function saveImageToPhotosAlbum(option) {
 
 Component({
   properties: {
-    visible: {
-      type: Boolean,
-      value: false,
-      observer(visible) {
-        if (visible && !this.beginDraw) {
-          this.draw()
-          this.beginDraw = true
-        }
-      }
-    },
+    // visible: {
+    //   type: Boolean,
+    //   value: false,
+    //   observer(visible) {
+    //     if (visible && !this.beginDraw) {
+    //       this.draw()
+    //       this.beginDraw = true
+    //     }
+    //   }
+    // },
     userInfo: {
       type: Object,
       value: false
@@ -83,27 +83,82 @@ Component({
           responsiveScale,
         })
       }
+      this.draw()
+      this.beginDraw = true
     },
   },
 
   methods: {
-    handleClose() {
-      this.triggerEvent('close')
-    },
+    // handleClose() {
+    //   this.triggerEvent('close')
+    // },
     handleSave() {
       const { imageFile } = this.data
 
-      if (imageFile) {
-        saveImageToPhotosAlbum({
-          filePath: imageFile,
-        }).then(() => {
-          wx.showToast({
-            icon: 'none',
-            title: '分享图片已保存至相册',
-            duration: 2000,
-          })
-        })
-      }
+      // ---------- check authority
+      wx.getSetting({
+        success(res) {
+          if (res.authSetting['scope.writePhotosAlbum']) {
+            if (imageFile) {
+              saveImageToPhotosAlbum({
+                filePath: imageFile,
+              }).then(() => {
+                wx.showToast({
+                  icon: 'none',
+                  title: '分享图片已保存至相册',
+                  duration: 2000,
+                })
+              }, reason =>{})
+            }
+          } else if (res.authSetting['scope.writePhotosAlbum'] === undefined) {
+            wx.authorize({
+              scope: 'scope.writePhotosAlbum',
+              success() {
+                if (imageFile) {
+                  saveImageToPhotosAlbum({
+                    filePath: imageFile,
+                  }).then(() => {
+                    wx.showToast({
+                      icon: 'none',
+                      title: '分享图片已保存至相册',
+                      duration: 2000,
+                    })
+                  }, reason => { })
+                }
+              },
+              fail() {
+                wx.showToast({
+                  title: '您没有授权，无法保存到相册',
+                  icon: 'none'
+                })
+              }
+            })
+          } else {
+            wx.openSetting({
+              success(res) {
+                if (res.authSetting['scope.writePhotosAlbum']) {
+                  if (imageFile) {
+                    saveImageToPhotosAlbum({
+                      filePath: imageFile,
+                    }).then(() => {
+                      wx.showToast({
+                        icon: 'none',
+                        title: '分享图片已保存至相册',
+                        duration: 2000,
+                      })
+                    }, reason => { })
+                  }
+                } else {
+                  wx.showToast({
+                    title: '您没有授权，无法保存到相册',
+                    icon: 'none'
+                  })
+                }
+              }
+            })
+          }
+        }
+      })
     },
     draw() {
       wx.showLoading({title: '当前网速较慢'})
