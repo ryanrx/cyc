@@ -163,13 +163,21 @@ Component({
     draw() {
       wx.showLoading({title: '当前网速较慢'})
       const { userInfo, canvasWidth, canvasHeight } = this.data
-      const { avatarUrl, nickName } = userInfo
-      const avatarPromise = getImageInfo(avatarUrl)
+      var hasUserInfo = false;
+      var avatarPromise, avatarUrl, nickName;
+      if (userInfo){
+        hasUserInfo = true;
+        avatarUrl = userInfo.avatarUrl;
+        nickName = userInfo.nickName;
+        // { avatarUrl, nickName } = userInfo
+        avatarPromise = getImageInfo(avatarUrl)
+      }
       const backgroundPromise = getImageInfo('cloud://inuyasha.696e-inuyasha-1301310234/cyc/qyn_bg2.jpg')
       const qrCodePromise = getImageInfo('cloud://inuyasha.696e-inuyasha-1301310234/cyc/cyc-qrcode.jpg')
 
-      Promise.all([avatarPromise, backgroundPromise, qrCodePromise])
-        .then(([avatar, background, qrCode]) => {
+      Promise.all([backgroundPromise, qrCodePromise])
+        .then(([background, qrCode]) => {
+
           const ctx = wx.createCanvasContext('share', this)
 
           const canvasW = rpx2px(canvasWidth * 2)
@@ -184,26 +192,58 @@ Component({
             canvasH
           )
 
-          // 绘制头像
           const radius = rpx2px(90 * 2)
           const y = rpx2px(200 * 2)
-          ctx.drawImage(
-            avatar.path,
-            canvasW / 2 - radius,
-            y - radius,
-            radius * 2,
-            radius * 2,
-          )
 
-          // 绘制用户名
-          ctx.setFontSize(60)
-          ctx.setTextAlign('center')
-          ctx.setFillStyle('black')
-          ctx.fillText(
-            nickName,
-            canvasW / 2,
-            y + rpx2px(150 * 2),
-          )
+          const drawUser = new Promise((resolve) => {
+            if (hasUserInfo) {
+              avatarPromise.then((avatar) => {
+                // 绘制头像
+                ctx.drawImage(
+                  avatar.path,
+                  canvasW / 2 - radius,
+                  y - radius,
+                  radius * 2,
+                  radius * 2,
+                )
+
+                // 绘制用户名
+                ctx.setFontSize(60)
+                ctx.setTextAlign('center')
+                ctx.setFillStyle('black')
+                ctx.fillText(
+                  nickName,
+                  canvasW / 2,
+                  y + rpx2px(150 * 2),
+                )
+
+                resolve();
+              })
+            }else{
+              resolve();
+            }
+          })
+
+          // // 绘制头像
+          // const radius = rpx2px(90 * 2)
+          // const y = rpx2px(200 * 2)
+          // ctx.drawImage(
+          //   avatar.path,
+          //   canvasW / 2 - radius,
+          //   y - radius,
+          //   radius * 2,
+          //   radius * 2,
+          // )
+
+          // // 绘制用户名
+          // ctx.setFontSize(60)
+          // ctx.setTextAlign('center')
+          // ctx.setFillStyle('black')
+          // ctx.fillText(
+          //   nickName,
+          //   canvasW / 2,
+          //   y + rpx2px(150 * 2),
+          // )
 
           // 绘制结果标题
           ctx.setFontSize(60)
@@ -224,21 +264,22 @@ Component({
             rpx2px(600*2)
           )
           
+          drawUser.then(() => {
+            // 最后完成作画
+            ctx.stroke()
+            ctx.draw(false, () => {
+              canvasToTempFilePath({
+                canvasId: 'share',
+              }, this).then(({ tempFilePath }) => this.setData({ imageFile: tempFilePath }))
+            })
 
-          // 最后完成作画
-          ctx.stroke()
-          ctx.draw(false, () => {
-            canvasToTempFilePath({
-              canvasId: 'share',
-            }, this).then(({ tempFilePath }) => this.setData({ imageFile: tempFilePath }))
-          })
 
+            this.setData({ isDraw: true })
 
-          this.setData({ isDraw: true })
-
-          setTimeout(() => {
-            wx.hideLoading();
-          }, 1000); 
+            setTimeout(() => {
+              wx.hideLoading();
+            }, 1000);
+          }) 
 
         }).catch(() => {
           this.setData({ beginDraw: false })

@@ -38,6 +38,7 @@ Page({
     for(var i = 0; i < userType.length; i++){ // add scores
       userType[i] += questions[stageNum].scores[e.target.id][i];
     }
+    console.log(userType);
 
     // increment questions stage number
     stageNum++;

@@ -13,20 +13,20 @@
     <!-- end of userinfo area-->
     <canvas-share resultMess="{{result}}" bindclose="close" userInfo="{{userInfo}}"/>
 
-		<view class="weui-msg__text-area">
-			<!-- <h2 class="weui-msg__title">{{result}}</h2> -->
+		<!-- <view class="weui-msg__text-area">
+			<h2 class="weui-msg__title">{{result}}</h2>
 			<view class="weui-msg__desc">描述<a>文字链接</a></view>
-		</view>
+		</view> -->
+    <text>\n</text>
 		<view class="weui-msg__opr-area">
 			<view class="weui-btn-area">
 				<button class="weui-btn weui-btn_primary" open-type="share">分享到群聊</button>
-        <text>\n</text>
         <!-- <button class="weui-btn weui-btn_primary" bindtap="show">保存图片</button> -->
 			</view>
 		</view>
-		<view class="weui-msg__tips-area">
+		<!-- <view class="weui-msg__tips-area">
 			<view class="weui-msg__tips">描述<a>文字链接</a></view>
-		</view>
+		</view> -->
   <!-- </view> -->
 
   <!-- 相关测试 -->
