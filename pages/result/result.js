@@ -68,8 +68,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       result: options.result,
-      // userInfo: app.globalData.userInfo,
-      userInfo: getApp().globalData.userInfo,
+      userInfo: app.globalData.userInfo,
     })
 
     db.collection('questions-lists').where({

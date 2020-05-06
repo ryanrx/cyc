@@ -1,3 +1,5 @@
+const app = getApp();
+
 function getImageInfo(url) {
   return new Promise((resolve, reject) => {
     wx.getImageInfo({
@@ -75,6 +77,11 @@ Component({
       const designHeight = 603 // 这是在顶部位置定义，底部无tabbar情况下的设计稿高度
 
       // 以iphone6为设计稿，计算相应的缩放比例
+      this.setData({
+        userInfo: app.globalData.userInfo,
+      })
+      // console.log(this.data.userInfo);
+
       const { windowWidth, windowHeight } = wx.getSystemInfoSync()
       const responsiveScale =
         windowHeight / ((windowWidth / designWidth) * designHeight)
