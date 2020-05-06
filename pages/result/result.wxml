@@ -11,7 +11,7 @@
       </view>
     </view> -->
     <!-- end of userinfo area-->
-    <canvas-share resultMess="{{result}}" bindclose="close" userInfo="{{userInfo}}"/>
+    <canvas-share resultMess="{{result}}"/>
 
 		<!-- <view class="weui-msg__text-area">
 			<h2 class="weui-msg__title">{{result}}</h2>

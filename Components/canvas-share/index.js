@@ -1,5 +1,3 @@
-const app = getApp();
-
 function getImageInfo(url) {
   return new Promise((resolve, reject) => {
     wx.getImageInfo({
@@ -52,10 +50,10 @@ Component({
     //     }
     //   }
     // },
-    userInfo: {
-      type: Object,
-      value: false
-    },
+    // userInfo: {
+    //   type: Object,
+    //   value: false
+    // },
     resultMess: String,
   },
 
@@ -68,7 +66,7 @@ Component({
 
     imageFile: '',
 
-    responsiveScale: 1,
+    responsiveScale: 1
   },
 
   lifetimes: {
@@ -77,9 +75,9 @@ Component({
       const designHeight = 603 // 这是在顶部位置定义，底部无tabbar情况下的设计稿高度
 
       // 以iphone6为设计稿，计算相应的缩放比例
-      this.setData({
-        userInfo: app.globalData.userInfo,
-      })
+      // this.setData({
+      //   userInfo: app.globalData.userInfo,
+      // })
       // console.log(this.data.userInfo);
 
       const { windowWidth, windowHeight } = wx.getSystemInfoSync()
@@ -169,9 +167,11 @@ Component({
     },
     draw() {
       wx.showLoading({title: '当前网速较慢'})
-      const { userInfo, canvasWidth, canvasHeight } = this.data
+      const userInfo = getApp().globalData.userInfo;
+      const { canvasWidth, canvasHeight } = this.data
       var hasUserInfo = false;
       var avatarPromise, avatarUrl, nickName;
+      // console.log(userInfo)
       if (userInfo){
         hasUserInfo = true;
         avatarUrl = userInfo.avatarUrl;
