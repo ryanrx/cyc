@@ -1,4 +1,4 @@
-<view class="share show">
+<view class="share show" style="height:{{canvasHeight/3*2+60}}rpx">
   <canvas class="canvas-hide" canvas-id="share" style="width:{{canvasWidth*2}}rpx;height:{{canvasHeight*2}}rpx" />
   <view class="content" style="transform:scale({{responsiveScale}});-webkit-transform:scale({{responsiveScale}});">
     <image class="canvas" src="{{imageFile}}" style="width:{{canvasWidth/3*2}}rpx;height:{{canvasHeight/3*2}}rpx" />
@@ -8,5 +8,11 @@
     </view> -->
   </view>
 </view>
-<text>\n</text>
-<button class="weui-btn weui-btn_primary" bindtap="handleSave">保存到相册</button>
+
+<!-- <text>\n</text> -->
+<!-- <view class="weui-msg__opr-area"> -->
+  <view class="weui-btn-area" style="margin-top:30rpx; margin-bottom:30rpx;">
+    <button class="weui-btn weui-btn_primary" bindtap="handleSave">保存到相册</button>
+    <button class="weui-btn weui-btn_primary" open-type="share">分享到群聊</button>
+  </view>
+<!-- </view> -->

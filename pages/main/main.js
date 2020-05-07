@@ -56,7 +56,8 @@ Page({
 
     wx.showToast({
       title: '选择成功',
-      icon: '../images/response/icon_nav_feedback.png',
+      // icon: '../images/response/icon_nav_feedback.png',
+      icon: 'none',
       mask: true,
       duration: delayTime
     })
@@ -72,7 +73,8 @@ Page({
 
       wx.showToast({
         title: '选择成功',
-        icon: '../images/response/icon_nav_feedback.png',
+        // icon: '../images/response/icon_nav_feedback.png',
+        icon: 'none',
         mask: true,
         duration: delayTime
       })
