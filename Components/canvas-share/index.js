@@ -1,3 +1,6 @@
+const util = require('../../utils/util.js');
+const app = util.app;
+
 function getImageInfo(url) {
   return new Promise((resolve, reject) => {
     wx.getImageInfo({
@@ -167,11 +170,11 @@ Component({
     },
     draw() {
       wx.showLoading({title: '当前网速较慢'})
-      const userInfo = getApp().globalData.userInfo;
+      const userInfo = app.globalData.userInfo;
       const { canvasWidth, canvasHeight } = this.data
       var hasUserInfo = false;
       var avatarPromise, avatarUrl, nickName;
-      // console.log(userInfo)
+      console.log(userInfo)
       if (userInfo){
         hasUserInfo = true;
         avatarUrl = userInfo.avatarUrl;
@@ -227,30 +230,16 @@ Component({
                 resolve();
               })
             }else{
+              ctx.drawImage(
+                '../../pages/images/user/user.png',
+                canvasW / 2 - radius,
+                y - radius,
+                radius * 2,
+                radius * 2,
+              )
               resolve();
             }
           })
-
-          // // 绘制头像
-          // const radius = rpx2px(90 * 2)
-          // const y = rpx2px(200 * 2)
-          // ctx.drawImage(
-          //   avatar.path,
-          //   canvasW / 2 - radius,
-          //   y - radius,
-          //   radius * 2,
-          //   radius * 2,
-          // )
-
-          // // 绘制用户名
-          // ctx.setFontSize(60)
-          // ctx.setTextAlign('center')
-          // ctx.setFillStyle('black')
-          // ctx.fillText(
-          //   nickName,
-          //   canvasW / 2,
-          //   y + rpx2px(150 * 2),
-          // )
 
           // 绘制结果标题
           ctx.setFontSize(60)
@@ -263,17 +252,24 @@ Component({
           )
 
           //绘制二维码
+          ctx.save()
+          ctx.beginPath()
+          ctx.arc(canvasW / 2,
+            y + rpx2px(150 * 10) + rpx2px(600),
+            rpx2px(300), 0, 2 * Math.PI)
+          ctx.clip()
           ctx.drawImage(
             qrCode.path,
-            canvasW / 2 - rpx2px(600),
-            y + rpx2px(150 * 6),
-            rpx2px(600*2),
-            rpx2px(600*2)
+            canvasW / 2 - rpx2px(300),
+            y + rpx2px(150 * 12),
+            rpx2px(600),
+            rpx2px(600)
           )
+          ctx.restore()
           
           drawUser.then(() => {
             // 最后完成作画
-            ctx.stroke()
+            // ctx.stroke()
             ctx.draw(false, () => {
               canvasToTempFilePath({
                 canvasId: 'share',
