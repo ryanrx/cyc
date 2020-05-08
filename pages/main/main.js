@@ -27,7 +27,8 @@ Page({
     name: "",
     hasUserInfo: false,
     percentage: 0,
-    delayTime: delayTime
+    delayTime: delayTime,
+    platformType: "",
   },
 
 
@@ -150,6 +151,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({platformType: util.platformType})
     wx.showLoading({
       title: '加载中',
       mask: true
@@ -245,5 +247,11 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  homePage: function () {
+    wx.switchTab({
+      url: '../home/home',
+    })
   }
 })
