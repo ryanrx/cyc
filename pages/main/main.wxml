@@ -2,11 +2,11 @@
   <image class='background' src="{{imagesrc}}" mode="aspectFill"></image> 
   <import src="../template/template.wxml"/>
   <view class="transTop">.</view>
+  <view wx:if="{{platformType=='android'&&!resultStatus}}" class="weui-btn_cell weui-btn_cell-primary"
+style="background-color:rgba(255,255,255,0.7); color: darkgreen;" bindtap="homePage">回到首页</view>
   <view>
     <template is="question-list" data="{{questions, stage, percentage, delayTime}}"/>
   </view>
-  <view wx:if="{{platformType=='android'&&!resultStatus}}" class="weui-btn_cell weui-btn_cell-primary"
-style="background-color:rgba(0,0,0,0.05);" bindtap="homePage">回到首页</view>
   <view class="central-subpage" wx:if="{{resultStatus}}" style="margin-top: 240rpx; padding: 50rpx;">  
     <i class="weui-icon-success weui-icon_msg"s></i>
     <view class="icon-box__ctn">

@@ -11,7 +11,7 @@
       </view>
       <block wx:for="{{item.choices}}" wx:key="unique">
         <view class="weui-btn_cell weui-btn_cell-default" bindtap="chosen" id="{{index}}" hover-class="selected-choice" hover-stay-time="{{delayTime}}" data-value="{{item}}"
-        style="background-color:rgba(255,255,255,0.84); margin:7rpx;">{{item}}</view>
+        style="background-color:rgba(255,255,255,0.8); margin:7rpx;">{{item}}</view>
       </block>
     </view>
   </block>
