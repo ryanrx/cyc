@@ -32,12 +32,13 @@ const  pickIndexOfMax = array => {
 }
 
 const getPlatformType = () => {
+  var rtn = '';
   wx.getSystemInfo({
     success: function (res) {
-      return res.platform;
+      rtn = res.platform;
     }
   })
-  return '';
+  return rtn;
 }
 
 const platformType = getPlatformType();

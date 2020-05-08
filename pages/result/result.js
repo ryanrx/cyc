@@ -13,7 +13,8 @@ Page({
     result: "",
     // imagesrc: "",
     // visible: false,
-    array: []
+    array: [],
+    platformType: ""
   },
 
   //事件处理函数
@@ -67,10 +68,12 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      result: options.result
+      result: options.result,
+      platformType: util.platformType,
       // userInfo: app.globalData.userInfo,
     })
-
+    
+    // console.log('platformType : ' + util.platformType)
     // db.collection('questions-lists').where({
     //   name: options.test
     // }).get({
@@ -142,5 +145,11 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  homePage: function() {
+    wx.switchTab({
+      url: '../home/home',
+    })
   }
 })

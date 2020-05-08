@@ -12,7 +12,8 @@
     </view> -->
     <!-- end of userinfo area-->
     <canvas-share resultMess="{{result}}"/>
-
+    <view wx:if="{{platformType=='android'}}" class="weui-btn_cell weui-btn_cell-primary"
+style="background-color:rgba(0,0,0,0.1);" bindtap="homePage">回到首页</view>
 		<!-- <view class="weui-msg__text-area">
 			<h2 class="weui-msg__title">{{result}}</h2>
 			<view class="weui-msg__desc">描述<a>文字链接</a></view>
@@ -38,5 +39,4 @@
       </view>
     </view>
   </view>
-  
 </view>
