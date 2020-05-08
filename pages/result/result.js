@@ -9,9 +9,9 @@ Page({
    * Page initial data
    */
   data: {
-    userInfo: {},
+    // userInfo: {},
     result: "",
-    imagesrc: "",
+    // imagesrc: "",
     // visible: false,
     array: []
   },
@@ -67,28 +67,29 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      result: options.result,
-      userInfo: app.globalData.userInfo,
+      result: options.result
+      // userInfo: app.globalData.userInfo,
     })
 
-    db.collection('questions-lists').where({
-      name: options.test
-    }).get({
-      success: res => {
-        // console.log('[数据库] [查询记录] 成功: ', res);
-        this.setData({
-          imagesrc: res.data[0].imagesrc,
-        });
-      }
-    })
+    // db.collection('questions-lists').where({
+    //   name: options.test
+    // }).get({
+    //   success: res => {
+    //     // console.log('[数据库] [查询记录] 成功: ', res);
+    //     this.setData({
+    //       imagesrc: res.data[0].imagesrc,
+    //     });
+    //   }
+    // })
     
     db.collection('questions-lists').where({ 
       name: db.command.neq(options.test)
      }).get({
       success: res => {
         // console.log(res);
+        res.data.sort((a, b) => 0.5 - Math.random());
         this.setData({
-          array: res.data
+          array: res.data.slice(0, 3)
         })
       }
     });

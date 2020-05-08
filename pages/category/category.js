@@ -25,6 +25,7 @@ Page({
     }).get({
       success: res => {
         // console.log(res);
+        res.data.sort((a, b) => a.index - b.index);
         this.setData({
           array: res.data
         })
