@@ -174,7 +174,7 @@ Component({
       const { canvasWidth, canvasHeight } = this.data
       var hasUserInfo = false;
       var avatarPromise, avatarUrl, nickName;
-      console.log(userInfo)
+      // console.log(userInfo)
       if (userInfo){
         hasUserInfo = true;
         avatarUrl = userInfo.avatarUrl;
