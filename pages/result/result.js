@@ -92,7 +92,7 @@ Page({
         // console.log(res);
         res.data.sort((a, b) => 0.5 - Math.random());
         this.setData({
-          array: res.data.slice(0, 3)
+          array: res.data.slice(0, 5)
         })
       }
     });

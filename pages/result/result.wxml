@@ -33,7 +33,7 @@ style="background-color:rgba(0,0,0,0.05);" bindtap="homePage">回到首页</view
   <!-- 相关测试 -->
   <view class="page__bd">
     <view class="weui-panel weui-panel_access">
-      <view class="weui-panel__hd">相关测试</view>
+      <view class="weui-panel__hd">推荐测试</view>
       <view class="weui-panel__bd">
         <template is="tests" data="{{array}}"/>
       </view>
