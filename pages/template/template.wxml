@@ -3,7 +3,7 @@
     <view wx:if="{{index == stage}}">
       <view class="weui-progress__bar" style="height: 50rpx; text-align: center;">
         <view class="weui-progress__inner-bar js_progress" style="width:{{percentage}}%;">
-          {{stage}}/{{questions.length}}
+        {{percentage}}%
         </view>
       </view>
       <view class="weui-btn_cell weui-btn_cell-primary" style="background-color: rgba(255,255,255,0.8);">
