@@ -31,9 +31,20 @@ const  pickIndexOfMax = array => {
   return maxIndex;
 }
 
+const getPlatformType = () => {
+  wx.getSystemInfo({
+    success: function (res) {
+      return res.platform;
+    }
+  })
+  return '';
+}
+
+const platformType = getPlatformType();
+
 module.exports = {
-  // formatTime: formatTime,
   pickIndexOfMax: pickIndexOfMax,
   app: app,
   dbUtil: dbUtil,
+  platformType: platformType,
 }
