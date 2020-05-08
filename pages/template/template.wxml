@@ -1,17 +1,22 @@
 <template name="question-list">
   <block wx:for="{{questions}}" wx:key="unique">
     <view wx:if="{{index == stage}}">
-      <view class="weui-progress__bar">
-        <view class="weui-progress__inner-bar js_progress" style="width:{{percentage}}%;"></view>
+      <view class="weui-progress__bar" style="height: 50rpx; text-align: center;">
+        <view class="weui-progress__inner-bar js_progress" style="width:{{percentage}}%;">
+          {{stage}}/{{questions.length}}
+        </view>
       </view>
-      <view class="weui-btn_cell weui-btn_cell-primary" style="background-color: rgba(255,255,255,0.84);">
+      <view class="weui-btn_cell weui-btn_cell-primary" style="background-color: rgba(255,255,255,0.8);">
         <text>\n</text>
         <view>{{stage + 1}}. {{item.question}}</view>
         <text>\n</text>
       </view>
       <block wx:for="{{item.choices}}" wx:key="unique">
-        <view class="weui-btn_cell weui-btn_cell-default" bindtap="chosen" id="{{index}}" hover-class="selected-choice" hover-stay-time="{{delayTime}}" data-value="{{item}}"
-        style="background-color:rgba(255,255,255,0.8); margin:7rpx;">{{item}}</view>
+          <view class="weui-btn_cell weui-btn_cell-default" bindtap="chosen" id="{{index}}"    
+          style="background-color: rgba(255,255,255,0.8); margin:7rpx;" data-value="{{item}}"
+          hover-class="selected-choice" hover-stay-time="{{delayTime}}" 
+          >{{item}}
+          </view>
       </block>
     </view>
   </block>
