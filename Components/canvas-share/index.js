@@ -1,7 +1,7 @@
 const util = require('../../utils/util.js');
 const app = util.app;
 const wenben = '！！！到时候把这段文字改成this.properties.resultMess，不带引号。。。。美利坚合众国（英语：United States of America，United States），简称“美国”，是由华盛顿哥伦比亚特区、50个州和关岛等众多海外领土组成的联邦共和立宪制国家。其主体部分位于北美洲中部，美国中央情报局《世界概况》1989年至1996年初始版美国总面积是937.3万平方公里，人口3.3亿。美利坚合众国（英语：United States of America，United States），简称“美国”，是由华盛顿哥伦比亚特区、50个州和关岛等众多海外领土组成的联邦共和立宪制国家。其主体部分位于北美洲中部，美国中央情报局《世界概况》1989年至1996年初始版美国总面积是937.3万平方公里，人口3.3亿。'
-const crucialMess = '用微信扫描屏幕中的二维码，和我一起来测一测吧！'
+const crucialMess = '微信扫一扫 你也测一测'
 
 function getImageInfo(url) {
   return new Promise((resolve, reject) => {
@@ -232,7 +232,7 @@ Component({
           const canvasH = rpx2px(canvasHeight/3*2)
 
           // @@@@@@@@@@ 各种重要参数
-          const radius = rpx2px(30 * 2)
+          const radius = rpx2px(45*2)
           const y = rpx2px(75 * 2)
           const circleY = canvasH - 6*radius
 
@@ -253,20 +253,20 @@ Component({
                 // 绘制头像
                 ctx.drawImage(
                   avatar.path,
-                  canvasW / 2 - radius,
+                  canvasW / 4 - radius,
                   y - radius,
                   radius * 2,
                   radius * 2,
                 )
 
                 // 绘制用户名
-                ctx.setFontSize(rpx2px(30))
+                ctx.setFontSize(rpx2px(40))
                 ctx.setTextAlign('center')
-                ctx.setFillStyle('dimgray')
+                ctx.setFillStyle('rgba(0,0,0,0.8)')
                 ctx.fillText(
                   nickName,
-                  canvasW / 2,
-                  y + rpx2px(50*2),
+                  canvasW/4,
+                  y + rpx2px(64*2),
                 )
 
                 resolve();
@@ -284,19 +284,19 @@ Component({
           })
 
           // 绘制扫描二维码标语
-          const h2size = rpx2px(40)
+          const h2size = rpx2px(30)
           ctx.setFontSize(h2size)
           ctx.setTextAlign('center')
-          ctx.setFillStyle('white')
-          drawText(ctx, crucialMess, canvasW/2, y+rpx2px(160), 0, canvasW-rpx2px(100), rpx2px(5)+h2size)
+          ctx.setFillStyle('dimgray')
+          drawText(ctx, crucialMess, canvasW / 4 * 3, y + radius + rpx2px(35), 0, canvasW/2, rpx2px(5)+h2size)
 
 
           // 绘制结果标题
-          const h3size = rpx2px(35)
+          const h3size = rpx2px(32)
           ctx.setFontSize(h3size)
           ctx.setTextAlign('center')
           ctx.setFillStyle('rgba(0,0,0,0)')
-          const textTopY = y + rpx2px(300)
+          const textTopY = y + rpx2px(240)
           const textH
             = drawText(ctx, wenben, canvasW/2, textTopY, 0, canvasW-rpx2px(120), rpx2px(3)+h3size)
           /* ctx.fillText(
@@ -305,27 +305,28 @@ Component({
             y + rpx2px(240)
           ) */
           // 绘制背景板
-          ctx.setFillStyle('rgba(255,255,255,0.4)')
+          ctx.setFillStyle('rgba(0,0,0,0.5)')
           ctx.fillRect(rpx2px(30), textTopY - rpx2px(45), canvasW - rpx2px(60), textH + rpx2px(75))
-          ctx.setFillStyle('black')
+          ctx.setFillStyle('white')
           drawText(ctx, wenben, canvasW / 2, textTopY, 0, canvasW - rpx2px(120), rpx2px(3) + h3size)
 
 
           //绘制二维码
           ctx.save()
           ctx.beginPath()
-          ctx.arc(canvasW / 2,
-            y + circleY + radius*1.5,
-            radius*1.5+rpx2px(5), 0, 2 * Math.PI)
+          ctx.arc(canvasW/4*3,
+            y,
+            radius+rpx2px(5), 0, 2 * Math.PI)
           ctx.clip()
           ctx.drawImage(
             qrCode.path,
-            canvasW / 2 - radius*1.5,
-            y + circleY,
-            radius*3,
-            radius*3
+            canvasW/4*3 - radius,
+            y - radius,
+            radius*2,
+            radius*2
           )
           ctx.setLineWidth(rpx2px(10))
+          ctx.setFillStyle('black')
           ctx.stroke()
           ctx.restore()
         
