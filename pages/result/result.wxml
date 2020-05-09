@@ -12,7 +12,7 @@
     </view> -->
     <!-- end of userinfo area-->
     <view class="weui-btn_cell weui-btn_cell-primary" style="background-color: gray; color:white;">向上滑可保存并分享图片</view>
-    <canvas-share resultMess="{{result}}"/>
+    <canvas-share resultMess="{{result}}" test="{{test}}"/>
     <view wx:if="{{platformType=='android'}}" class="weui-btn_cell weui-btn_cell-primary" style="background-color: rgba(0,0,0,0.2)" bindtap="homePage">回到首页</view>
 		<!-- <view class="weui-msg__text-area">
 			<h2 class="weui-msg__title">{{result}}</h2>

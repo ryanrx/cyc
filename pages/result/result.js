@@ -11,6 +11,7 @@ Page({
   data: {
     // userInfo: {},
     result: "",
+    test: "",
     // imagesrc: "",
     // visible: false,
     array: [],
@@ -69,6 +70,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       result: options.result,
+      test: options.test,
       platformType: util.platformType,
       // userInfo: app.globalData.userInfo,
     })

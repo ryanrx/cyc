@@ -69,7 +69,6 @@ Page({
     wx.showLoading({
       title: '努力刷新中'
     })
-    const db = wx.cloud.database();
     db.collection('questions-lists').where({
       category: this.data.cateName,
     }).get({

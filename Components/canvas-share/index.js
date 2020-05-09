@@ -1,7 +1,11 @@
 const util = require('../../utils/util.js');
 const app = util.app;
+const db = util.dbUtil;
+
 const wenben = '！！！到时候把这段文字改成this.properties.resultMess，不带引号。。。。美利坚合众国（英语：United States of America，United States），简称“美国”，是由华盛顿哥伦比亚特区、50个州和关岛等众多海外领土组成的联邦共和立宪制国家。其主体部分位于北美洲中部，美国中央情报局《世界概况》1989年至1996年初始版美国总面积是937.3万平方公里，人口3.3亿。美利坚合众国（英语：United States of America，United States），简称“美国”，是由华盛顿哥伦比亚特区、50个州和关岛等众多海外领土组成的联邦共和立宪制国家。其主体部分位于北美洲中部，美国中央情报局《世界概况》1989年至1996年初始版美国总面积是937.3万平方公里，人口3.3亿。'
 const crucialMess = '微信扫一扫 你也测一测'
+
+var bg = '';
 
 function getImageInfo(url) {
   return new Promise((resolve, reject) => {
@@ -80,6 +84,7 @@ Component({
     //   value: false
     // },
     resultMess: String,
+    test: String
   },
 
   data: {
@@ -103,7 +108,7 @@ Component({
       // this.setData({
       //   userInfo: app.globalData.userInfo,
       // })
-      // console.log(this.data.userInfo);
+      // console.log(this.data.test);
 
       const { windowWidth, windowHeight } = wx.getSystemInfoSync()
       const responsiveScale =
@@ -113,8 +118,27 @@ Component({
           responsiveScale,
         })
       }
-      this.draw()
-      this.beginDraw = true
+
+      const getbg = new Promise((resolve) => {
+        db.collection('questions-lists').where({
+          name: this.data.test,
+        }).get({
+          success: res => {
+            bg = res.data[0].canvas_bg;
+            resolve();
+          }
+        });  
+      })
+
+      var that = this;
+
+      getbg.then(() => {
+        that.draw()
+        that.beginDraw = true
+      })
+
+      // this.draw()
+      // this.beginDraw = true
     },
   },
 
@@ -206,7 +230,8 @@ Component({
         // { avatarUrl, nickName } = userInfo
         avatarPromise = getImageInfo(avatarUrl)
       }
-      const backgroundPromise = getImageInfo('cloud://inuyasha.696e-inuyasha-1301310234/cyc/qyn_bg2.jpg')
+      
+      const backgroundPromise = getImageInfo(bg)
       const qrCodePromise = getImageInfo('cloud://inuyasha.696e-inuyasha-1301310234/cyc/cyc-qrcode.jpg')
       const fillTextLineBreak = (ctx, text, x, y, lw, lh) => {
         let i = 0

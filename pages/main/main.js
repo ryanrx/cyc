@@ -172,7 +172,7 @@ Page({
         stageNum = 0;
         this.setData({
           name: options.id,
-          imagesrc: res.data[0].imagesrc,
+          imagesrc: res.data[0].bg_img,
           questions: questions,
         });
         setTimeout(function () {
