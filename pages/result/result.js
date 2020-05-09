@@ -146,7 +146,12 @@ Page({
    * Called when user click on the top right corner to share
    */
   onShareAppMessage: function () {
-
+    // console.log(app.globalData)
+    return {
+      title: this.data.test, //自定义转发标题
+      path: '/pages/main/main?id=' + this.data.test, //分享页面路径
+      imageUrl: app.globalData.canvasPath //分享图片 宽高比 5:4
+    }
   },
 
   homePage: function() {

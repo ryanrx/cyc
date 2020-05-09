@@ -217,7 +217,10 @@ Component({
     // ---------- end of checking authority
 
     draw() {
-      wx.showLoading({title: '当前网速较慢'})
+      wx.showLoading({
+        title: '努力加载中',
+        mask: true
+      })
       const userInfo = app.globalData.userInfo;
       const { canvasWidth, canvasHeight } = this.data
       var hasUserInfo = false;
@@ -368,9 +371,14 @@ Component({
             // 最后完成作画
             
             ctx.draw(false, () => {
+              console.log(app.globalData);
               canvasToTempFilePath({
                 canvasId: 'share',
-              }, this).then(({ tempFilePath }) => this.setData({ imageFile: tempFilePath }))
+              }, this).then(({ tempFilePath }) =>
+              {
+                this.setData({ imageFile: tempFilePath })
+                app.globalData.canvasPath = tempFilePath
+              })
             })
 
 
