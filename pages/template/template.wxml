@@ -1,7 +1,7 @@
 <template name="question-list">
   <block wx:for="{{questions}}" wx:key="unique">
     <view wx:if="{{index == stage}}">
-      <view class="weui-progress__bar" style="height: 50rpx; text-align: center;">
+      <view class="weui-progress__bar" style="height: 20px; text-align: center;">
         <view class="weui-progress__inner-bar js_progress" style="width:{{percentage}}%;">
         {{percentage}}%
         </view>

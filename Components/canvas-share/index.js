@@ -1,5 +1,7 @@
 const util = require('../../utils/util.js');
 const app = util.app;
+const wenben = '！！！到时候把这段文字改成this.properties.resultMess，不带引号。。。。美利坚合众国（英语：United States of America，United States），简称“美国”，是由华盛顿哥伦比亚特区、50个州和关岛等众多海外领土组成的联邦共和立宪制国家。其主体部分位于北美洲中部，美国中央情报局《世界概况》1989年至1996年初始版美国总面积是937.3万平方公里，人口3.3亿。美利坚合众国（英语：United States of America，United States），简称“美国”，是由华盛顿哥伦比亚特区、50个州和关岛等众多海外领土组成的联邦共和立宪制国家。其主体部分位于北美洲中部，美国中央情报局《世界概况》1989年至1996年初始版美国总面积是937.3万平方公里，人口3.3亿。'
+const crucialMess = '用微信扫描屏幕中的二维码，和我一起来测一测吧！'
 
 function getImageInfo(url) {
   return new Promise((resolve, reject) => {
@@ -41,6 +43,26 @@ function saveImageToPhotosAlbum(option) {
   })
 }
 
+function drawText(ctx, str, leftWidth, initHeight, titleHeight, canvasWidth, charHeight) {
+  var lineWidth = 0;
+  var lastSubStrIndex = 0; //每次开始截取的字符串的索引
+  for (let i = 0; i < str.length; i++) {
+    lineWidth += ctx.measureText(str[i]).width;
+    if (lineWidth > canvasWidth) {
+      ctx.fillText(str.substring(lastSubStrIndex, i), leftWidth, initHeight); //绘制截取部分
+      initHeight += charHeight; //16为字体的高度
+      lineWidth = 0;
+      lastSubStrIndex = i;
+      titleHeight += charHeight;
+    }
+    if (i == str.length - 1) { //绘制剩余部分
+      ctx.fillText(str.substring(lastSubStrIndex, i + 1), leftWidth, initHeight);
+    }
+  }
+  // 标题border-bottom 线距顶部距离
+  return titleHeight;
+}
+
 Component({
   properties: {
     // visible: {
@@ -64,8 +86,8 @@ Component({
     beginDraw: false,
     isDraw: false,
 
-    canvasWidth: 843,
-    canvasHeight: 1500,
+    canvasWidth: 1126,
+    canvasHeight: 2000,
 
     imageFile: '',
 
@@ -168,6 +190,8 @@ Component({
         }
       })
     },
+    // ---------- end of checking authority
+
     draw() {
       wx.showLoading({title: '当前网速较慢'})
       const userInfo = app.globalData.userInfo;
@@ -175,7 +199,7 @@ Component({
       var hasUserInfo = false;
       var avatarPromise, avatarUrl, nickName;
       // console.log(userInfo)
-      if (userInfo){
+      if (userInfo) {
         hasUserInfo = true;
         avatarUrl = userInfo.avatarUrl;
         nickName = userInfo.nickName;
@@ -184,14 +208,33 @@ Component({
       }
       const backgroundPromise = getImageInfo('cloud://inuyasha.696e-inuyasha-1301310234/cyc/qyn_bg2.jpg')
       const qrCodePromise = getImageInfo('cloud://inuyasha.696e-inuyasha-1301310234/cyc/cyc-qrcode.jpg')
+      const fillTextLineBreak = (ctx, text, x, y, lw, lh) => {
+        let i = 0
+        let n = 0
+        let r = -1
+        while (i < text.length) {
+          while (ctx.measureText(text.substring(n, i)).width < lw && i < text.length) {
+            i++
+          }
+          r++
+          ctx.fillText(text.substring(n, i), x, y + lh * r)
+          n = i
+        }
+        return lh * r
+      }
 
       Promise.all([backgroundPromise, qrCodePromise])
         .then(([background, qrCode]) => {
 
           const ctx = wx.createCanvasContext('share', this)
 
-          const canvasW = rpx2px(canvasWidth * 2)
-          const canvasH = rpx2px(canvasHeight * 2)
+          const canvasW = rpx2px(canvasWidth/3*2)
+          const canvasH = rpx2px(canvasHeight/3*2)
+
+          // @@@@@@@@@@ 各种重要参数
+          const radius = rpx2px(30 * 2)
+          const y = rpx2px(75 * 2)
+          const circleY = canvasH - 6*radius
 
           // 绘制背景
           ctx.drawImage(
@@ -202,12 +245,11 @@ Component({
             canvasH
           )
 
-          const radius = rpx2px(90 * 2)
-          const y = rpx2px(200 * 2)
 
           const drawUser = new Promise((resolve) => {
             if (hasUserInfo) {
               avatarPromise.then((avatar) => {
+
                 // 绘制头像
                 ctx.drawImage(
                   avatar.path,
@@ -218,18 +260,18 @@ Component({
                 )
 
                 // 绘制用户名
-                ctx.setFontSize(60)
+                ctx.setFontSize(rpx2px(30))
                 ctx.setTextAlign('center')
-                ctx.setFillStyle('black')
+                ctx.setFillStyle('dimgray')
                 ctx.fillText(
                   nickName,
                   canvasW / 2,
-                  y + rpx2px(150 * 2),
+                  y + rpx2px(50*2),
                 )
 
                 resolve();
               })
-            }else{
+            } else{
               ctx.drawImage(
                 '../../pages/images/user/user.png',
                 canvasW / 2 - radius,
@@ -241,35 +283,55 @@ Component({
             }
           })
 
-          // 绘制结果标题
-          ctx.setFontSize(60)
+          // 绘制扫描二维码标语
+          const h2size = rpx2px(40)
+          ctx.setFontSize(h2size)
           ctx.setTextAlign('center')
-          ctx.setFillStyle('black')
-          ctx.fillText(
+          ctx.setFillStyle('white')
+          drawText(ctx, crucialMess, canvasW/2, y+rpx2px(160), 0, canvasW-rpx2px(100), rpx2px(5)+h2size)
+
+
+          // 绘制结果标题
+          const h3size = rpx2px(35)
+          ctx.setFontSize(h3size)
+          ctx.setTextAlign('center')
+          ctx.setFillStyle('rgba(0,0,0,0)')
+          const textTopY = y + rpx2px(300)
+          const textH
+            = drawText(ctx, wenben, canvasW/2, textTopY, 0, canvasW-rpx2px(120), rpx2px(3)+h3size)
+          /* ctx.fillText(
             this.properties.resultMess,   //@@@@@@@@@@@ 语法示范（需提前传参，自动同名传参无法使用）
             canvasW / 2,
-            y + rpx2px(150 * 4),
-          )
+            y + rpx2px(240)
+          ) */
+          // 绘制背景板
+          ctx.setFillStyle('rgba(255,255,255,0.4)')
+          ctx.fillRect(rpx2px(30), textTopY - rpx2px(45), canvasW - rpx2px(60), textH + rpx2px(75))
+          ctx.setFillStyle('black')
+          drawText(ctx, wenben, canvasW / 2, textTopY, 0, canvasW - rpx2px(120), rpx2px(3) + h3size)
+
 
           //绘制二维码
           ctx.save()
           ctx.beginPath()
           ctx.arc(canvasW / 2,
-            y + rpx2px(150 * 10) + rpx2px(600),
-            rpx2px(300), 0, 2 * Math.PI)
+            y + circleY + radius*1.5,
+            radius*1.5+rpx2px(5), 0, 2 * Math.PI)
           ctx.clip()
           ctx.drawImage(
             qrCode.path,
-            canvasW / 2 - rpx2px(300),
-            y + rpx2px(150 * 12),
-            rpx2px(600),
-            rpx2px(600)
+            canvasW / 2 - radius*1.5,
+            y + circleY,
+            radius*3,
+            radius*3
           )
+          ctx.setLineWidth(rpx2px(10))
+          ctx.stroke()
           ctx.restore()
-          
+        
           drawUser.then(() => {
             // 最后完成作画
-            // ctx.stroke()
+            
             ctx.draw(false, () => {
               canvasToTempFilePath({
                 canvasId: 'share',
