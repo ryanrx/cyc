@@ -199,11 +199,14 @@ Page({
     wx.getUserInfo({
       success: res => {
         app.globalData.userInfo = res.userInfo
+      },
+      complete: res => {
+        // console.log(res);
+        wx.redirectTo({
+          url: '../result/result?test=' + testName + "&result=" + this.data.result
+        });
       }
     })
-    wx.redirectTo({
-      url: '../result/result?test=' + testName + "&result=" + this.data.result
-    });
   },
 
   /**

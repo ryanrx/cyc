@@ -274,10 +274,19 @@ Component({
             } else{
               ctx.drawImage(
                 '../../pages/images/user/user.png',
-                canvasW / 2 - radius,
+                canvasW / 4 - radius,
                 y - radius,
                 radius * 2,
                 radius * 2,
+              )
+
+              ctx.setFontSize(rpx2px(40))
+              ctx.setTextAlign('center')
+              ctx.setFillStyle('rgba(0,0,0,0.8)')
+              ctx.fillText(
+                "未登录",
+                canvasW / 4,
+                y + rpx2px(64 * 2),
               )
               resolve();
             }
