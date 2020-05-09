@@ -61,6 +61,13 @@ Page({
         this.setData({
           array: res.data
         })
+      },
+      fail: err => {
+        wx.showToast({
+          icon: 'none',
+          title: '获取信息失败'
+        })
+        console.error('[数据库] [查询记录] 失败：', err)
       }
     });
   },
@@ -100,11 +107,17 @@ Page({
     wx.showLoading({
       title: '努力刷新中'
     })
-    this.onLoad();
-    setTimeout(function () {
-      wx.stopPullDownRefresh();
-      wx.hideLoading();
-    }, 500);
+    var that = this;
+    const load = new Promise((resolve) => {
+      that.onLoad();
+      resolve();
+    })
+    load.then(() => {
+      setTimeout(function () {
+        wx.stopPullDownRefresh();
+        wx.hideLoading();
+      }, 500);
+    })
   },
 
   /**

@@ -175,11 +175,14 @@ Page({
           imagesrc: res.data[0].imagesrc,
           questions: questions,
         });
+        setTimeout(function () {
+          wx.hideLoading()
+        }, 500)
       },
       fail: err => {
         wx.showToast({
           icon: 'none',
-          title: '查询记录失败'
+          title: '获取信息失败'
         })
         console.error('[数据库] [查询记录] 失败：', err)
       }
@@ -190,9 +193,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    setTimeout(function () {
-      wx.hideLoading()
-    }, 1000)
+    
   },
 
   getUserInfo: function (e) {

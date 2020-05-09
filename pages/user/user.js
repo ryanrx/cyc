@@ -161,11 +161,17 @@ Page({
     wx.showLoading({
       title: '努力刷新中'
     })
-    this.onLoad();
-    setTimeout(function(){
-      wx.stopPullDownRefresh();
-      wx.hideLoading();
-    }, 500);
+    var that = this;
+    const load = new Promise((resolve) => {
+      that.onLoad();
+      resolve();
+    })
+    load.then(() => {
+      setTimeout(function () {
+        wx.stopPullDownRefresh();
+        wx.hideLoading();
+      }, 500);
+    })
   },
 
   /**

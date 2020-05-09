@@ -78,12 +78,12 @@ Page({
         this.setData({
           array: res.data
         })
+        setTimeout(function () {
+          wx.stopPullDownRefresh();
+          wx.hideLoading();
+        }, 500);
       }
     });
-    setTimeout(function () {
-      wx.stopPullDownRefresh();
-      wx.hideLoading();
-    }, 500);
   },
 
   /**
