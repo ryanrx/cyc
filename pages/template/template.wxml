@@ -10,9 +10,9 @@
         <text>\n</text>
         <view>{{stage + 1}}. {{item.question}}</view>
         <text>\n</text>
+        <view wx:if="{{item.img}}" class="q-image">
+          <image src="{{item.img}}" style="width:600rpx; height: 400rpx;"></image>
       </view>
-      <view wx:if="{{item.img}}" class="q-image">
-        <image src="{{item.img}}" style="width:600rpx; height: 400rpx;"></image>
       </view>
       <block wx:for="{{item.choices}}" wx:key="unique">
           <view class="weui-btn_cell weui-btn_cell-default" bindtap="chosen" id="{{index}}"    
