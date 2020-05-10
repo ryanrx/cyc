@@ -218,7 +218,7 @@ Component({
 
     draw() {
       wx.showLoading({
-        title: '努力加载中',
+        title: '图片生成中',
         mask: true
       })
       const userInfo = app.globalData.userInfo;
@@ -289,12 +289,20 @@ Component({
 
                 // 绘制用户名
                 ctx.setFontSize(rpx2px(40))
+
+                // 绘制背景板
+                const tWidth = ctx.measureText(nickName).width;
+                // console.log(metrics.width)
+                ctx.setFillStyle('rgba(0,0,0,0.5)')
+                ctx.fillRect(canvasW / 4 - tWidth/2 - rpx2px(10), y + rpx2px(64 * 2) - rpx2px(40) + rpx2px(3), tWidth + rpx2px(2 * 10), rpx2px(40) + rpx2px(8))
+
                 ctx.setTextAlign('center')
-                ctx.setFillStyle('rgba(0,0,0,0.8)')
+                // ctx.setFillStyle('rgba(0,0,0,0.8)')
+                ctx.setFillStyle('rgb(230, 184, 0)')
                 ctx.fillText(
                   nickName,
                   canvasW/4,
-                  y + rpx2px(64*2),
+                  y + rpx2px(64*2)
                 )
 
                 resolve();
@@ -309,8 +317,15 @@ Component({
               )
 
               ctx.setFontSize(rpx2px(40))
+
+              // 绘制背景板
+              const tWidth = ctx.measureText("未登录").width;
+              // console.log(metrics.width)
+              ctx.setFillStyle('rgba(0,0,0,0.5)')
+              ctx.fillRect(canvasW / 4 - tWidth / 2 - rpx2px(10), y + rpx2px(64 * 2) - rpx2px(40) + rpx2px(3), tWidth + rpx2px(2 * 10), rpx2px(40) + rpx2px(8))
+
               ctx.setTextAlign('center')
-              ctx.setFillStyle('rgba(0,0,0,0.8)')
+              ctx.setFillStyle('white')
               ctx.fillText(
                 "未登录",
                 canvasW / 4,
@@ -323,8 +338,16 @@ Component({
           // 绘制扫描二维码标语
           const h2size = rpx2px(30)
           ctx.setFontSize(h2size)
+
+          // 绘制背景板
+          const cWidth = ctx.measureText(crucialMess).width;
+          // console.log(metrics.width)
+          ctx.setFillStyle('rgba(0,0,0,0.5)')
+          ctx.fillRect(canvasW / 4 * 3 - cWidth / 2 - rpx2px(10), y + radius + rpx2px(35) - h2size, cWidth + rpx2px(2 * 10), h2size + rpx2px(8))
+
           ctx.setTextAlign('center')
-          ctx.setFillStyle('dimgray')
+          // ctx.setFillStyle('dimgray')
+          ctx.setFillStyle('white')
           drawText(ctx, crucialMess, canvasW / 4 * 3, y + radius + rpx2px(35), 0, canvasW/2, rpx2px(5)+h2size)
 
 
@@ -371,7 +394,7 @@ Component({
             // 最后完成作画
             
             ctx.draw(false, () => {
-              console.log(app.globalData);
+              // console.log(app.globalData);
               canvasToTempFilePath({
                 canvasId: 'share',
               }, this).then(({ tempFilePath }) =>
