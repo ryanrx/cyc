@@ -2,7 +2,7 @@ const util = require('../../utils/util.js');
 const app = util.app;
 const db = util.dbUtil;
 
-const wenben = '！！！到时候把这段文字改成this.properties.resultMess，不带引号。。。。美利坚合众国（英语：United States of America，United States），简称“美国”，是由华盛顿哥伦比亚特区、50个州和关岛等众多海外领土组成的联邦共和立宪制国家。其主体部分位于北美洲中部，美国中央情报局《世界概况》1989年至1996年初始版美国总面积是937.3万平方公里。'
+const wenben = '！！！到时候把这段文字改成 结果文案（数据库里要加个文案array field）不带引号。。。。美利坚合众国（英语：United States of America，United States），简称“美国”，是由华盛顿哥伦比亚特区、50个州和关岛等众多海外领土组成的联邦共和立宪制国家。'
 const crucialMess = '微信扫一扫 你也测一测'
 
 var bg = '';
@@ -352,13 +352,29 @@ Component({
           ctx.setFillStyle('white')
           drawText(ctx, crucialMess, canvasW / 4 * 3, y + radius + rpx2px(35), 0, canvasW/2, rpx2px(5)+h2size)
 
-
           // 绘制结果标题
+          const _h3size = rpx2px(45)
+          ctx.setFontSize(_h3size)
+          ctx.setTextAlign('center')
+          ctx.setFillStyle('rgba(0,0,0,0)')
+          // const textTopY = y + rpx2px(240)
+          const _textTopY = y + rpx2px(220)
+          const _textH
+            = drawText(ctx, this.properties.resultMess, canvasW / 2, _textTopY, 0, canvasW - rpx2px(120), rpx2px(3) + h3size)
+
+          // 绘制背景板
+          ctx.setFillStyle('rgba(0,0,0,0.5)')
+          ctx.fillRect(rpx2px(30), _textTopY - rpx2px(50), canvasW - rpx2px(60), _textH + rpx2px(75))
+          ctx.setFillStyle('rgb(230, 184, 0)')
+          drawText(ctx, this.properties.resultMess, canvasW / 2, _textTopY, 0, canvasW - rpx2px(120), rpx2px(3) + _h3size)
+
+          // 绘制结果文案
           const h3size = rpx2px(32)
           ctx.setFontSize(h3size)
           ctx.setTextAlign('center')
           ctx.setFillStyle('rgba(0,0,0,0)')
-          const textTopY = y + rpx2px(240)
+          // const textTopY = y + rpx2px(240)
+          const textTopY = y + rpx2px(870)
           const textH
             = drawText(ctx, wenben, canvasW/2, textTopY, 0, canvasW-rpx2px(120), rpx2px(3)+h3size)
           /* ctx.fillText(
@@ -375,9 +391,9 @@ Component({
           ctx.drawImage(
             pic.path,
             rpx2px(30),
-            rpx2px(680),
+            y + rpx2px(300),
             canvasW - rpx2px(60),
-            rpx2px(540)
+            rpx2px(520)
           )
 
           //绘制二维码
