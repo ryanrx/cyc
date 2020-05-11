@@ -14,7 +14,7 @@
       <block wx:for="{{records}}" wx:key="unique">
         <view class="weui-media-box weui-media-box_text weui-cell_access" bindtap="viewHistory" id="{{index}}">
           <h4 class="weui-media-box__title">{{item.qname}}</h4>
-          <view class="weui-media-box__desc">{{item.result}}</view>
+          <view class="weui-media-box__desc">{{item.resultTitle}}</view>
           <view class="weui-media-box__info">
             <!-- <view class="weui-media-box__info__meta">文字来源</view> -->
             <view class="weui-media-box__info__meta">{{item.date}}</view>

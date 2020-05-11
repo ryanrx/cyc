@@ -62,30 +62,37 @@ Page({
       }).get({
         success: res => {
           var recs = [];
+          // console.log(res);
           for (var i = 0; i < res.data.length; i++) {
-            recs.push(res.data[i]);
+            var curRec = {};
+            curRec.qname = res.data[i].qname;
+            curRec.date = res.data[i].date;
+            curRec.resultIndex = res.data[i].resultIndex;
+            curRec.resultTitle = res.data[i].resultTitle;
+            recs.push(curRec);
           }
+          // console.log(recs)
           recs.sort((a, b) => b.date - a.date);
           var d = new Date();
           var milliday = 1000 * 60 * 60 * 24;
-          for(var i = 0; i < recs.length; i++){
+          for (var i = 0; i < recs.length; i++) {
             var cd = recs[i].date;
             var days = (d.getTime() - cd.getTime()) / milliday;
-            if(days <= 1){
+            if (days <= 1) {
               recs[i].date = "今天";
-            }else if(days <= 2){
+            } else if (days <= 2) {
               recs[i].date = "昨天";
-            }else{
+            } else {
               var year = cd.getFullYear();
               var month = cd.getMonth() + 1;
               var day = cd.getDate();
-              recs[i].date = year+"年"+month+"月"+day+"日";
+              recs[i].date = year + "年" + month + "月" + day + "日";
             }
           }
           this.setData({
             records: recs,
           })
-          if (res.data.length && !Object.keys(res.data[0].userInfo).length){
+          if (res.data.length && !Object.keys(res.data[0].userInfo).length) {
             db.collection('user-history').where({
               _openid: this.data.openid,
             }).get({
@@ -122,7 +129,7 @@ Page({
   viewHistory: function(e) {
     var curRec = this.data.records[parseInt(e.currentTarget.id)];
     wx.navigateTo({
-      url: '../result/result?test=' + curRec.qname + "&result=" + curRec.result
+      url: '../result/result?test=' + curRec.qname + "&resultIndex=" + curRec.resultIndex
     });
   },
 

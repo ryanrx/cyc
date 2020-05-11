@@ -21,7 +21,7 @@ Page({
   data: {
     stage: stageNum,
     questions: questions,
-    result: "",
+    resultIndex: "",
     resultStatus: false,
     imagesrc: "",
     name: "",
@@ -65,6 +65,7 @@ Page({
 
     if(stageNum == questions.length){ // if no questions left
       var maxIndex = util.pickIndexOfMax(userType);
+      var resultTitle = types[maxIndex].title;
       var that = this;
       setTimeout(function () {
         that.setData({
@@ -81,10 +82,10 @@ Page({
       })
       
       this.setData({  // return result
-        result: types[maxIndex]
+        resultIndex: maxIndex
       })
       let name = this.data.name;
-      let result = this.data.result;
+      let resultIndex = this.data.resultIndex;
       wx.getUserInfo({
         success: res => {
           app.globalData.userInfo = res.userInfo;
@@ -109,7 +110,8 @@ Page({
                 db.collection('user-history').doc(res.data[0]._id).update({
                   data: {
                     date: d,
-                    result: result
+                    resultIndex: resultIndex,
+                    resultTitle: resultTitle
                   }
                 })
                 if(!Object.keys(res.data[0].userInfo).length){
@@ -133,7 +135,8 @@ Page({
                 db.collection('user-history').add({
                   data: {
                     qname: name,
-                    result: result,
+                    resultIndex: resultIndex,
+                    resultTitle: resultTitle,
                     nickName: nickName,
                     date: d,
                     userInfo: userInfo
@@ -164,7 +167,7 @@ Page({
       success: res => {
         // console.log('[数据库] [查询记录] 成功: ', res);
         questions = res.data[0].questions;
-        types = res.data[0].types;
+        types = res.data[0].types
         userType = [];
         for(var i = 0; i < types.length; i++){
           userType.push(0);
@@ -204,7 +207,7 @@ Page({
       complete: res => {
         // console.log(res);
         wx.redirectTo({
-          url: '../result/result?test=' + testName + "&result=" + this.data.result
+          url: '../result/result?test=' + testName + "&resultIndex=" + this.data.resultIndex
         });
       }
     })

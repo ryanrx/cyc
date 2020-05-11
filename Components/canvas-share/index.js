@@ -2,7 +2,9 @@ const util = require('../../utils/util.js');
 const app = util.app;
 const db = util.dbUtil;
 
-const wenben = '！！！到时候把这段文字改成 结果文案（数据库里要加个文案array field）不带引号。。。。美利坚合众国（英语：United States of America，United States），简称“美国”，是由华盛顿哥伦比亚特区、50个州和关岛等众多海外领土组成的联邦共和立宪制国家。'
+var resultObject;
+
+const wenben = '！！！到时候把 draw() 里面的 wenben 改成 resultObject.desc，也就是结果文案。美利坚合众国（英语：United States of America，United States），简称“美国”，是由华盛顿哥伦比亚特区、50个州和关岛等众多海外领土组成的联邦共和立宪制国家。'
 const crucialMess = '微信扫一扫 你也测一测'
 
 var bg = '';
@@ -83,8 +85,8 @@ Component({
     //   type: Object,
     //   value: false
     // },
-    resultMess: String,
-    test: String
+    test: String,
+    resultIndex: Number
   },
 
   data: {
@@ -125,6 +127,8 @@ Component({
         }).get({
           success: res => {
             bg = res.data[0].canvas_bg;
+            // console.log(res)
+            resultObject = res.data[0].types[this.properties.resultIndex];
             resolve();
           }
         });  
@@ -237,6 +241,7 @@ Component({
       const backgroundPromise = getImageInfo(bg)
       const qrCodePromise = getImageInfo('cloud://inuyasha.696e-inuyasha-1301310234/cyc/cyc-qrcode.jpg')
       const picPromise = getImageInfo('cloud://inuyasha.696e-inuyasha-1301310234/cyc/wuhan/result_imgs/wuhan-result.jpg')
+      // const picPromise = getImageInfo(resultObject.img);
 
       const fillTextLineBreak = (ctx, text, x, y, lw, lh) => {
         let i = 0
@@ -367,13 +372,13 @@ Component({
           // const textTopY = y + rpx2px(240)
           const _textTopY = y + rpx2px(220)
           const _textH
-            = drawText(ctx, this.properties.resultMess, canvasW / 2, _textTopY, 0, canvasW - rpx2px(120), rpx2px(3) + h3size)
+            = drawText(ctx, resultObject.title, canvasW / 2, _textTopY, 0, canvasW - rpx2px(120), rpx2px(3) + h3size)
 
           // 绘制背景板
           ctx.setFillStyle('rgba(0,0,0,0.5)')
           ctx.fillRect(rpx2px(30), _textTopY - rpx2px(50), canvasW - rpx2px(60), _textH + rpx2px(75))
           ctx.setFillStyle('rgb(230, 184, 0)')
-          drawText(ctx, this.properties.resultMess, canvasW / 2, _textTopY, 0, canvasW - rpx2px(120), rpx2px(3) + _h3size)
+          drawText(ctx, resultObject.title, canvasW / 2, _textTopY, 0, canvasW - rpx2px(120), rpx2px(3) + _h3size)
 
           // 绘制结果文案
           const h3size = rpx2px(32)
@@ -382,6 +387,9 @@ Component({
           ctx.setFillStyle('rgba(0,0,0,0)')
           // const textTopY = y + rpx2px(240)
           const textTopY = y + rpx2px(870)
+          
+          // wenben 改成 resultObject.desc
+
           const textH
             = drawText(ctx, wenben, canvasW/2, textTopY, 0, canvasW-rpx2px(120), rpx2px(3)+h3size)
           /* ctx.fillText(

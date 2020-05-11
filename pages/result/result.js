@@ -10,7 +10,7 @@ Page({
    */
   data: {
     // userInfo: {},
-    result: "",
+    resultIndex: "",
     test: "",
     // imagesrc: "",
     // visible: false,
@@ -69,7 +69,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      result: options.result,
+      resultIndex: options.resultIndex,
       test: options.test,
       platformType: util.platformType,
       // userInfo: app.globalData.userInfo,
