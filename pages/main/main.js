@@ -29,6 +29,7 @@ Page({
     percentage: 0,
     delayTime: delayTime,
     platformType: "",
+    quesNum: ""
   },
 
 
@@ -177,6 +178,7 @@ Page({
           name: options.id,
           imagesrc: res.data[0].bg_img,
           questions: questions,
+          quesNum: questions.length
         });
         setTimeout(function () {
           wx.hideLoading()

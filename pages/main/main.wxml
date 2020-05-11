@@ -6,7 +6,7 @@
     bindtap="homePage" style="background-color: rgba(0,0,0,0.5); margin-bottom: 20rpx; color: white;"  
     hover-class='selected-choice'>回到首页</view>
   <view>
-    <template is="question-list" data="{{questions, stage, percentage, delayTime}}"/>
+    <template is="question-list" data="{{questions, stage, percentage, delayTime, quesNum}}"/>
   </view>
   <view class="central-subpage" wx:if="{{resultStatus}}" style="margin-top: 240rpx; padding: 50rpx;">  
     <i class="weui-icon-success weui-icon_msg"s></i>

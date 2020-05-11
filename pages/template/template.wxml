@@ -2,13 +2,13 @@
   <block wx:for="{{questions}}" wx:key="unique">
     <view wx:if="{{index == stage}}">
       <view class="weui-progress__bar" style="height: 20px; text-align: center;">
+        <view style="position: absolute; width: 100%;">{{stage}}/{{quesNum}}</view>
         <view class="weui-progress__inner-bar js_progress" style="width:{{percentage}}%;">
-        {{percentage}}%
         </view>
       </view>
       <view class="weui-btn_cell weui-btn_cell-primary" style="background-color: rgba(255,255,255,0.8);">
         <text>\n</text>
-        <view>{{stage + 1}}. {{item.question}}</view>
+        <view>{{item.question}}</view>
         <text>\n</text>
         <view wx:if="{{item.img}}" class="q-image">
           <image src="{{item.img}}" style="width:600rpx; height: 400rpx;"></image>

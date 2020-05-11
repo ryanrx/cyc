@@ -286,13 +286,35 @@ Component({
               avatarPromise.then((avatar) => {
 
                 // 绘制头像
+                ctx.save()
+                ctx.beginPath()
+                ctx.arc(canvasW / 4,
+                  y,
+                  radius + rpx2px(5), 0, 2 * Math.PI)
+                ctx.clip()
                 ctx.drawImage(
                   avatar.path,
                   canvasW / 4 - radius,
                   y - radius,
                   radius * 2,
-                  radius * 2,
+                  radius * 2
                 )
+                ctx.setLineWidth(rpx2px(10))
+                ctx.setFillStyle('black')
+                ctx.stroke()
+                ctx.restore()
+
+                // ctx.setLineWidth(rpx2px(10))
+                // ctx.setFillStyle('black')
+                // ctx.stroke()
+                // ctx.restore()
+                // ctx.drawImage(
+                //   avatar.path,
+                //   canvasW / 4 - radius,
+                //   y - radius,
+                //   radius * 2,
+                //   radius * 2,
+                // )
 
                 // 绘制用户名
                 ctx.setFontSize(rpx2px(40))
@@ -304,7 +326,7 @@ Component({
                 ctx.fillText(
                   nickName,
                   canvasW/4,
-                  y + rpx2px(64*2)
+                  y + rpx2px(64 * 2) + rpx2px(5)
                 )
 
                 // ctx.setFontSize(rpx2px(40))
@@ -321,13 +343,31 @@ Component({
                 resolve();
               })
             } else{
+              // ctx.drawImage(
+              //   '../../pages/images/user/user.png',
+              //   canvasW / 4 - radius,
+              //   y - radius,
+              //   radius * 2,
+              //   radius * 2,
+              // )
+
+              ctx.save()
+              ctx.beginPath()
+              ctx.arc(canvasW / 4,
+                y,
+                radius + rpx2px(5), 0, 2 * Math.PI)
+              ctx.clip()
               ctx.drawImage(
                 '../../pages/images/user/user.png',
                 canvasW / 4 - radius,
                 y - radius,
                 radius * 2,
-                radius * 2,
+                radius * 2
               )
+              ctx.setLineWidth(rpx2px(10))
+              ctx.setFillStyle('black')
+              ctx.stroke()
+              ctx.restore()
 
               ctx.setFontSize(rpx2px(40))
 
@@ -343,7 +383,7 @@ Component({
               ctx.fillText(
                 "未登录",
                 canvasW / 4,
-                y + rpx2px(64 * 2),
+                y + rpx2px(64 * 2) + rpx2px(5),
               )
               resolve();
             }
@@ -372,11 +412,11 @@ Component({
           // const textTopY = y + rpx2px(240)
           const _textTopY = y + rpx2px(220)
           const _textH
-            = drawText(ctx, resultObject.title, canvasW / 2, _textTopY, 0, canvasW - rpx2px(120), rpx2px(3) + h3size)
+            = drawText(ctx, resultObject.title, canvasW / 2, _textTopY, 0, canvasW - rpx2px(120), rpx2px(3) + _h3size)
 
           // 绘制背景板
           ctx.setFillStyle('rgba(0,0,0,0.5)')
-          ctx.fillRect(rpx2px(30), _textTopY - rpx2px(50), canvasW - rpx2px(60), _textH + rpx2px(75))
+          ctx.fillRect(rpx2px(30), _textTopY - rpx2px(50), canvasW - rpx2px(60), _textH + rpx2px(65))
           ctx.setFillStyle('rgb(230, 184, 0)')
           drawText(ctx, resultObject.title, canvasW / 2, _textTopY, 0, canvasW - rpx2px(120), rpx2px(3) + _h3size)
 
