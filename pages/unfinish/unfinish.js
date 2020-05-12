@@ -24,7 +24,7 @@ Page({
       fail: err => {
         wx.showToast({
           icon: 'none',
-          title: '获取信息失败'
+          title: '获取信息失败,请检查是否连接到网络'
         })
         console.error('[数据库] [查询记录] 失败：', err)
       }
