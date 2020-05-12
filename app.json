@@ -28,7 +28,7 @@
       },
       {
         "pagePath": "pages/user/user",
-        "text": "我的",
+        "text": "我玩过的",
         "iconPath": "pages/images/tabbar/user.png",
         "selectedIconPath": "pages/images/tabbar/user-selected.png"
       }
