@@ -4,7 +4,8 @@
     "pages/main/main",
     "pages/user/user",
     "pages/result/result",
-    "pages/category/category"
+    "pages/category/category",
+    "pages/unfinish/unfinish"
   ],
   "window": {
     "backgroundColor": "#EDEDED",

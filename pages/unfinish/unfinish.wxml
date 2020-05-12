@@ -1,0 +1,12 @@
+<!--pages/unfinish/unfinish.wxml-->
+<view class='content'>
+  <image class='background' src="{{imagesrc}}" mode="aspectFill"></image>
+  <view class="transTop">.</view>
+  <view class="central-subpage" style="margin-top: 340rpx; padding: 50rpx;">  
+    <i class="weui-icon-waiting weui-icon_msg"s></i>
+    <view class="icon-box__ctn">
+      <h3 class="icon-box__title">即将上线</h3>
+      <view class="icon-box__desc">点击屏幕右上角的'。。。'，把本程序添加到“我的小程序”，方便新测试上线时让你来做！</view>
+    </view>
+  </view>
+</view>
