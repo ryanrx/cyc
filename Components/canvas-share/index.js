@@ -4,7 +4,7 @@ const db = util.dbUtil;
 
 var resultObject;
 
-const wenben = '！！！到时候把 draw() 里面的 wenben 改成 resultObject.desc，也就是结果文案。美利坚合众国（英语：United States of America，United States），简称“美国”，是由华盛顿哥伦比亚特区、50个州和关岛等众多海外领土组成的联邦共和立宪制国家。'
+// const wenben = '！！！到时候把 draw() 里面的 wenben 改成 resultObject.desc，也就是结果文案。美利坚合众国（英语：United States of America，United States），简称“美国”，是由华盛顿哥伦比亚特区、50个州和关岛等众多海外领土组成的联邦共和立宪制国家。'
 const crucialMess = '微信扫一扫 你也测一测'
 
 var bg = '';
@@ -267,8 +267,8 @@ Component({
           const canvasH = rpx2px(canvasHeight/3*2)
 
           // @@@@@@@@@@ 各种重要参数
-          const radius = rpx2px(45*2)
-          const y = rpx2px(75 * 2)
+          const radius = rpx2px(38*2)
+          const y = rpx2px(65 * 2)
           const circleY = canvasH - 6*radius
 
           // 绘制背景
@@ -317,7 +317,7 @@ Component({
                 // )
 
                 // 绘制用户名
-                ctx.setFontSize(rpx2px(40))
+                ctx.setFontSize(rpx2px(35))
                 ctx.setTextAlign('center')
                 ctx.setFillStyle('rgba(0,0,0,0.8)')
                 // ctx.setFillStyle('rgb(230, 184, 0)')
@@ -326,7 +326,7 @@ Component({
                 ctx.fillText(
                   nickName,
                   canvasW/4,
-                  y + rpx2px(64 * 2) + rpx2px(5)
+                  y + radius + rpx2px(38)
                 )
 
                 // ctx.setFontSize(rpx2px(40))
@@ -369,7 +369,7 @@ Component({
               ctx.stroke()
               ctx.restore()
 
-              ctx.setFontSize(rpx2px(40))
+              ctx.setFontSize(rpx2px(35))
 
               // // 绘制背景板
               // const tWidth = ctx.measureText("未登录").width;
@@ -383,7 +383,7 @@ Component({
               ctx.fillText(
                 "未登录",
                 canvasW / 4,
-                y + rpx2px(64 * 2) + rpx2px(5),
+                y + radius + rpx2px(38)
               )
               resolve();
             }
@@ -408,30 +408,40 @@ Component({
           const _h3size = rpx2px(45)
           ctx.setFontSize(_h3size)
           ctx.setTextAlign('center')
-          ctx.setFillStyle('rgba(0,0,0,0)')
+          ctx.setFillStyle('black')
           // const textTopY = y + rpx2px(240)
-          const _textTopY = y + rpx2px(220)
+          const _textTopY = y + rpx2px(200)
           const _textH
             = drawText(ctx, resultObject.title, canvasW / 2, _textTopY, 0, canvasW - rpx2px(120), rpx2px(3) + _h3size)
 
           // 绘制背景板
-          ctx.setFillStyle('rgba(0,0,0,0.5)')
-          ctx.fillRect(rpx2px(30), _textTopY - rpx2px(50), canvasW - rpx2px(60), _textH + rpx2px(65))
-          ctx.setFillStyle('rgb(230, 184, 0)')
+          ctx.setFillStyle('rgba(255,255,255,0.5)')
+          ctx.fillRect(rpx2px(30), _textTopY - rpx2px(70), canvasW - rpx2px(60), _textH + rpx2px(105))
+          ctx.setFillStyle('black')
           drawText(ctx, resultObject.title, canvasW / 2, _textTopY, 0, canvasW - rpx2px(120), rpx2px(3) + _h3size)
 
+          ctx.drawImage(
+            pic.path,
+            rpx2px(30),
+            // y + rpx2px(300),
+            _textTopY + _textH + rpx2px(50),
+            canvasW - rpx2px(60),
+            rpx2px(520)
+          )
+
           // 绘制结果文案
-          const h3size = rpx2px(32)
+          const h3size = rpx2px(30)
           ctx.setFontSize(h3size)
           ctx.setTextAlign('center')
           ctx.setFillStyle('rgba(0,0,0,0)')
           // const textTopY = y + rpx2px(240)
-          const textTopY = y + rpx2px(870)
+          // const textTopY = y + rpx2px(870)
+          const textTopY = _textTopY + _textH + rpx2px(50) + rpx2px(520) + rpx2px(70)
           
           // wenben 改成 resultObject.desc
 
           const textH
-            = drawText(ctx, wenben, canvasW/2, textTopY, 0, canvasW-rpx2px(120), rpx2px(3)+h3size)
+            = drawText(ctx, resultObject.desc, canvasW/2, textTopY, 0, canvasW-rpx2px(120), rpx2px(3)+h3size)
           /* ctx.fillText(
             this.properties.resultMess,   //@@@@@@@@@@@ 语法示范（需提前传参，自动同名传参无法使用）
             canvasW / 2,
@@ -441,15 +451,7 @@ Component({
           ctx.setFillStyle('rgba(0,0,0,0.5)')
           ctx.fillRect(rpx2px(30), textTopY - rpx2px(45), canvasW - rpx2px(60), textH + rpx2px(75))
           ctx.setFillStyle('white')
-          drawText(ctx, wenben, canvasW / 2, textTopY, 0, canvasW - rpx2px(120), rpx2px(3) + h3size)
-
-          ctx.drawImage(
-            pic.path,
-            rpx2px(30),
-            y + rpx2px(300),
-            canvasW - rpx2px(60),
-            rpx2px(520)
-          )
+          drawText(ctx, resultObject.desc, canvasW / 2, textTopY, 0, canvasW - rpx2px(120), rpx2px(3) + h3size)
 
           //绘制二维码
           ctx.save()
