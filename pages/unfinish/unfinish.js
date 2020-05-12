@@ -9,12 +9,14 @@ Page({
    */
   data: {
     imagesrc: "",
+    platformType: ""
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
+    this.setData({ platformType: util.platformType })
     db.collection('questions-lists').where({
       name: options.id
     }).get({
@@ -78,5 +80,11 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  homePage: function () {
+    wx.switchTab({
+      url: '../home/home',
+    })
   }
 })
