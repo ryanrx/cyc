@@ -15,9 +15,9 @@ Page({
     records: []
   },
   //事件处理函数
-  bindViewTap: function () {
+  // bindViewTap: function () {
 
-  },
+  // },
 
   onLoad: function () {
     if (app.globalData.userInfo) {

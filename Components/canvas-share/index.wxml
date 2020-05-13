@@ -1,7 +1,1 @@
 <canvas class="canvas-hide" canvas-id="share" style="width:{{canvasWidth/3*2}}rpx; height:{{canvasHeight/3*2}}rpx"/>
-  
-<view class="weui-btn-area" style="margin-top: 50rpx;">
-  <button class="weui-btn weui-btn_primary" bindtap="handleSave">保存到相册</button>
-  <button class="weui-btn weui-btn_primary" open-type="share">分享到群聊</button>
-</view>
-<!-- </view> -->
