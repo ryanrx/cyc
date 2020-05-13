@@ -389,6 +389,25 @@ Component({
             }
           })
 
+          //绘制二维码
+          ctx.save()
+          ctx.beginPath()
+          ctx.arc(canvasW / 4 * 3,
+            y,
+            radius + rpx2px(5), 0, 2 * Math.PI)
+          ctx.clip()
+          ctx.drawImage(
+            qrCode.path,
+            canvasW / 4 * 3 - radius,
+            y - radius,
+            radius * 2,
+            radius * 2
+          )
+          ctx.setLineWidth(rpx2px(10))
+          ctx.setFillStyle('black')
+          ctx.stroke()
+          ctx.restore()
+
           // 绘制扫描二维码标语
           const h2size = rpx2px(30)
           ctx.setFontSize(h2size)
@@ -420,6 +439,7 @@ Component({
           ctx.setFillStyle('black')
           drawText(ctx, resultObject.title, canvasW / 2, _textTopY, 0, canvasW - rpx2px(120), rpx2px(3) + _h3size)
 
+          // 绘制结果图片
           ctx.drawImage(
             pic.path,
             rpx2px(30),
@@ -452,25 +472,6 @@ Component({
           ctx.fillRect(rpx2px(30), textTopY - rpx2px(45), canvasW - rpx2px(60), textH + rpx2px(75))
           ctx.setFillStyle('white')
           drawText(ctx, resultObject.desc, canvasW / 2, textTopY, 0, canvasW - rpx2px(120), rpx2px(3) + h3size)
-
-          //绘制二维码
-          ctx.save()
-          ctx.beginPath()
-          ctx.arc(canvasW/4*3,
-            y,
-            radius+rpx2px(5), 0, 2 * Math.PI)
-          ctx.clip()
-          ctx.drawImage(
-            qrCode.path,
-            canvasW/4*3 - radius,
-            y - radius,
-            radius*2,
-            radius*2
-          )
-          ctx.setLineWidth(rpx2px(10))
-          ctx.setFillStyle('black')
-          ctx.stroke()
-          ctx.restore()
         
           drawUser.then(() => {
             // 最后完成作画
