@@ -381,7 +381,7 @@ Component({
           drawText(ctx, crucialMess, canvasW / 4 * 3, y + radius + rpx2px(35), 0, canvasW/2, rpx2px(5)+h2size)
 
           // 绘制结果标题
-          const _h3size = rpx2px(45)
+          const _h3size = rpx2px(48)
           ctx.setFontSize(_h3size)
           ctx.setTextAlign('center')
           ctx.setFillStyle('#FFE4C4')
@@ -404,7 +404,7 @@ Component({
           ctx.setFontSize(h3size)
           ctx.setTextAlign('center')
           ctx.setFillStyle('white')
-          const textTopY = _textTopY + _textH + rpx2px(60) + rpx2px(520)+ rpx2px(100)
+          const textTopY = _textTopY + _textH + rpx2px(60) + rpx2px(520)+ rpx2px(60)
           // wenben 改成 resultObject.desc
           const textH
             = drawText(ctx, resultObject.desc, canvasW/2, textTopY, 0, canvasW-rpx2px(120), rpx2px(3)+h3size)
