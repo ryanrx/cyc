@@ -240,8 +240,8 @@ Component({
       
       const bgColor = bg
       const qrCodePromise = getImageInfo('cloud://inuyasha.696e-inuyasha-1301310234/cyc/cyc-qrcode.jpg')
-      const picPromise = getImageInfo('cloud://inuyasha.696e-inuyasha-1301310234/cyc/wuhan/result_imgs/wuhan-result.jpg')
-      // const picPromise = getImageInfo(resultObject.img);
+      // const picPromise = getImageInfo('cloud://inuyasha.696e-inuyasha-1301310234/cyc/wuhan/result_imgs/wuhan-result.jpg')
+      const picPromise = getImageInfo(resultObject.img);
 
       const fillTextLineBreak = (ctx, text, x, y, lw, lh) => {
         let i = 0
