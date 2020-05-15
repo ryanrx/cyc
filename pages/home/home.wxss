@@ -28,7 +28,7 @@
   width: 85rpx;
   height: 85rpx;
   margin: 10rpx;
-  border-radius: 50%;
+  /* border-radius: 50%; */
 }
 
 .c-text{
