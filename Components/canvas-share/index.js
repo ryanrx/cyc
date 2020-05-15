@@ -238,7 +238,7 @@ Component({
         avatarPromise = getImageInfo(avatarUrl)
       }
       
-      const backgroundPromise = getImageInfo(bg)
+      const bgColor = bg
       const qrCodePromise = getImageInfo('cloud://inuyasha.696e-inuyasha-1301310234/cyc/cyc-qrcode.jpg')
       const picPromise = getImageInfo('cloud://inuyasha.696e-inuyasha-1301310234/cyc/wuhan/result_imgs/wuhan-result.jpg')
       // const picPromise = getImageInfo(resultObject.img);
@@ -258,8 +258,8 @@ Component({
         return lh * r
       }
 
-      Promise.all([backgroundPromise, qrCodePromise, picPromise])
-        .then(([background, qrCode, pic]) => {
+      Promise.all([qrCodePromise, picPromise])
+        .then(([qrCode, pic]) => {
 
           const ctx = wx.createCanvasContext('share', this)
 
@@ -272,8 +272,8 @@ Component({
           const circleY = canvasH - 6*radius
 
           // 绘制背景
-          ctx.drawImage(
-            background.path,
+          ctx.setFillStyle(bgColor)
+          ctx.fillRect(
             0,
             0,
             canvasW,
@@ -304,24 +304,12 @@ Component({
                 ctx.stroke()
                 ctx.restore()
 
-                // ctx.setLineWidth(rpx2px(10))
-                // ctx.setFillStyle('black')
-                // ctx.stroke()
-                // ctx.restore()
-                // ctx.drawImage(
-                //   avatar.path,
-                //   canvasW / 4 - radius,
-                //   y - radius,
-                //   radius * 2,
-                //   radius * 2,
-                // )
 
                 // 绘制用户名
-                ctx.setFontSize(rpx2px(35))
+                ctx.setFontSize(rpx2px(30))
                 ctx.setTextAlign('center')
-                ctx.setFillStyle('rgba(0,0,0,0.8)')
-                // ctx.setFillStyle('rgb(230, 184, 0)')
-                // ctx.font = 'normal bold 20px sans-serif'
+                ctx.setFillStyle('#F5F5F5')
+
 
                 ctx.fillText(
                   nickName,
@@ -329,27 +317,9 @@ Component({
                   y + radius + rpx2px(38)
                 )
 
-                // ctx.setFontSize(rpx2px(40))
-                // ctx.setTextAlign('center')
-                // ctx.setFillStyle('white')
-                // // ctx.setFillStyle('rgb(230, 184, 0)')
-
-                // ctx.fillText(
-                //   nickName,
-                //   canvasW / 4,
-                //   y + rpx2px(64 * 2)
-                // )
-
                 resolve();
               })
-            } else{
-              // ctx.drawImage(
-              //   '../../pages/images/user/user.png',
-              //   canvasW / 4 - radius,
-              //   y - radius,
-              //   radius * 2,
-              //   radius * 2,
-              // )
+            } else {
 
               ctx.save()
               ctx.beginPath()
@@ -369,17 +339,10 @@ Component({
               ctx.stroke()
               ctx.restore()
 
-              ctx.setFontSize(rpx2px(35))
-
-              // // 绘制背景板
-              // const tWidth = ctx.measureText("未登录").width;
-              // // console.log(metrics.width)
-              // ctx.setFillStyle('rgba(0,0,0,0.5)')
-              // ctx.fillRect(canvasW / 4 - tWidth / 2 - rpx2px(10), y + rpx2px(64 * 2) - rpx2px(40) + rpx2px(3), tWidth + rpx2px(2 * 10), rpx2px(40) + rpx2px(8))
+              ctx.setFontSize(rpx2px(30))
 
               ctx.setTextAlign('center')
-              ctx.setFillStyle('rgba(0,0,0,0.8)')
-              // ctx.setFillStyle('white')
+              ctx.setFillStyle('#F5F5F5')
               ctx.fillText(
                 "未登录",
                 canvasW / 4,
@@ -409,17 +372,11 @@ Component({
           ctx.restore()
 
           // 绘制扫描二维码标语
-          const h2size = rpx2px(30)
+          const h2size = rpx2px(24)
           ctx.setFontSize(h2size)
 
-          // // 绘制背景板
-          // const cWidth = ctx.measureText(crucialMess).width;
-          // // console.log(metrics.width)
-          // ctx.setFillStyle('rgba(0,0,0,0.5)')
-          // ctx.fillRect(canvasW / 4 * 3 - cWidth / 2 - rpx2px(10), y + radius + rpx2px(35) - h2size, cWidth + rpx2px(2 * 10), h2size + rpx2px(8))
-
           ctx.setTextAlign('center')
-          ctx.setFillStyle('dimgray')
+          ctx.setFillStyle('lightgray')
           // ctx.setFillStyle('white')
           drawText(ctx, crucialMess, canvasW / 4 * 3, y + radius + rpx2px(35), 0, canvasW/2, rpx2px(5)+h2size)
 
@@ -427,24 +384,17 @@ Component({
           const _h3size = rpx2px(45)
           ctx.setFontSize(_h3size)
           ctx.setTextAlign('center')
-          ctx.setFillStyle('black')
-          // const textTopY = y + rpx2px(240)
+          ctx.setFillStyle('#FFE4C4')
           const _textTopY = y + rpx2px(200)
           const _textH
             = drawText(ctx, resultObject.title, canvasW / 2, _textTopY, 0, canvasW - rpx2px(120), rpx2px(3) + _h3size)
 
-          // 绘制背景板
-          ctx.setFillStyle('rgba(255,255,255,0.5)')
-          ctx.fillRect(rpx2px(30), _textTopY - rpx2px(70), canvasW - rpx2px(60), _textH + rpx2px(105))
-          ctx.setFillStyle('black')
-          drawText(ctx, resultObject.title, canvasW / 2, _textTopY, 0, canvasW - rpx2px(120), rpx2px(3) + _h3size)
 
           // 绘制结果图片
           ctx.drawImage(
             pic.path,
             rpx2px(30),
-            // y + rpx2px(300),
-            _textTopY + _textH + rpx2px(50),
+            _textTopY + _textH + rpx2px(60),
             canvasW - rpx2px(60),
             rpx2px(520)
           )
@@ -453,25 +403,11 @@ Component({
           const h3size = rpx2px(30)
           ctx.setFontSize(h3size)
           ctx.setTextAlign('center')
-          ctx.setFillStyle('rgba(0,0,0,0)')
-          // const textTopY = y + rpx2px(240)
-          // const textTopY = y + rpx2px(870)
-          const textTopY = _textTopY + _textH + rpx2px(50) + rpx2px(520) + rpx2px(70)
-          
+          ctx.setFillStyle('white')
+          const textTopY = _textTopY + _textH + rpx2px(60) + rpx2px(520)+ rpx2px(100)
           // wenben 改成 resultObject.desc
-
           const textH
             = drawText(ctx, resultObject.desc, canvasW/2, textTopY, 0, canvasW-rpx2px(120), rpx2px(3)+h3size)
-          /* ctx.fillText(
-            this.properties.resultMess,   //@@@@@@@@@@@ 语法示范（需提前传参，自动同名传参无法使用）
-            canvasW / 2,
-            y + rpx2px(240)
-          ) */
-          // 绘制背景板
-          ctx.setFillStyle('rgba(0,0,0,0.5)')
-          ctx.fillRect(rpx2px(30), textTopY - rpx2px(45), canvasW - rpx2px(60), textH + rpx2px(75))
-          ctx.setFillStyle('white')
-          drawText(ctx, resultObject.desc, canvasW / 2, textTopY, 0, canvasW - rpx2px(120), rpx2px(3) + h3size)
         
           drawUser.then(() => {
             // 最后完成作画
