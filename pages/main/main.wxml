@@ -2,9 +2,7 @@
   <image class='background' src="{{imagesrc}}" mode="aspectFill"></image> 
   <import src="../template/template.wxml"/>
   <view class="transTop">.</view>
-    <view wx:if="{{platformType=='android'&&!resultStatus}}" class="weui-btn_cell weui-btn_cell-default" 
-    bindtap="homePage" style="background-color: rgba(0,0,0,0.5); margin-bottom: 20rpx; color: white;"  
-    hover-class='selected-choice'>回到首页</view>
+    <view wx:if="{{platformType=='android'&&!resultStatus}}" class="weui-btn weui-btn_primary" bindtap="homePage">回到首页</view>
   <view>
     <template is="question-list" data="{{questions, stage, percentage, delayTime, quesNum}}"/>
   </view>

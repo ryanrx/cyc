@@ -1,20 +1,20 @@
 <!--pages/result/result.wxml-->
 <import src="../template/template.wxml"/>
 <view class="page" data-weui-theme="{{theme}}">
-    <view class="weui-btn_cell weui-btn_cell-primary" style="background-color: gray; color:white;">向上滑可保存并分享图片<text style='font-size: 28rpx;'>\n（纯属娱乐，切勿较真。原创不易，侵权必究。）</text></view>
+    <view class="weui-btn_cell weui-btn_cell-primary" style="background-color: gray; color:white;">可使用下方按钮保存并分享图片<text style='font-size: 28rpx;'>\n（纯属娱乐，切勿较真。原创不易，侵权必究。）</text></view>
     <canvas-share resultIndex="{{resultIndex}}" test="{{test}}"/>
 
     <view class="weui-btn-area" style="margin-top: 50rpx;">
       <button class="weui-btn weui-btn_primary" bindtap="handleSave">保存到相册</button>
-      <button class="weui-btn weui-btn_primary" open-type="share">分享到群聊</button>
+      <button class="weui-btn weui-btn_primary" open-type="share">分享给好友</button>
+      <view wx:if="{{platformType=='android'&&!resultStatus}}" class="weui-btn weui-btn_primary" style="background-color: blue;" bindtap="homePage">回到首页</view>
     </view>
 
-    <view wx:if="{{platformType=='android'}}" class="weui-btn_cell weui-btn_cell-primary" style="background-color: rgba(0,0,0,0.2)" bindtap="homePage">回到首页</view>
 
     <!-- <view class="weui-btn_cell weui-btn_cell-primary" style="font-size: 30rpx;">点击屏幕右上角的'。。。'，添加到“我的小程序”，再来时便不会迷路啦！</view> -->
 
     <view class="weui-footer" style="margin: 40rpx 0 40rpx 0; color: rgb(86,104,151);">
-      <view class="weui-footer__text" style="font-size: 30rpx;">点击屏幕右上角的“ 。。。”，添加到“我的小程序”，再来时便不会迷路啦！</view>
+      <view class="weui-footer__text" style="font-size: 30rpx;">点击屏幕右上角的“...”，添加到“我的小程序”，方便下次再使用！</view>
     </view>
   <!-- 相关测试 -->
   <view class="page__bd">
