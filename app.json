@@ -11,7 +11,7 @@
     "backgroundColor": "#EDEDED",
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#EDEDED",
-    "navigationBarTitleText": "测一测",
+    "navigationBarTitleText": "趣味测一测",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
