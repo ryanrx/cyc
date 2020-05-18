@@ -1,7 +1,0 @@
-/* pages/category/category.wxss */
-.container{
-  align-items: center;
-  background-color: #EDEDED;
-  height: 100vh;
-  display: block;
-}

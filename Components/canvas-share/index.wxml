@@ -1,1 +1,0 @@
-<canvas class="canvas-hide" canvas-id="share" style="width:{{canvasWidth/3*2}}rpx; height:{{canvasHeight/3*2}}rpx"/>

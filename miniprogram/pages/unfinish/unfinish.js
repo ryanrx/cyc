@@ -9,8 +9,8 @@ Page({
    */
   data: {
     imagesrc: "",
-    platformType: "",
-    counterr: ""
+    // platformType: "",
+    // counterr: ""
   },
 
   /**
