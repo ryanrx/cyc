@@ -1,0 +1,16 @@
+<!--pages/category/category.wxml-->
+<view class="container">
+
+  <import src="../template/template.wxml"/>
+  <view>
+  	<view class="page__bd">
+      <view class="weui-panel weui-panel_access">
+        <view class="weui-panel__hd">{{cateName}}</view>
+        <view class="weui-panel__bd">
+          <template is="tests" data="{{array}}"/>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>

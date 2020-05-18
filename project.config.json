@@ -1,5 +1,7 @@
 {
 	"description": "Project configuration file",
+	"miniprogramRoot": "miniprogram/",
+	"cloudfunctionRoot": "cloudfunctions/",
 	"packOptions": {
 		"ignore": []
 	},
@@ -25,7 +27,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.10.4",
 	"appid": "wxa339c6b0e459f954",
-	"projectname": "testOneTest",
+	"projectname": "ceyice",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},

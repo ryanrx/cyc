@@ -1,0 +1,3 @@
+/* pages/result/result.wxss */
+@import "../user/user.wxss";
+.page{height:100%;background-color:var(--weui-BG-2)}
