@@ -9,7 +9,8 @@ Page({
    */
   data: {
     imagesrc: "",
-    platformType: ""
+    platformType: "",
+    counterr: ""
   },
 
   /**
@@ -21,7 +22,13 @@ Page({
       name: options.id
     }).get({
       success: res => {
-        this.setData({imagesrc: res.data[0].bg_img});
+        this.setData({
+          imagesrc: res.data[0].bg_img,
+        });
+        db.collection('questions-lists').doc(res.data[0]._id).update({
+          data: { 
+            counter: res.data[0].counter + 1} 
+          })
       },
       fail: err => {
         wx.showToast({
@@ -86,5 +93,6 @@ Page({
     wx.switchTab({
       url: '../home/home',
     })
-  }
+  },
+
 })
