@@ -40,7 +40,7 @@ Page({
     for(var i = 0; i < userType.length; i++){ // add scores
       userType[i] += questions[stageNum].scores[e.target.id][i];
     }
-    console.log(userType);
+    // console.log(userType);
 
     // increment questions stage number
     stageNum++;
@@ -54,11 +54,8 @@ Page({
     }, delayTime)
     //console.log(this.data.percentage)
 
-    //console.log(userType);
-
     wx.showToast({
       title: '选择成功',
-      // icon: '../images/response/icon_nav_feedback.png',
       icon: 'none',
       mask: true,
       duration: delayTime
@@ -76,7 +73,6 @@ Page({
 
       wx.showToast({
         title: '选择成功',
-        // icon: '../images/response/icon_nav_feedback.png',
         icon: 'none',
         mask: true,
         duration: delayTime
@@ -100,7 +96,7 @@ Page({
               openid: app.globalData.openid
             })
           }
-          // const db = wx.cloud.database();
+
           var d = new Date();
           db.collection('user-history').where({
             _openid: this.data.openid,
@@ -160,7 +156,7 @@ Page({
       title: '加载中',
       mask: true
     })
-    // const db = wx.cloud.database();
+    
     testName = options.id;
     db.collection('questions-lists').where({
       name: options.id

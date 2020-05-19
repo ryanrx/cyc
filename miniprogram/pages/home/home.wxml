@@ -20,16 +20,6 @@
     </view>
   </view>
 
-  <!-- <view class="poster">
-    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" class="swiper">
-      <block wx:for="{{imgUrls}}">
-        <swiper-item class="swiper-item">
-          <image src="{{item}}" class="slide-image"></image>
-        </swiper-item>
-      </block>
-    </swiper>
-  </view> -->
-
   <import src="../template/template.wxml"/>
   <view>
   	<view class="page__bd">

@@ -12,7 +12,7 @@ exports.main = async (event, context) => {
 
     return await db.collection('questions-lists').doc(event._id).update({
       data: {
-        count: res.data[0].count + 1
+        hitCount: res.data[0].hitCount + 1
       }
     })
     

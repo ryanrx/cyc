@@ -39,16 +39,6 @@ function canvasToTempFilePath(option, context) {
   })
 }
 
-// function saveImageToPhotosAlbum(option) {
-//   return new Promise((resolve, reject) => {
-//     wx.saveImageToPhotosAlbum({
-//       ...option,
-//       success: resolve,
-//       fail: reject,
-//     })
-//   })
-// }
-
 function drawText(ctx, str, leftWidth, initHeight, titleHeight, canvasWidth, charHeight) {
   var lineWidth = 0;
   var lastSubStrIndex = 0; //每次开始截取的字符串的索引
@@ -71,20 +61,6 @@ function drawText(ctx, str, leftWidth, initHeight, titleHeight, canvasWidth, cha
 
 Component({
   properties: {
-    // visible: {
-    //   type: Boolean,
-    //   value: false,
-    //   observer(visible) {
-    //     if (visible && !this.beginDraw) {
-    //       this.draw()
-    //       this.beginDraw = true
-    //     }
-    //   }
-    // },
-    // userInfo: {
-    //   type: Object,
-    //   value: false
-    // },
     test: String,
     resultIndex: Number
   },
@@ -107,9 +83,6 @@ Component({
       const designHeight = 603 // 这是在顶部位置定义，底部无tabbar情况下的设计稿高度
 
       // 以iphone6为设计稿，计算相应的缩放比例
-      // this.setData({
-      //   userInfo: app.globalData.userInfo,
-      // })
       // console.log(this.data.test);
 
       const { windowWidth, windowHeight } = wx.getSystemInfoSync()
@@ -140,85 +113,10 @@ Component({
         that.draw()
         that.beginDraw = true
       })
-
-      // this.draw()
-      // this.beginDraw = true
     },
   },
 
   methods: {
-    // handleClose() {
-    //   this.triggerEvent('close')
-    // },
-    // handleSave() {
-    //   const { imageFile } = this.data
-
-    //   // ---------- check authority
-    //   wx.getSetting({
-    //     success(res) {
-    //       if (res.authSetting['scope.writePhotosAlbum']) {
-    //         if (imageFile) {
-    //           saveImageToPhotosAlbum({
-    //             filePath: imageFile,
-    //           }).then(() => {
-    //             wx.showToast({
-    //               icon: 'none',
-    //               title: '分享图片已保存至相册',
-    //               duration: 2000,
-    //             })
-    //           }, reason =>{})
-    //         }
-    //       } else if (res.authSetting['scope.writePhotosAlbum'] === undefined) {
-    //         wx.authorize({
-    //           scope: 'scope.writePhotosAlbum',
-    //           success() {
-    //             if (imageFile) {
-    //               saveImageToPhotosAlbum({
-    //                 filePath: imageFile,
-    //               }).then(() => {
-    //                 wx.showToast({
-    //                   icon: 'none',
-    //                   title: '分享图片已保存至相册',
-    //                   duration: 2000,
-    //                 })
-    //               }, reason => { })
-    //             }
-    //           },
-    //           fail() {
-    //             wx.showToast({
-    //               title: '您没有授权，无法保存到相册',
-    //               icon: 'none'
-    //             })
-    //           }
-    //         })
-    //       } else {
-    //         wx.openSetting({
-    //           success(res) {
-    //             if (res.authSetting['scope.writePhotosAlbum']) {
-    //               if (imageFile) {
-    //                 saveImageToPhotosAlbum({
-    //                   filePath: imageFile,
-    //                 }).then(() => {
-    //                   wx.showToast({
-    //                     icon: 'none',
-    //                     title: '分享图片已保存至相册',
-    //                     duration: 2000,
-    //                   })
-    //                 }, reason => { })
-    //               }
-    //             } else {
-    //               wx.showToast({
-    //                 title: '您没有授权，无法保存到相册',
-    //                 icon: 'none'
-    //               })
-    //             }
-    //           }
-    //         })
-    //       }
-    //     }
-    //   })
-    // },
-    // ---------- end of checking authority
 
     draw() {
       wx.showLoading({
@@ -227,20 +125,14 @@ Component({
       })
       const userInfo = app.globalData.userInfo;
       const { canvasWidth, canvasHeight } = this.data
-      var hasUserInfo = false;
-      var avatarPromise, avatarUrl, nickName;
-      // console.log(userInfo)
-      if (userInfo) {
-        hasUserInfo = true;
-        avatarUrl = userInfo.avatarUrl;
-        nickName = userInfo.nickName;
-        // { avatarUrl, nickName } = userInfo
-        avatarPromise = getImageInfo(avatarUrl)
-      }
+      var hasUserInfo = Boolean(userInfo);
+      var avatarUrl = hasUserInfo ? userInfo.avatarUrl : 'cloud://inuyasha.696e-inuyasha-1301310234/cyc/other/user.png';
+      var nickName = hasUserInfo ? userInfo.nickName : '未登录';
+      var avatarPromise = getImageInfo(avatarUrl);
       
       const bgColor = bg
-      const qrCodePromise = getImageInfo('cloud://inuyasha.696e-inuyasha-1301310234/cyc/cyc-qrcode.jpg')
-      // const picPromise = getImageInfo('cloud://inuyasha.696e-inuyasha-1301310234/cyc/wuhan/result_imgs/wuhan-result.jpg')
+      const qrCodePromise = getImageInfo('cloud://inuyasha.696e-inuyasha-1301310234/cyc/other/cyc-qrcode.jpg')
+
       const picPromise = getImageInfo(resultObject.img);
 
       const fillTextLineBreak = (ctx, text, x, y, lw, lh) => {
@@ -282,45 +174,9 @@ Component({
 
 
           const drawUser = new Promise((resolve) => {
-            if (hasUserInfo) {
-              avatarPromise.then((avatar) => {
+            avatarPromise.then((avatar) => {
 
-                // 绘制头像
-                ctx.save()
-                ctx.beginPath()
-                ctx.arc(canvasW / 4,
-                  y,
-                  radius + rpx2px(5), 0, 2 * Math.PI)
-                ctx.clip()
-                ctx.drawImage(
-                  avatar.path,
-                  canvasW / 4 - radius,
-                  y - radius,
-                  radius * 2,
-                  radius * 2
-                )
-                ctx.setLineWidth(rpx2px(10))
-                ctx.setFillStyle('black')
-                ctx.stroke()
-                ctx.restore()
-
-
-                // 绘制用户名
-                ctx.setFontSize(rpx2px(30))
-                ctx.setTextAlign('center')
-                ctx.setFillStyle('#F5F5F5')
-
-
-                ctx.fillText(
-                  nickName,
-                  canvasW/4,
-                  y + radius + rpx2px(38)
-                )
-
-                resolve();
-              })
-            } else {
-
+              // 绘制头像
               ctx.save()
               ctx.beginPath()
               ctx.arc(canvasW / 4,
@@ -328,7 +184,7 @@ Component({
                 radius + rpx2px(5), 0, 2 * Math.PI)
               ctx.clip()
               ctx.drawImage(
-                '../../pages/images/user/user.png',
+                avatar.path,
                 canvasW / 4 - radius,
                 y - radius,
                 radius * 2,
@@ -339,17 +195,21 @@ Component({
               ctx.stroke()
               ctx.restore()
 
-              ctx.setFontSize(rpx2px(30))
 
+              // 绘制用户名
+              ctx.setFontSize(rpx2px(30))
               ctx.setTextAlign('center')
               ctx.setFillStyle('#F5F5F5')
+
+
               ctx.fillText(
-                "未登录",
-                canvasW / 4,
+                nickName,
+                canvasW/4,
                 y + radius + rpx2px(38)
               )
+
               resolve();
-            }
+            })
           })
 
           //绘制二维码
@@ -405,7 +265,6 @@ Component({
           ctx.setTextAlign('center')
           ctx.setFillStyle('white')
           const textTopY = _textTopY + _textH + rpx2px(60) + rpx2px(520)+ rpx2px(60)
-          // wenben 改成 resultObject.desc
           const textH
             = drawText(ctx, resultObject.desc, canvasW/2, textTopY, 0, canvasW-rpx2px(120), rpx2px(3)+h3size)
         

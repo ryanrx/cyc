@@ -9,8 +9,6 @@ Page({
    */
   data: {
     imagesrc: "",
-    // platformType: "",
-    // counterr: ""
   },
 
   /**

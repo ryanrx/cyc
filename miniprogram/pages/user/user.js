@@ -15,9 +15,6 @@ Page({
     records: []
   },
   //事件处理函数
-  // bindViewTap: function () {
-
-  // },
 
   onLoad: function () {
     if (app.globalData.userInfo) {
@@ -55,7 +52,6 @@ Page({
         })
       }
       userInfo = this.data.userInfo;
-      // const db = wx.cloud.database()
       // 查询当前用户所有的记录
       db.collection('user-history').where({
         _openid: this.data.openid,

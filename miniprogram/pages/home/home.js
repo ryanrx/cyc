@@ -7,15 +7,6 @@ Page({
    * Page initial data
    */
   data: {
-    // indicatorDots: true,
-    // autoplay: true,
-    // interval: 5000,
-    // duration: 1000,
-    // circular: true,
-    // imgUrls: [
-    //   "cloud://inuyasha.696e-inuyasha-1301310234/qyn-poster.jpg",
-    //   "cloud://inuyasha.696e-inuyasha-1301310234/naruto-poster.jpeg",
-    // ],
     array: []
   },
 
@@ -37,6 +28,7 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
+
     // wx.cloud.callFunction({
     //   name: 'qrcode',
     //   data: {
@@ -44,7 +36,7 @@ Page({
     //     width: 430,
     //     autoColor: true,
     //     isHyaline: false,
-    //     name: 'cyc/cyc'
+    //     name: 'cyc/other/cyc'
     //   }
     // }).catch(err => {
     //   console.error(err);
@@ -53,7 +45,7 @@ Page({
     //     title: '调用失败',
     //   })
     // })
-    // const db = wx.cloud.database();
+    
     db.collection('questions-lists').get({
       success: res => {
         // console.log(res);
