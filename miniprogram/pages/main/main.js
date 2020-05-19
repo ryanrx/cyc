@@ -11,6 +11,7 @@ var nickName = "";
 var openid;
 var testName = "";
 var delayTime = 500;
+var resultTitle = "";
 
 
 Page({
@@ -63,86 +64,16 @@ Page({
 
     if(stageNum == questions.length){ // if no questions left
       var maxIndex = util.pickIndexOfMax(userType);
-      var resultTitle = types[maxIndex].title;
+      resultTitle = types[maxIndex].title;
       var that = this;
       setTimeout(function () {
         that.setData({
           resultStatus: true
         })
       }, delayTime)
-
-      wx.showToast({
-        title: '选择成功',
-        icon: 'none',
-        mask: true,
-        duration: delayTime
-      })
       
       this.setData({  // return result
         resultIndex: maxIndex
-      })
-      let name = this.data.name;
-      let resultIndex = this.data.resultIndex;
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo;
-          userInfo = res.userInfo;
-          nickName = userInfo.nickName;
-          // console.log("success", res)
-        },
-        complete: res => {
-          if (app.globalData.openid) {
-            this.setData({
-              openid: app.globalData.openid
-            })
-          }
-
-          var d = new Date();
-          db.collection('user-history').where({
-            _openid: this.data.openid,
-            qname: name
-          }).get({
-            success: res => {
-              if(res.data.length){
-                db.collection('user-history').doc(res.data[0]._id).update({
-                  data: {
-                    date: d,
-                    resultIndex: resultIndex,
-                    resultTitle: resultTitle
-                  }
-                })
-                if(!Object.keys(res.data[0].userInfo).length){
-                  db.collection('user-history').where({
-                    _openid: this.data.openid,
-                  }).get({
-                    success: res => {
-                      for(var i = 0; i < res.data.length; i++){
-                        db.collection('user-history').doc(res.data[i]._id).update({
-                          data: {
-                            nickName: nickName,
-                            userInfo: userInfo
-                          }
-                        })
-                      }
-                    }
-                  })
-                }
-              }else{
-                // console.log("complete", res)
-                db.collection('user-history').add({
-                  data: {
-                    qname: name,
-                    resultIndex: resultIndex,
-                    resultTitle: resultTitle,
-                    nickName: nickName,
-                    date: d,
-                    userInfo: userInfo
-                  }
-                })
-              }
-            }
-          })
-        }
       })
     }
   },
@@ -156,7 +87,7 @@ Page({
       title: '加载中',
       mask: true
     })
-    
+
     testName = options.id;
     db.collection('questions-lists').where({
       name: options.id
@@ -210,16 +141,83 @@ Page({
   },
 
   getUserInfo: function (e) {
-    wx.getUserInfo({
-      success: res => {
-        app.globalData.userInfo = res.userInfo
-      },
-      complete: res => {
-        // console.log(res);
-        wx.redirectTo({
-          url: '../result/result?test=' + testName + "&resultIndex=" + this.data.resultIndex
-        });
-      }
+    var that = this;
+    const getInfo = new Promise((resolve) => {
+      wx.getUserInfo({
+        success: res => {
+          app.globalData.userInfo = res.userInfo;
+          userInfo = res.userInfo;
+          nickName = userInfo.nickName;
+          // console.log("success")
+        },
+        complete: res => {
+          // console.log(res);
+
+          // console.log(app.globalData.openid)
+
+          if (app.globalData.openid) {
+            openid = app.globalData.openid
+          }
+
+          // console.log(userInfo)
+
+          if (Object.keys(userInfo).length) {
+            // console.log('updating')
+            // console.log(openid)
+            wx.cloud.callFunction({
+              name: 'updateUserInfo',
+              data: {
+                openid: openid,
+                userInfo: userInfo
+              }, success: function (res) {
+                // console.log(res)
+              }, fail: function (res) {
+                // console.log(res)
+              }
+            })
+          }
+
+          var d = new Date();
+          db.collection('user-history').where({
+            _openid: openid,
+            qname: that.data.name
+          }).get({
+            success: res => {
+              // console.log(res)
+              if (res.data.length) {
+                db.collection('user-history').doc(res.data[0]._id).update({
+                  data: {
+                    date: d,
+                    resultIndex: that.data.resultIndex,
+                    resultTitle: resultTitle
+                  }
+                })
+
+                resolve();
+              } else {
+                // console.log("complete", res)
+                db.collection('user-history').add({
+                  data: {
+                    qname: that.data.name,
+                    resultIndex: that.data.resultIndex,
+                    resultTitle: resultTitle,
+                    nickName: nickName,
+                    date: d,
+                    userInfo: userInfo
+                  }
+                })
+                resolve();
+              }
+            }
+          })
+        }
+      })
+    })
+
+    getInfo.then(() => {
+      wx.redirectTo({
+        url: '../result/result?test=' + testName + "&resultIndex=" + that.data.resultIndex
+      });
     })
   },
 

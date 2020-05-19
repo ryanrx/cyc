@@ -4,7 +4,6 @@ const util = require('../../utils/util.js');
 const app = util.app;
 const db = util.dbUtil;
 // console.log(db)
-var userInfo = {};
 
 Page({
   data: {
@@ -51,7 +50,6 @@ Page({
           openid: app.globalData.openid
         })
       }
-      userInfo = this.data.userInfo;
       // 查询当前用户所有的记录
       db.collection('user-history').where({
         _openid: this.data.openid,
@@ -88,35 +86,35 @@ Page({
           this.setData({
             records: recs,
           })
-          if (res.data.length && !Object.keys(res.data[0].userInfo).length) {
-            db.collection('user-history').where({
-              _openid: this.data.openid,
-            }).get({
-              success: res => {
-                for (var j = 0; j < res.data.length; j++) {
-                  db.collection('user-history').doc(res.data[j]._id).update({
-                    data: {
-                      nickName: userInfo.nickName,
-                      userInfo: userInfo
-                    }
-                  })
-                }
-              }
-            })
-          }
         }
       })
     }
   },
 
   getUserInfo: function (e) {
-    console.log(app)
+    var that = this;
+    // console.log(app)
     wx.getUserInfo({
       success: res => {
         app.globalData.userInfo = res.userInfo
-        this.setData({
+        that.setData({
           userInfo: res.userInfo,
           hasUserInfo: true
+        })
+
+        // console.log('updating')
+        wx.cloud.callFunction({
+          name: 'updateUserInfo',
+          data: {
+            openid: app.globalData.openid,
+            userInfo: that.data.userInfo
+          }, success: function (res) {
+            // console.log(res)
+          }, fail: function (res) {
+            // console.log(res)
+          },complete: function (res) {
+            that.onLoad();
+          }
         })
       }
     })

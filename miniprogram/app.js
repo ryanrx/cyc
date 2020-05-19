@@ -1,4 +1,5 @@
 //app.js
+
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -10,8 +11,10 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        
       }
     })
+
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -46,8 +49,22 @@ App({
       })
     }
 
+    var that = this;
+
+    wx.cloud.callFunction({
+      name: 'login',
+      data: {},
+      success: function (res) {
+        // console.log(res)
+        that.globalData.openid = res.result.openid;
+      }, fail: function (res) {
+        // console.log(res)
+      }
+    })
+
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    openid: null
   }
 })
