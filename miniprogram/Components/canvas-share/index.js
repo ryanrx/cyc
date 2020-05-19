@@ -241,13 +241,13 @@ Component({
           drawText(ctx, crucialMess, canvasW / 4 * 3, y + radius + rpx2px(35), 0, canvasW/2, rpx2px(5)+h2size)
 
           // 绘制结果标题
-          const _h3size = rpx2px(48)
+          const _h3size = rpx2px(36)
           ctx.setFontSize(_h3size)
           ctx.setTextAlign('center')
           ctx.setFillStyle('#FFE4C4')
           const _textTopY = y + rpx2px(200)
           const _textH
-            = drawText(ctx, resultObject.title, canvasW / 2, _textTopY, 0, canvasW - rpx2px(120), rpx2px(3) + _h3size)
+            = drawText(ctx, resultObject.title, canvasW / 2, _textTopY, 0, canvasW - rpx2px(20), rpx2px(3) + _h3size)
 
 
           // 绘制结果图片
