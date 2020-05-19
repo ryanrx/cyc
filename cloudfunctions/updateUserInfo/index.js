@@ -1,6 +1,8 @@
 // 云函数入口文件
 const cloud = require('wx-server-sdk')
 
+// 填补和更新用户昵称和信息
+
 cloud.init()
 const db = cloud.database();
 // 云函数入口函数

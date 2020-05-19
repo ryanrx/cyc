@@ -26,6 +26,7 @@ Page({
   },
 
   //事件处理函数
+  // 海报保存至相册
   handleSave() {
     const imageFile = app.globalData.canvasPath
 
@@ -108,11 +109,11 @@ Page({
     
     // console.log('platformType : ' + util.platformType)
     
+    // 获取其他推荐测试
     db.collection('questions-lists').where({ 
       name: db.command.neq(options.test)
      }).get({
       success: res => {
-        // console.log(res);
         res.data.sort((a, b) => 0.5 - Math.random());
         this.setData({
           array: res.data.slice(0, 5)
@@ -167,7 +168,6 @@ Page({
    * Called when user click on the top right corner to share
    */
   onShareAppMessage: function () {
-    // console.log(app.globalData)
     return {
       title: this.data.test, //自定义转发标题
       path: '/pages/main/main?id=' + this.data.test, //分享页面路径

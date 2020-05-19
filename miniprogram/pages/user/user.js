@@ -3,7 +3,6 @@
 const util = require('../../utils/util.js');
 const app = util.app;
 const db = util.dbUtil;
-// console.log(db)
 
 Page({
   data: {
@@ -56,7 +55,6 @@ Page({
       }).get({
         success: res => {
           var recs = [];
-          // console.log(res);
           for (var i = 0; i < res.data.length; i++) {
             var curRec = {};
             curRec.qname = res.data[i].qname;
@@ -65,7 +63,6 @@ Page({
             curRec.resultTitle = res.data[i].resultTitle;
             recs.push(curRec);
           }
-          // console.log(recs)
           recs.sort((a, b) => b.date - a.date);
           var d = new Date();
           var milliday = 1000 * 60 * 60 * 24;
@@ -93,7 +90,6 @@ Page({
 
   getUserInfo: function (e) {
     var that = this;
-    // console.log(app)
     wx.getUserInfo({
       success: res => {
         app.globalData.userInfo = res.userInfo
@@ -102,7 +98,6 @@ Page({
           hasUserInfo: true
         })
 
-        // console.log('updating')
         wx.cloud.callFunction({
           name: 'updateUserInfo',
           data: {

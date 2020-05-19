@@ -15,16 +15,14 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    // console.log(options)
+    // 获取类别测试
     this.setData({
       cateName: options.cate
     })
-    // const db = wx.cloud.database();
     db.collection('questions-lists').where({
       category: options.cate,
     }).get({
       success: res => {
-        // console.log(res);
         res.data.sort((a, b) => a.index - b.index);
         this.setData({
           array: res.data

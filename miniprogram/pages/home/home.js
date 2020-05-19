@@ -10,6 +10,7 @@ Page({
     array: []
   },
 
+  // 选中测试
   chosen: function(e){
     console.log(e);
       wx.redirectTo({
@@ -17,8 +18,8 @@ Page({
       });
   },
 
+  // 选中类别
   toCate: function (e) {
-    // console.log(e);
     wx.navigateTo({
       url: '../category/category?cate=' + e.currentTarget.id
     });
@@ -28,27 +29,9 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-
-    // wx.cloud.callFunction({
-    //   name: 'qrcode',
-    //   data: {
-    //     page: 'pages/home/home',
-    //     width: 430,
-    //     autoColor: true,
-    //     isHyaline: false,
-    //     name: 'cyc/other/cyc'
-    //   }
-    // }).catch(err => {
-    //   console.error(err);
-    //   wx.showToast({
-    //     icon: 'none',
-    //     title: '调用失败',
-    //   })
-    // })
-    
+    // 获取所有测试
     db.collection('questions-lists').get({
       success: res => {
-        // console.log(res);
         res.data.sort((a, b) => a.index - b.index);
         this.setData({
           array: res.data

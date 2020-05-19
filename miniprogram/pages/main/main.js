@@ -34,10 +34,9 @@ Page({
   },
 
 
-
+  // 选择选项
   chosen: function(e) {
 
-    //console.log(e.target.dataset);
     for(var i = 0; i < userType.length; i++){ // add scores
       userType[i] += questions[stageNum].scores[e.target.id][i];
     }
@@ -53,7 +52,6 @@ Page({
         percentage: percent
       })
     }, delayTime)
-    //console.log(this.data.percentage)
 
     wx.showToast({
       title: '选择成功',
@@ -88,6 +86,7 @@ Page({
       mask: true
     })
 
+    // 获取问题和结果array
     testName = options.id;
     db.collection('questions-lists').where({
       name: options.id
@@ -140,6 +139,7 @@ Page({
     
   },
 
+  // 获取用户信息权限按钮
   getUserInfo: function (e) {
     var that = this;
     const getInfo = new Promise((resolve) => {
@@ -148,22 +148,14 @@ Page({
           app.globalData.userInfo = res.userInfo;
           userInfo = res.userInfo;
           nickName = userInfo.nickName;
-          // console.log("success")
         },
         complete: res => {
-          // console.log(res);
-
-          // console.log(app.globalData.openid)
-
           if (app.globalData.openid) {
             openid = app.globalData.openid
           }
 
-          // console.log(userInfo)
-
+          //在user-history中更新用户信息
           if (Object.keys(userInfo).length) {
-            // console.log('updating')
-            // console.log(openid)
             wx.cloud.callFunction({
               name: 'updateUserInfo',
               data: {
@@ -177,13 +169,14 @@ Page({
             })
           }
 
+          // 获取用户做此测试的历史记录
           var d = new Date();
           db.collection('user-history').where({
             _openid: openid,
             qname: that.data.name
           }).get({
             success: res => {
-              // console.log(res)
+              // 如果有记录，更新日期和结果
               if (res.data.length) {
                 db.collection('user-history').doc(res.data[0]._id).update({
                   data: {
@@ -192,10 +185,9 @@ Page({
                     resultTitle: resultTitle
                   }
                 })
-
                 resolve();
+              // 如果没有记录，添加记录
               } else {
-                // console.log("complete", res)
                 db.collection('user-history').add({
                   data: {
                     qname: that.data.name,

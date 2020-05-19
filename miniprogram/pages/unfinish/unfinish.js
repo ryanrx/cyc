@@ -23,7 +23,6 @@ Page({
         this.setData({
           imagesrc: res.data[0].bg_img,
         });
-        // console.log(res)
         wx.cloud.callFunction({
           name: 'incCount',
           data: {

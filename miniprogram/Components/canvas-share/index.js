@@ -83,7 +83,6 @@ Component({
       const designHeight = 603 // 这是在顶部位置定义，底部无tabbar情况下的设计稿高度
 
       // 以iphone6为设计稿，计算相应的缩放比例
-      // console.log(this.data.test);
 
       const { windowWidth, windowHeight } = wx.getSystemInfoSync()
       const responsiveScale =
@@ -100,7 +99,6 @@ Component({
         }).get({
           success: res => {
             bg = res.data[0].canvas_bg;
-            // console.log(res)
             resultObject = res.data[0].types[this.properties.resultIndex];
             resolve();
           }
@@ -237,7 +235,6 @@ Component({
 
           ctx.setTextAlign('center')
           ctx.setFillStyle('lightgray')
-          // ctx.setFillStyle('white')
           drawText(ctx, crucialMess, canvasW / 4 * 3, y + radius + rpx2px(35), 0, canvasW/2, rpx2px(5)+h2size)
 
           // 绘制结果标题
@@ -272,7 +269,6 @@ Component({
             // 最后完成作画
             
             ctx.draw(false, () => {
-              // console.log(app.globalData);
               canvasToTempFilePath({
                 canvasId: 'share',
               }, this).then(({ tempFilePath }) =>

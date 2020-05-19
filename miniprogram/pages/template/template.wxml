@@ -1,3 +1,4 @@
+<!-- 问题和选择 -->
 <template name="question-list">
   <block wx:for="{{questions}}" wx:key="unique">
     <view wx:if="{{index == stage}}">
@@ -26,6 +27,7 @@
 </template>
 
 
+<!-- 测试列表 -->
 <template name="tests">
   <block wx:for="{{array}}" wx:key="index">
     <navigator wx:if="{{item.ifFinish}}" url='../main/main?id={{item.name}}' class="weui-cell weui-cell_access" open-type="reLaunch"><!-- @@@@@@ url内部字符串拼接的良好示范 -->
