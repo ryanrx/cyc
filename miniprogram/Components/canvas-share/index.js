@@ -247,7 +247,7 @@ Component({
           ctx.setFillStyle('#FFE4C4')
           const _textTopY = y + rpx2px(200)
           const _textH
-            = drawText(ctx, resultObject.title, canvasW / 2, _textTopY, 0, canvasW - rpx2px(20), rpx2px(3) + _h3size)
+            = drawText(ctx, resultObject.title, canvasW / 2, _textTopY, 0, canvasW - rpx2px(60), rpx2px(3) + _h3size)
 
 
           // 绘制结果图片
