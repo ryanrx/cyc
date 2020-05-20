@@ -71,7 +71,6 @@ Page({
       category: this.data.cateName,
     }).get({
       success: res => {
-        // console.log(res);
         this.setData({
           array: res.data
         })
