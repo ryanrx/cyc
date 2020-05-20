@@ -1,7 +1,7 @@
 <!--pages/result/result.wxml-->
 <import src="../template/template.wxml"/>
 <view class="page" data-weui-theme="{{theme}}">
-    <view class="weui-btn_cell weui-btn_cell-primary" style="background-color: gray; color:white;">可使用下方按钮保存并分享图片<text style='font-size: 28rpx;'>\n（纯属娱乐，切勿较真。原创不易，侵权必究。）</text></view>
+    <view class="weui-btn_cell weui-btn_cell-primary" style="background-color: gray; color:white;">可使用图片下方按钮保存并分享图片<text style='font-size: 28rpx;'>\n（纯属娱乐，切勿较真。原创不易，侵权必究。）</text></view>
     <canvas-share resultIndex="{{resultIndex}}" test="{{test}}"/>
 
     <view class="weui-btn-area" style="margin-top: 50rpx;">
