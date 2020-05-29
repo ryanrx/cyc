@@ -13,6 +13,12 @@ var testName = "";
 var delayTime = 500;
 var resultTitle = "";
 
+const regeneratorRuntime = require('regenerator-runtime')
+const tf = require('@tensorflow/tfjs-core')
+const tfl = require('@tensorflow/tfjs-layers')
+
+var user = []
+var ifMl = false
 
 Page({
 
@@ -42,6 +48,8 @@ Page({
     }
     // console.log(userType);
 
+    user.push(parseInt(e.target.id))
+
     // increment questions stage number
     stageNum++;
     let percent = (stageNum / questions.length * 100).toFixed(1);
@@ -61,6 +69,12 @@ Page({
     })
 
     if(stageNum == questions.length){ // if no questions left
+      
+      if(ifMl){
+        console.log("userType: ", userType);
+        this.useModel(user)
+      }
+
       var maxIndex = util.pickIndexOfMax(userType);
       resultTitle = types[maxIndex].title;
       var that = this;
@@ -88,6 +102,7 @@ Page({
 
     // 获取问题和结果array
     testName = options.id;
+    ifMl = (testName == "测一测你给别人的第一印象")
     db.collection('questions-lists').where({
       name: options.id
     }).get({
@@ -136,7 +151,23 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+
+  },
+
+  async useModel(user) {
+    user = new Uint8Array(user)
+    const net = await this.loadModel()
+    if (net) {
+      const y = await net.predict(tf.tensor(user, [1, 8]))
+      console.log("model prediction: ", y)
+    }
+  },
+
+  async loadModel() {
+    // const net = await tfl.loadLayersModel('cloud://inuyasha.696e-inuyasha-1301310234/cyc/mlmodel/model.json')
+    const net = await tfl.loadLayersModel('http://localhost:8000/model.json')
+    net.summary()
+    return net
   },
 
   // 获取用户信息权限按钮
