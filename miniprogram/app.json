@@ -14,6 +14,12 @@
     "navigationBarTitleText": "趣味测一测",
     "navigationBarTextStyle": "black"
   },
+  "plugins": {
+    "tfjsPlugin": {
+      "version": "0.0.6",
+      "provider": "wx6afed118d9e81df9"
+    }
+  },
   "sitemapLocation": "sitemap.json",
   "cloud": true,
   "tabBar": {
