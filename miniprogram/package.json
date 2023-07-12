@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@tensorflow/tfjs-converter": "^1.7.4",
-    "@tensorflow/tfjs-core": "^1.7.4",
+    "@tensorflow/tfjs-core": "^4.8.0",
     "@tensorflow/tfjs-layers": "^1.7.4",
     "fetch-wechat": "0.0.3",
     "regenerator-runtime": "^0.13.5"
